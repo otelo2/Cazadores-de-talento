@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear talentos</title>
+</head>
+<body>
+    <h1>Crear perfiles de talento</h1>
+    <form action="POST">
+        <label for="alias">Alias</label>
+        <input type="text" name="alias" id="alias">
+
+        <label for="habilidad">Habilidades</label>
+        <select name="habilidad" id="habilidad">
+            <option value="habilidad1">Habilidad 1</option>
+            <option value="habilidad2">Habilidad 2</option>
+            <option value="habilidad3">Habilidad 3</option>
+        </select>
+
+        <label for="actividad_profesional">Actividad Profesional</label>
+        <input type="text" name="actividad_profesional" id="actividad_profesional">
+
+        <label for="horario">Horario</label>
+        <input type="text" name="horario" id="horario">
+
+        <label for="lugar">Lugar</label>
+        <input type="text" name="lugar" id="lugar">
+
+        <!-- Creo que esto no va cuando se crea un perfil de talento --> 
+        <label for="lista_de_contratos">Lista de contratos</label>
+        <select name="lista_de_contratos" id="lista_de_contratos">
+            <option value="contrato1">Contrato 1</option>
+            <option value="contrato2">Contrato 2</option>
+            <option value="contrato3">Contrato 3</option>
+        </select>
+
+        <label for="costo">Costo</label>
+        <input type="number" name="costo" id="costo">
+
+        <!-- Creo que esto no va cuando se crea un perfil de talento --> 
+        <label for="reputacion">Reputacion</label>
+        <input type="number" name="reputacion" id="reputacion" min="1" max="5">
+
+    </form>
+</body>
+</html>
