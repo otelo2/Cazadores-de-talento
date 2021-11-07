@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear cazador</title>
+</head>
+<body>
+    <h1>Crear perfiles de cazador</h1>
+    <form action="POST">
+        <label for="alias">Alias</label>
+        <input type="text" name="alias" id="alias">
+
+        <label for="giro_de_proyectos">Giro de proyectos</label>
+        <input type="text" name="giro_de_proyectos" id="giro_de_proyectos">
+
+        <label for="coordenadas">Coordenadas</label>
+        <input type="text" name="coordenadas" id="coordenadas">
+
+        <!-- Creo que esto no va cuando se crea un perfil de cazador --> 
+        <label for="lista_de_proyectos">Lista de proyectos</label>
+        <select name="lista_de_proyectos" id="lista_de_proyectos">
+            <option value="proyectos1">Proyecto 1</option>
+            <option value="proyectos2">Proyecto 2</option>
+            <option value="proyectos3">Proyecto 3</option>
+        </select>
+
+        <!-- Creo que esto no va cuando se crea un perfil de cazador --> 
+        <label for="puntos_para_ventajas">Puntos para ventajas</label>
+        <input type="number" name="puntos_para_ventajas" id="puntos_para_ventajas">
+
+        <!-- Creo que esto no va cuando se crea un perfil de cazador --> 
+        <label for="descuento_de_cuota">Descuento de cuota</label>
+        <input type="number" name="descuento_de_cuota" id="descuento_de_cuota">
+
+        <!-- Creo que esto no va cuando se crea un perfil de cazador --> 
+        <label for="reputacion">Reputacion</label>
+        <input type="number" name="reputacion" id="reputacion" min="1" max="5">
+
+    </form>
+</body>
+</html>
