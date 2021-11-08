@@ -4,29 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear proyectos</title>
+    <link type="text/css" rel="stylesheet" href="main.css">      <title>Crear proyectos</title>
 </head>
 <body>
     <h1>Crear proyectos</h1>
-    <form action="#" method="post">
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre">
+    <div id="form">
+	<form action="#" method="post">
+	        <label for="nombre">Nombre</label>
+	        <input type="text" name="nombre" id="nombre">
 
-        <label for="descripción">Descripción</label>
-        <textarea name="descripción" id="descripción" cols="30" rows="10"></textarea>
+	        <label for="descripción">Descripción</label>
+	        <textarea name="descripción" id="descripción" cols="30" rows="10"></textarea>
 
-        <label for="cuota">Cuota</label>
-        <input type="number" name="cuota" id="cuota">
+	        <label for="cuota">Cuota</label>
+	        <input type="number" name="cuota" id="cuota">
 
-        <!-- Creo que esto no va cuando se crea un proyecto --> 
-        <label for="tiene_talento">Tiene talento?</label>
-        <input type="radio" name="tiene_talento" id="tiene_talento" value="Sí">
-        <label for="Sí">Sí</label>
-        <input type="radio" name="tiene_talento" id="tiene_talento" value="No">
-        <label for="No">No</label>
+	        <!-- Creo que esto no va cuando se crea un proyecto --> 
+	        <!-- 
+		<label for="tiene_talento">Tiene talento?</label>
+	       	<input type="radio" name="tiene_talento" id="tiene_talento" value="Sí">
+	        <label for="Sí">Sí</label>
+	        <input type="radio" name="tiene_talento" id="tiene_talento" value="No">
+	        <label for="No">No</label>-->
 
-        <input type="submit" value="Crear proyecto">
-
-    </form>
+	        <input type="submit" value="Crear proyecto">
+	</form>
+    </div>
 </body>
 </html>

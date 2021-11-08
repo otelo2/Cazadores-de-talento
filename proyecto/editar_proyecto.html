@@ -4,34 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
     <title>Editar proyectos</title>
 </head>
 <body>
     <h1>Editar perfil de proyectos</h1>
-    <form action="#" method="post">
-        <label for="proyecto">Proyecto a editar:</label>
-        <select name="proyecto" id="proyecto">
-            <option value="proyecto1">Proyecto 1</option>
-            <option value="proyecto2">Proyecto 2</option>
-            <option value="proyecto3">Proyecto 3</option>
-        </select>
+    <div id = "form">
+	<form action="#" method="post">
+	        <label for="proyecto">Proyecto a editar:</label>
+	        <select name="proyecto" id="proyecto">
+	            <option value="proyecto1">Proyecto 1</option>
+	            <option value="proyecto2">Proyecto 2</option>
+	            <option value="proyecto3">Proyecto 3</option>
+	        </select>
+		<p></p>
 
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre">
+	        <label for="nombre">Nombre</label>
+	        <input type="text" name="nombre" id="nombre">
 
-        <label for="descripción">Descripción</label>
-        <textarea name="descripción" id="descripción" cols="30" rows="10"></textarea>
+	        <label for="descripción">Descripción</label>
+	        <textarea name="descripción" id="descripción" cols="30" rows="10"></textarea>
 
-        <label for="cuota">Cuota</label>
-        <input type="number" name="cuota" id="cuota">
+	        <label for="cuota">Cuota</label>
+	        <input type="number" name="cuota" id="cuota">
 
-        <label for="tiene_talento">Tiene talento?</label>
-        <input type="radio" name="tiene_talento" id="tiene_talento" value="Sí">
-        <label for="Sí">Sí</label>
-        <input type="radio" name="tiene_talento" id="tiene_talento" value="No">
-        <label for="No">No</label>
+	        <!--
+		<label for="tiene_talento">Tiene talento?</label>
+	        <input type="radio" name="tiene_talento" id="tiene_talento" value="Sí">
+	        <label for="Sí">Sí</label>
+	        <input type="radio" name="tiene_talento" id="tiene_talento" value="No">
+	        <label for="No">No</label>-->
 
-        <input type="submit" value="Actualizar proyecto">
-    </form>
+	        <input type="submit" value="Actualizar proyecto">
+	</form>
+    </div>
 </body>
 </html>
