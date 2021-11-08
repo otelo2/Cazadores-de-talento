@@ -1,0 +1,57 @@
+div label, div input {
+    display: block;
+}
+
+body {
+	background-color: lightblue;
+	font-size: 20px;
+	font-family: Garamond, "Courier New", "Times New Roman"
+}
+
+p {
+	font-size: 12px;
+}
+
+h1 {
+	text-align: center;
+}
+
+#form {
+	width: 550px; 
+	margin: 0 auto;
+}
+
+
+label {
+    margin-bottom: 10px;
+}
+
+input {
+    width: 500px;
+    margin-bottom: 25px;
+}
+
+input[type=submit] {
+    font-size: 10 px;
+    background-color: teal;
+    color: white;
+    cursor: pointer;
+    padding: 7px;
+}
+
+select {
+    width: 500px;
+    font-size: 18px;
+    text-align: center;
+    padding: 7px;
+}
+
+input[type=text], input[type=number] {
+    border: 2px solid #7facaa;
+    padding: 7px;
+    font-size: 22px;
+}
+
+input[type=text]:hover, input[type=number]:hover, select:hover, input[type=submit]:hover {
+    border: 2px solid #000000;
+}
