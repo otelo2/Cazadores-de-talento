@@ -3,7 +3,7 @@ div label, div input {
 }
 
 body {
-	background-color: lightblue;
+	background-color: #FFDCF4;
 	font-size: 20px;
 	font-family: Garamond, "Courier New", "Times New Roman"
 }
@@ -30,14 +30,14 @@ label {
     margin-bottom: 10px;
 }
 
-input {
+input, textarea {
     width: 500px;
     margin-bottom: 25px;
 }
 
 input[type=submit] {
     font-size: 10 px;
-    background-color: teal;
+    background-color: #F25278;
     color: white;
     cursor: pointer;
     padding: 7px;
@@ -56,6 +56,6 @@ input[type=text], input[type=number] {
     font-size: 22px;
 }
 
-input[type=text]:hover, input[type=number]:hover, select:hover, input[type=submit]:hover {
+input[type=text]:hover, input[type=number]:hover, select:hover, input[type=submit]:hover, textarea:hover{
     border: 2px solid #000000;
 }
