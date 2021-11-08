@@ -3,7 +3,7 @@ div label, div input {
 }
 
 body {
-	background-color: lightblue;
+	background-color: #cecf92;
 	font-size: 20px;
 	font-family: Garamond, "Courier New", "Times New Roman"
 }
@@ -37,8 +37,8 @@ input {
 
 input[type=submit] {
     font-size: 10 px;
-    background-color: teal;
-    color: white;
+    background-color: #cecf92;
+    color: #000000;
     cursor: pointer;
     padding: 7px;
 }
@@ -51,7 +51,7 @@ select {
 }
 
 input[type=text], input[type=number] {
-    border: 2px solid #7facaa;
+    border: 2px solid #cecf92;
     padding: 7px;
     font-size: 22px;
 }
