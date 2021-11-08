@@ -1,0 +1,103 @@
+body {
+	background-color: white;
+	font-size: 20px;
+	font-family: Garamond, "Courier New", "Times New Roman"
+}
+
+a {
+	cursor: pointer;
+}
+
+h1 {
+	text-align: center;
+}
+
+#cazadores {
+	width: 600px; 
+	margin: 0 auto;
+}
+
+#cazadores a:link, #cazadores a:visited {
+	color: #1C542D; 
+	background-color: lightgreen;
+	text-decoration: none;
+}
+
+#cazadores a:hover {
+	border: 2px solid #1C542D;
+}
+
+#talento {
+	width: 600px; 
+	margin: 0 auto;
+}
+
+#talento a:link, #talento a:visited {
+	color: teal;
+	background-color: lightblue;
+	text-decoration: none;
+}
+
+#talento a:hover {
+	border: 2px solid teal;
+}
+
+#proyectos {
+	width: 600px; 
+	margin: 0 auto;
+}
+
+#proyectos a:link, #proyectos a:visited {
+	color: #AA0144;
+	background-color: #FFDCF4;
+	text-decoration: none;
+}
+
+#proyectos a:hover {
+	border: 2px solid #AA0144;
+}
+
+#contratos {
+	width: 600px; 
+	margin: 0 auto;
+}
+
+#contratos a:link, #contratos a:visited {
+	color: #AA0144;
+	background-color: #FFDCF4;
+	text-decoration: none;
+}
+
+#contratos a:hover {
+	border: 2px solid #AA0144;
+}
+
+#citas {
+	width: 600px; 
+	margin: 0 auto;
+}
+
+#citas a:link, #citas a:visited {
+	color: #AA0144;
+	background-color: #FFDCF4;
+	text-decoration: none;
+}
+
+#citas a:hover {
+	border: 2px solid #AA0144;
+}
+
+#habilidades {
+	width: 600px; 
+	margin: 0 auto;
+}
+
+#habilidades a:link, #habilidades a:visited {
+	color: #AA0144;
+	background-color: #FFDCF4;
+	text-decoration: none;
+}
+
+#habilidades a:hover {
+	border: 2px solid #AA0144;
+}
