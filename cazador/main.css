@@ -32,7 +32,7 @@ input {
 
 input[type=submit] {
     font-size: 10 px;
-    background-color: teal;
+    background-color: #1C542D;
     color: white;
     cursor: pointer;
     padding: 7px;
