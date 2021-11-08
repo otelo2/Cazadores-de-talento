@@ -63,13 +63,13 @@ h1 {
 }
 
 #contratos a:link, #contratos a:visited {
-	color: #AA0144;
-	background-color: #FFDCF4;
+	color: #A485D6;
+	background-color: #EBD6E6;
 	text-decoration: none;
 }
 
 #contratos a:hover {
-	border: 2px solid #AA0144;
+	border: 2px solid #A485D6;
 }
 
 #citas {
@@ -78,13 +78,13 @@ h1 {
 }
 
 #citas a:link, #citas a:visited {
-	color: #AA0144;
-	background-color: #FFDCF4;
+	color: #DE2E03;
+	background-color: #FFA460;
 	text-decoration: none;
 }
 
 #citas a:hover {
-	border: 2px solid #AA0144;
+	border: 2px solid #DE2E03;
 }
 
 #habilidades {
@@ -93,11 +93,11 @@ h1 {
 }
 
 #habilidades a:link, #habilidades a:visited {
-	color: #AA0144;
-	background-color: #FFDCF4;
+	color: #4C6955;
+	background-color: #5DBB82;
 	text-decoration: none;
 }
 
 #habilidades a:hover {
-	border: 2px solid #AA0144;
+	border: 2px solid #4C6955;
 }

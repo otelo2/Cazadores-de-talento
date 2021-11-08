@@ -50,8 +50,8 @@ select {
     padding: 7px;
 }
 
-input[type=text], input[type=number] {
-    border: 2px solid #7facaa;
+input[type=text], input[type=number], textarea {
+    border: 2px solid #F25278;
     padding: 7px;
     font-size: 22px;
 }

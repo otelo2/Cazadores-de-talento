@@ -3,7 +3,7 @@ div label, div input {
 }
 
 body {
-	background-color: #a485d6;
+	background-color: #EBD6E6;
 	font-size: 20px;
 	font-family: Garamond, "Courier New", "Times New Roman"
 }
@@ -50,7 +50,7 @@ select {
     padding: 7px;
 }
 
-input[type=text], input[type=number] {
+input[type=text], input[type=number], textarea {
     border: 2px solid #a485d6;
     padding: 7px;
     font-size: 22px;

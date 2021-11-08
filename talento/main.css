@@ -46,7 +46,7 @@ select {
 }
 
 input[type=text], input[type=number] {
-    border: 2px solid #7facaa;
+    border: 2px solid teal;
     padding: 7px;
     font-size: 22px;
 }
