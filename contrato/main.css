@@ -3,7 +3,7 @@ div label, div input {
 }
 
 body {
-	background-color: lightblue;
+	background-color: #a485d6;
 	font-size: 20px;
 	font-family: Garamond, "Courier New", "Times New Roman"
 }
@@ -37,7 +37,7 @@ input {
 
 input[type=submit] {
     font-size: 10 px;
-    background-color: teal;
+    background-color: #a485d6;
     color: white;
     cursor: pointer;
     padding: 7px;
@@ -51,11 +51,16 @@ select {
 }
 
 input[type=text], input[type=number] {
-    border: 2px solid #7facaa;
+    border: 2px solid #a485d6;
     padding: 7px;
     font-size: 22px;
 }
 
 input[type=text]:hover, input[type=number]:hover, select:hover, input[type=submit]:hover {
     border: 2px solid #000000;
+}
+
+.selectDisplay{
+    display: flex;
+    justify-content: center;
 }
