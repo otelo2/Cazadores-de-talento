@@ -5,7 +5,6 @@ body {
 }
 
 p {
-	width: 600px;
 	text-align: center;
 }
 
@@ -15,6 +14,17 @@ a {
 
 h1 {
 	text-align: center;
+}
+
+#main a:link, #main a:visited {
+	color: #FFC600; 
+	background-color: #C45824;
+	text-decoration: none;
+}
+
+#main a:hover {
+	border: 5px solid #FFC600;
+	cursor: pointer;
 }
 
 #cazadores {
