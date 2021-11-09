@@ -4,6 +4,11 @@ body {
 	font-family: Garamond, "Courier New", "Times New Roman"
 }
 
+p {
+	width: 600px;
+	text-align: center;
+}
+
 a {
 	cursor: pointer;
 }
