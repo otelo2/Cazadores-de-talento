@@ -1,6 +1,6 @@
 var CAZADOR = (function(a, g, c){
 	CAZADOR.counter = (++CAZADOR.counter || 1);
-	var id = CAZADOR.counter;
+	var idCazador = CAZADOR.counter;
 	var alias = a;
 	var giroProyectos = g;
 	var coordenadas = c;
@@ -11,7 +11,7 @@ var CAZADOR = (function(a, g, c){
 	var reputacion = 0;
 	
 	return {
-		getID: function() {return id;},
+		getID: function() {return idCazador;},
 		getAlias: function() {return alias;},
 		setAlias: function(a) {alias = a;},
 		getGiroProyectos: function() {return giroProyectos;},
@@ -67,7 +67,7 @@ var CAZADOR = (function(a, g, c){
 		getReputacion: function() {return reputacion;},
 		setReputacion: function() {}, 
 		displayInformation: function() {
-			console.log('Cazador id: ' + id);
+			console.log('Cazador id: ' + idCazador);
 			console.log('Cazador alias: ' + alias);
 			console.log('Cazador giro de proyectos: ' + giroProtectos);
 			console.log('Cazador coordenadas: ' + coordenadas);
@@ -76,6 +76,30 @@ var CAZADOR = (function(a, g, c){
 			console.log('Cazador puntosVentajas: ' + puntosVentajas);
 			console.log('Cazador descuento: ' + descuento);
 			console.log('Cazador reputacion: ' + reputacion);
+		}
+	}
+});
+
+var CITA = (function(iC, iT, h, l){
+	CITA.counter = (++CITA.counter || 1);
+	var idCita = CITA.counter;
+	var idCazador = iC;
+	var idTalento = iT;
+	var horario = h;
+	var lugar = l;
+	
+	return {
+		getID: function() {return idCita;},
+		getHorario: function() {return horario;},
+		setHorario: function(h) {horario = h;},
+		getLugar: function() {return lugar;},
+		setLugar: function(l) {lugar = l;},
+		displayInformation: function() {
+			console.log('Cita id: ' + idCita);
+			console.log('Cazador id: ' + idCazador);
+			console.log('Talento id: ' + idTalento);
+			console.log('Horario: ' + horario);
+			console.log('Lugar: ' + lugar);
 		}
 	}
 });
