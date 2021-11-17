@@ -98,8 +98,46 @@ var CITA = (function(iC, iT, h, l){
 			console.log('Cita id: ' + idCita);
 			console.log('Cazador id: ' + idCazador);
 			console.log('Talento id: ' + idTalento);
-			console.log('Horario: ' + horario);
-			console.log('Lugar: ' + lugar);
+			console.log('Cita horario: ' + horario);
+			console.log('Cita lugar: ' + lugar);
+		}
+	}
+});
+
+var PROYECTO = (function(iC, iT, n, d, c, h){
+	PROYECTO.counter = (++PROYECTO.counter || 1);
+	var idProyecto = PROYECTO.counter;
+	var idCazador = iC;
+	var idTalento = iT;
+	var nombre = n;
+	var descripcion = d;
+	var cuota = c;
+	var habilidades = h; 	//var habilidades = new Array();
+	var tieneTalento = false;
+	var estaActivo = true;
+
+	return {
+		getID: function() {return idProyecto;},
+		getNombre: function() {return nombre;},		
+		setNombre: function(n) {nombre = n;},
+		getDescripcion: function() {return descripcion;},
+		setDescripcion: function(d) {descripcion = d;},
+		getCuota: function() {return cuota;}, 
+		setCuota: function(c) {cuota = c;},
+		getHabilidades: function() {return habilidades;},
+		setHabiliddes: function(h) {habilidades = h;},
+		setTieneTalento: function() {tieneTalento = !tieneTalento;},
+		getTieneTalento: function() {return tieneTalento;},
+		setEstaActivo: function() {estaActivo = !estaActivo;},
+		getEstaActivo: function() {return estaActivo;},
+		displayInformation: function() {
+			console.log('Proyecto id: ' + idProyecto);
+			console.log('Proyecto nombre ' + nombre);
+			console.log('Proyecto descripcion: ' + descripcion);
+			console.log('Proyecto cuota: ' + cuota);
+			console.log('Proyecto habilidades: ' + habilidades);
+			console.log('Proyecto tiene talento: ' + tieneTalento);
+			console.log('Proyecto esta activo: ' + estaActivo);
 		}
 	}
 });
@@ -118,8 +156,8 @@ var HABILIDAD = (function(n, d){
 		setLugar: function(d) {descripcion = d;},
 		displayInformation: function() {
 			console.log('Habilidad id: ' + idHabilidad);
-			console.log('Nombre: ' + nombre);
-			console.log('Descripcion: ' + descripcion);
+			console.log('Habilidad Nombre: ' + nombre);
+			console.log('Habilidad Descripcion: ' + descripcion);
 		}
 	}
 });
