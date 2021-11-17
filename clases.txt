@@ -1,3 +1,5 @@
+//------------------------------------------------------	CLASES		------------------------------------------------------//
+
 var CAZADOR = (function(a, g, c){
 	CAZADOR.counter = (++CAZADOR.counter || 1);
 	var idCazador = CAZADOR.counter;
@@ -80,6 +82,89 @@ var CAZADOR = (function(a, g, c){
 	}
 });
 
+var TALENTO = (function(a, ac, ho, l, c){
+	TALENTO.counter = (++TALENTO.counter || 1);
+	var idTalento = TALENTO.counter;
+	var alias = a;
+	var listaHabilidades = new Array();
+	var actividadProfesional = ac;
+	var horario = ho;
+	var lugar = l;
+	var listaContratos = new Array();
+	var costo = c;
+	var reputacion = 0;
+	
+	return {
+		getID: function() {return idTalento;},
+		getAlias: function() {return alias;},
+		setAlias: function(a) {alias = a;},
+		getHabilidades: function() {return habilidades;},
+		setHabilidades: function(h) {habilidades = h;}, //talvez sea mejor usar un push?
+		addHabilidad: function(h) {
+			if(listaHabilidades.length == 0) 
+			{
+				listaHabilidades.push(h);
+			} 
+			else
+			{
+				for(var i = 0; i < listaHabilidades.length; i++) 
+				{
+					if(listaHabilidades[i] == undefined) 
+					{
+						listaHabilidades[i] = h;
+					} 
+					else if(i == listaHabilidades.length - 1) 
+					{
+						listaHabilidades.push(h);
+					}
+				}
+			}
+		},
+		getActividadProfesional: function() {return actividadProfesional;},
+		setActividadProfesional: function(ac) {actividadProfesional = ac;},
+		getHorario: function() {return horario;},
+		setHorario: function(h) {horario = h;},
+		getLugar: function() {return lugar;},
+		setLugar: function(l) {lugar = l;},
+		addContrato: function(c) {
+			if(listaContratos.length == 0) 
+			{
+				listaContratos.push(c);
+			} 
+			else
+			{
+				for(var i = 0; i < listaContratos.length; i++) 
+				{
+					if(listaContratos[i] == undefined) 
+					{
+						listaContratos[i] = c;
+					} 
+					else if(i == listaContratos.length - 1) 
+					{
+						listaContratos.push(c);
+					}
+				}
+			}
+		},
+		getListaContratos: function() {return listaContratos;},
+		getCosto: function() {return costo;},
+		setCosto: function(c) {costo = c;},
+		getReputacion: function() {return reputacion;},
+		setReputacion: function() {}, 
+		displayInformation: function() {
+			console.log('Talento id: ' + idTalento);
+			console.log('Talento alias: ' + alias);
+			console.log('Talento habilidades: ' + habilidades.length);
+			console.log('Talento actividad profesional: ' + actividadProfesional);
+			console.log('Talento horario: ' + horario);
+			console.log('Talento contratos: ' + listaContratos.length);
+			console.log('Talento lugar: ' + lugar);
+			console.log('Talento costo: ' + costo);
+			console.log('Talento reputacion: ' + reputacion);
+		}
+	}
+});
+
 var CITA = (function(iC, iT, h, l){
 	CITA.counter = (++CITA.counter || 1);
 	var idCita = CITA.counter;
@@ -154,8 +239,8 @@ var CONTRATO = (function(iC, iT, iP, n, d, c, h){
 
 	return {
 		getID: function() {return idProyecto;},
-		setCalificacionCazador: function {},
-		setCalificacionTalento: function {},
+		setCalificacionCazador: function() {},
+		setCalificacionTalento: function() {},
 		setCerrado: function() {cerrado = !cerrado;},
 		displayInformation: function() {
 			console.log('Contrato id: ' + idContrato);
