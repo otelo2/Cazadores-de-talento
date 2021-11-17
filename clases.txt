@@ -103,3 +103,23 @@ var CITA = (function(iC, iT, h, l){
 		}
 	}
 });
+
+var HABILIDAD = (function(n, d){
+	HABILIDAD.counter = (++HABILIDAD.counter || 1);
+	var idHabilidad = HABILIDAD.counter;
+	var nombre = n;
+	var descripcion = d;
+	
+	return {
+		getID: function() {return idHabilidad;},
+		getNombre: function() {return nombre;},
+		setNombre: function(n) {nombre = n;},
+		getDescripcion: function() {return descripcion;},
+		setLugar: function(d) {descripcion = d;},
+		displayInformation: function() {
+			console.log('Habilidad id: ' + idHabilidad);
+			console.log('Nombre: ' + nombre);
+			console.log('Descripcion: ' + descripcion);
+		}
+	}
+});
