@@ -142,6 +142,29 @@ var PROYECTO = (function(iC, iT, n, d, c, h){
 	}
 });
 
+var CONTRATO = (function(iC, iT, iP, n, d, c, h){
+	CONTRATO.counter = (++CONTRATO.counter || 1);
+	var idContrato = CONTRATO.counter;
+	var idCazador = iC;
+	var idTalento = iT;
+	var idProyecto = iP;
+	var calificacionCazador;
+	var calificacionTalento;
+	var cerrado = false;
+
+	return {
+		getID: function() {return idProyecto;},
+		setCalificacionCazador: function {},
+		setCalificacionTalento: function {},
+		setCerrado: function() {cerrado = !cerrado;},
+		displayInformation: function() {
+			console.log('Contrato id: ' + idContrato);
+			console.log('Contrato cerrado: ' + cerrado);			console.log('\t Calificacion Talento: ' + nombre);
+			console.log('\t Calificacion Cazador: ' + nombre);
+		}
+	}
+});
+
 var HABILIDAD = (function(n, d){
 	HABILIDAD.counter = (++HABILIDAD.counter || 1);
 	var idHabilidad = HABILIDAD.counter;
