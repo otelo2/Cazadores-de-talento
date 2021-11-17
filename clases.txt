@@ -1,0 +1,81 @@
+var CAZADOR = (function(a, g, c){
+	CAZADOR.counter = (++CAZADOR.counter || 1);
+	var id = CAZADOR.counter;
+	var alias = a;
+	var giroProyectos = g;
+	var coordenadas = c;
+	var listaProyectos = new Array();
+	var listaContratos = new Array();
+	var puntosVentajas = 0;
+	var descuento = 0;
+	var reputacion = 0;
+	
+	return {
+		getID: function() {return id;},
+		getAlias: function() {return alias;},
+		setAlias: function(a) {alias = a;},
+		getGiroProyectos: function() {return giroProyectos;},
+		setGiroProyectos: function(g) {giroProyectos = g;},
+		getCoordenadas: function() {return coordenadas;},
+		setCoordenadas: function(c) {coordenadas = c;},
+		addProyecto: function(p) {
+			if(listaProyectos.length == 0) 
+			{
+				listaProyectos.push(p);
+			} 
+			else
+			{
+				for(var i = 0; i < listaProyectos.length; i++) 
+				{
+					if(listaProyectos[i] == undefined) 
+					{
+						listaProyectos[i] = p;
+					} 
+					else if(i == listaProyectos.length - 1) 
+					{
+						listaProyectos.push(p);
+					}
+				}
+			}
+		},
+		getListaProyectos: function() {return listaProyectos;},
+		addContrato: function(c) {
+			if(listaContratos.length == 0) 
+			{
+				listaContratos.push(c);
+			} 
+			else
+			{
+				for(var i = 0; i < listaContratos.length; i++) 
+				{
+					if(listaContratos[i] == undefined) 
+					{
+						listaContratos[i] = c;
+					} 
+					else if(i == listaContratos.length - 1) 
+					{
+						listaContratos.push(c);
+					}
+				}
+			}
+		},
+		getListaContratos: function() {return listaContratos;},
+		getPuntosVentajas: function() {return puntosVentajas;},
+		setPuntosVentajas: function() {},
+		getDescuento: function() {return descuento;},
+		setDescuento: function() {},
+		getReputacion: function() {return reputacion;},
+		setReputacion: function() {}, 
+		displayInformation: function() {
+			console.log('Cazador id: ' + id);
+			console.log('Cazador alias: ' + alias);
+			console.log('Cazador giro de proyectos: ' + giroProtectos);
+			console.log('Cazador coordenadas: ' + coordenadas);
+			console.log('Cazador proyectos: ' + listaProyectos.length);
+			console.log('Cazador contratos: ' + listaContratos.length);
+			console.log('Cazador puntosVentajas: ' + puntosVentajas);
+			console.log('Cazador descuento: ' + descuento);
+			console.log('Cazador reputacion: ' + reputacion);
+		}
+	}
+});
