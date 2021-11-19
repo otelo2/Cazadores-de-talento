@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../Imagenes/Cofre.png">
     <title>Crear proyectos</title>
 </head>
-<body>
+<body onload="newHabilidades()">
     <h1>Crear proyectos</h1>
     <div id="form">
 	<form action="#" method="post">
@@ -21,6 +21,14 @@
 
 	        <label for="cuota">Cuota</label>
 	        <input type="number" name="cuota" id="cuota">
+
+		<div>
+			<label for="habilidad">Habilidades</label>
+		        <select name="habilidad" id="habilidad" multiple>
+        		    <!-- option value="habilidad1" Habilidad 1 option-->
+		        </select>
+			<p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
+		</div>
 
 	        <!-- Creo que esto no va cuando se crea un proyecto --> 
 	        <!-- 

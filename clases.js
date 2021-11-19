@@ -225,11 +225,11 @@ var CITA = (function(iC, iT, h, l){
 	}
 });
 
-var PROYECTO = (function(iC, iT, n, d, c, h){
+var PROYECTO = (function(iC, n, d, c, h){
 	PROYECTO.counter = (++PROYECTO.counter || 1);
 	var idProyecto = PROYECTO.counter;
 	var idCazador = iC;
-	var idTalento = iT;
+	//var idTalento = "";			///PENDIENTE
 	var nombre = n;
 	var descripcion = d;
 	var cuota = c;
@@ -465,9 +465,25 @@ function buscarHabilidad()
 }
 
 //------------------------------------------------------	PROYECTO		------------------------------------------------------//
+function newHabilidades()
+{
+	var HTML_expr = "";
+	for(var i = 0; i < DATABASE.getHabilidades().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getHabilidades()[i].idHabilidad + "'>";
+			HTML_expr += DATABASE.getHabilidades()[i].nombre + "</option>";
+	}
+	document.getElementById("habilidad").innerHTML = HTML_expr;
+}
+
+//n, d, c, h
 function crearProyecto()
 {
-	//
+	var nombre = document.getElementById("nombre").value;
+	var descripcion = document.getElementById("descripcion").value;
+	var cuota = document.getElementById("cuota").value;
+	var habilidades = document.getElementById("habilidad").value;
+	DATABASE.addProyecto(PROYECTO(nombre, descripcion, cuota, habilidades));
+	console.log('DONE');
 }
 
 function editarProyecto()
@@ -488,7 +504,7 @@ function buscarProyecto()
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
 function crearTalento()
 {
-	//
+
 }
 
 function editarTalento()
