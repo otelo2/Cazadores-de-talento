@@ -806,7 +806,22 @@ function buscarProyecto()
       }
     }
   }
-  //print proyectos on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Proyecto "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Nombre: "+result[j].getNombre()+"</p>"
+		HTML_expr += "<p>Descripcion: "+result[j].getDescripcion()+"</p>"
+		HTML_expr += "<p>Habilidades: </p> <ul>"
+		for(var i = 0; i < result[j].getHabilidades().length; i++)
+		{
+				HTML_expr += "<li>" + result[j].getTalentos()[i].getNombre() + "</li>";
+		}
+		HTML_expr += "</ul>"
+		HTML_expr += "<p>Cuota: "+ result[j].getCuota() +"</p>"
+		HTML_expr += "<p>Activo:: "+result[j].getEstaActivo()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
