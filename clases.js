@@ -1,3 +1,7 @@
+module.exports = {
+	crearCazador, crearTalento, crearProyecto, crearCitaA, crearCitaC, crearCitaT, crearContrato, crearHabilidad
+}
+
 var DATABASE = (function() {
  var cazadores = [];
  var talentos = [];
@@ -314,11 +318,11 @@ var HABILIDAD = (function(n, d){
 });
 
 //------------------------------------------------------	CAZADOR		------------------------------------------------------//
-function crearCazador()
+function crearCazador(alias, giro, coordenadas)
 {
-	var alias = document.getElementById("alias").value;
-	var giro = document.getElementById("giro_de_proyectos").value;
-	var coordenadas = document.getElementById("coordenadas").value;
+	//var alias = document.getElementById("alias").value;
+	//var giro = document.getElementById("giro_de_proyectos").value;
+	//var coordenadas = document.getElementById("coordenadas").value;
 	DATABASE.addCazador(CAZADOR(alias, giro, coordenadas));
 	console.log('DONE');
 	console.log(CAZADOR.counter);
@@ -383,12 +387,12 @@ function buscarCazador()
 }
 
 //------------------------------------------------------	CITA		------------------------------------------------------//
-function crearCitaA()
+function crearCitaA(ic, it, h, l)
 {
-	var ic = document.getElementById("lista_de_cazadores").value;
+	/*var ic = document.getElementById("lista_de_cazadores").value;
 	var it = document.getElementById("lista_de_talentos").value;
 	var h = document.getElementById("horario").value;
-	var l = document.getElementById("lugar").value;
+	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA(ic, it, h, l));
 	console.log('DONE');
 }
@@ -404,11 +408,11 @@ function newCitaC()
 	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
 }
 
-function crearCitaC()
+function crearCitaC(it, h, l)
 {
-	var it = document.getElementById("lista_de_talentos").value;
+	/*var it = document.getElementById("lista_de_talentos").value;
 	var h = document.getElementById("horario").value;
-	var l = document.getElementById("lugar").value;
+	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA('default', it, h, l));
 	console.log('DONE');
 }
@@ -423,11 +427,11 @@ function newCitaT()
 	document.getElementById("lista_de_cazadores").innerHTML = HTML_expr;
 }
 
-function crearCitaT()
+function crearCitaT(ic, h, l)
 {
-	var ic = document.getElementById("lista_de_cazadores").value;
+	/*var ic = document.getElementById("lista_de_cazadores").value;
 	var h = document.getElementById("horario").value;
-	var l = document.getElementById("lugar").value;
+	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA(ic, 'default', h, l));
 	console.log('DONE');
 }
@@ -497,10 +501,10 @@ function newContrato()
 	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
 }
 
-function crearContrato()
+function crearContrato(it, ip)
 {
-	var it = document.getElementById("lista_de_talentos").value;
-	var ip = document.getElementById("giro_de_proyectos").value;
+	/*var it = document.getElementById("lista_de_talentos").value;
+	var ip = document.getElementById("giro_de_proyectos").value;*/
 	DATABASE.addContrato(CONTRATO('default', it, ip));
 	console.log('DONE');
 }
@@ -553,10 +557,10 @@ function buscarContrato()
 }
 
 //------------------------------------------------------	HABILIDAD		------------------------------------------------------//
-function crearHabilidad()
+function crearHabilidad(nombre, descripcion)
 {
-	var nombre = document.getElementById("nombre").value;
-	var descripcion = document.getElementById("input").value;
+	/*var nombre = document.getElementById("nombre").value;
+	var descripcion = document.getElementById("input").value;*/
 	DATABASE.addHabilidad(HABILIDAD(nombre, descripcion));
 	console.log('DONE');
 	console.log(HABILIDAD.counter);
@@ -622,9 +626,9 @@ function newProyecto()
 }
 
 //n, d, c, h
-function crearProyecto()
+function crearProyecto(nombre, descripcion, cuota, habilidades)
 {
-	var nombre = document.getElementById("nombre").value;
+	/*var nombre = document.getElementById("nombre").value;
 	var descripcion = document.getElementById("descripcion").value;
 	var cuota = document.getElementById("cuota").value;
 	var habilidades = document.getElementById("habilidad");
@@ -695,9 +699,9 @@ function buscarProyecto()
 
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
 //a, ac, ho, l, c, ha
-function crearTalento()
+function crearTalento(alias, actividadProfesional, horario, lugar, costo, habilidades)
 {
-	var alias = document.getElementById("alias").value;
+	/*var alias = document.getElementById("alias").value;
 	var actividadProfesional = document.getElementById("actividad_profesional").value;
 	var horario = document.getElementById("horario").value;
 	var lugar = document.getElementById("lugar").value;
