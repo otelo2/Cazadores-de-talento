@@ -55,11 +55,14 @@ app.route('/contrato/crear_contrato.html')
     	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
     });
 
-app.post('/cita/crear_cita_cazador.html', function(request, response) {
-
-  crearCitaC(request.body.lista_de_talentos, request.body.horario, request.body.lugar)
-  response.sendFile(__dirname + '/cita/crear_cita_cazador.html');
-});
+app.route('/cita/crear_cita_cazador.html')
+    .get(function(request, response) {
+    	response.render("cita/crear_cita_cazador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearCitaC(request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+    	response.render("cita/crear_cita_cazador", {DATABASE: DATABASE})
+    });
 
 app.route('/cita/crear_cita_administrador.html')
     .get(function(request, response) {
