@@ -304,7 +304,7 @@ var HABILIDAD = (function(n, d){
 		getNombre: function() {return nombre;},
 		setNombre: function(n) {nombre = n;},
 		getDescripcion: function() {return descripcion;},
-		setLugar: function(d) {descripcion = d;},
+		setDescripcion: function(d) {descripcion = d;},
 		displayInformation: function() {
 			console.log('Habilidad id: ' + idHabilidad);
 			console.log('Habilidad Nombre: ' + nombre);
@@ -549,7 +549,16 @@ function eliminarHabilidad()
 
 function buscarHabilidad()
 {
-	//
+  var query = document.getElementById("query");
+  var result = [];
+  for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+  {
+    if((DATABASE.getHabilidades()[j].getID() == query)||(DATABASE.getHabilidades()[j].getNombre() == query)||(DATABASE.getHabilidades()[j].getDescripcion() == query))
+    {
+        result.push(DATABASE.getProyectos()[j]);
+    }
+  }
+  //print habilidades on screen
 }
 
 //------------------------------------------------------	PROYECTO		------------------------------------------------------//
