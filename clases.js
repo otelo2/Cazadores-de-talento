@@ -439,7 +439,22 @@ function buscarCazador()
       }
     }
   }
-  //print talentos on screen
+  //print cazadores on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Cazador "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Alias: "+result[j].getAlias()+"</p>"
+		HTML_expr += "<p>Giro de Proyectos: "+result[j].getGiroProyectos()+"</p>"
+		HTML_expr += "<p>Coordenadas: "+result[j].getCoordenadas()+"</p>"
+		HTML_expr += "<p>Proyectos: </p> <ul>"
+		for(var i = 0; i < result[j].getListaProyectos().length; i++)
+		{
+				HTML_expr += "<li>" + result[j].getListaProyectos()[i].getNombre() + "</li>";
+		}
+		HTML_expr += "</ul> <p>Reputacion: "+result[j].getReputacion()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	CITA		------------------------------------------------------//
