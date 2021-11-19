@@ -394,9 +394,32 @@ function editarCita()
 	//
 }
 
+function newCitas()
+{
+	var HTML_expr = "";
+	for(var i = 0; i < DATABASE.getCitas().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getCitas()[i].idCita + "'>";
+			HTML_expr += "Cita" + DATABASE.getCitas()[i].idCita + "</option>";
+	}
+	document.getElementById("cita").innerHTML = HTML_expr;
+}
+
 function eliminarCita()
 {
-	//
+  var citas = document.getElementById("cita");
+  var index = -1
+  for ( var i = 0, l = citas.options.length, o; i < l; i++ )
+  {
+    o = citas.options[i].value;
+    for(var j = 0; j < DATABASE.getCitas().length; j++)
+    {
+      if(DATABASE.getCitas()[j].idCita === o)
+      {
+          DATABASE.removeCita(j);
+          break;
+      }
+    }
+  }
 }
 
 function buscarCita()
