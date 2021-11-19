@@ -715,7 +715,7 @@ function newContrato()
 	var HTML_expr = "";
 	for(var i = 0; i < DATABASE.getProyectos().length; i++) {
 			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].getID() + "'>";
-			HTML_expr += DATABASE.getProyectos()[i].getNombre() + "</option>";
+			HTML_expr += DATABASE.getProyectos()[i].getNombre() + "</option>"; //Problema?
 	}
 	document.getElementById("lista_de_proyectos").innerHTML = HTML_expr;
 
@@ -972,7 +972,7 @@ function crearProyecto(nombre, descripcion, cuota, habilidad)
 	{
 		h.push(DATABASE.getHabilidades()[habilidad-1]);
 	}
-	DATABASE.addProyecto(PROYECTO(nombre, descripcion, cuota, h));
+	DATABASE.addProyecto(PROYECTO('default', nombre, descripcion, cuota, h));
 	console.log('DONE');
 }
 
