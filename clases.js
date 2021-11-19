@@ -335,22 +335,51 @@ function buscarCazador()
 //------------------------------------------------------	CITA		------------------------------------------------------//
 function crearCitaA()
 {
-	/*var alias = document.getElementById("alias").value;
-	var giro = document.getElementById("giro_de_proyectos").value;
-	var coordenadas = document.getElementById("coordenadas").value;
-	DATABASE.addCazador(CAZADOR(alias, giro, coordenadas));
+	var ic = document.getElementById("lista_de_cazadores").value;
+	var it = document.getElementById("lista_de_talentos").value;
+	var h = document.getElementById("horario").value;
+	var l = document.getElementById("lugar").value;
+	DATABASE.addCazador(CITA(ic, it, h, l));
 	console.log('DONE');
-	console.log(CAZADOR.counter);*/
+}
+
+function newCitaC()
+{
+	var HTML_expr = "";
+	//<option value="talentos1">Talento 1</option>
+	for(var i = 0; i < DATABASE.getTalentos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].idTalento + "'>";
+			HTML_expr += DATABASE.getTalentos()[i].alias + "</option>";
+	}
+	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
 }
 
 function crearCitaC()
 {
-	//
+	var it = document.getElementById("lista_de_talentos").value;
+	var h = document.getElementById("horario").value;
+	var l = document.getElementById("lugar").value;
+	DATABASE.addCazador(CITA('default', it, h, l));
+	console.log('DONE');
+}
+
+function newCitaT()
+{
+	var HTML_expr = "";
+	for(var i = 0; i < DATABASE.getCazadores().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getCazadores()[i].idCazador + "'>";
+			HTML_expr += DATABASE.getCazadores()[i].alias + "</option>";
+	}
+	document.getElementById("lista_de_cazadores").innerHTML = HTML_expr;
 }
 
 function crearCitaT()
 {
-	//
+	var ic = document.getElementById("lista_de_cazadores").value;
+	var h = document.getElementById("horario").value;
+	var l = document.getElementById("lugar").value;
+	DATABASE.addCazador(CITA(ic, 'default', h, l));
+	console.log('DONE');
 }
 
 function editarCita()
