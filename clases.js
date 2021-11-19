@@ -11,7 +11,7 @@ var CAZADOR = (function(a, g, c){
 	var puntosVentajas = 0;
 	var descuento = 0;
 	var reputacion = 0;
-	
+
 	return {
 		getID: function() {return idCazador;},
 		getAlias: function() {return alias;},
@@ -21,19 +21,19 @@ var CAZADOR = (function(a, g, c){
 		getCoordenadas: function() {return coordenadas;},
 		setCoordenadas: function(c) {coordenadas = c;},
 		addProyecto: function(p) {
-			if(listaProyectos.length == 0) 
+			if(listaProyectos.length == 0)
 			{
 				listaProyectos.push(p);
-			} 
+			}
 			else
 			{
-				for(var i = 0; i < listaProyectos.length; i++) 
+				for(var i = 0; i < listaProyectos.length; i++)
 				{
-					if(listaProyectos[i] == undefined) 
+					if(listaProyectos[i] == undefined)
 					{
 						listaProyectos[i] = p;
-					} 
-					else if(i == listaProyectos.length - 1) 
+					}
+					else if(i == listaProyectos.length - 1)
 					{
 						listaProyectos.push(p);
 					}
@@ -42,19 +42,19 @@ var CAZADOR = (function(a, g, c){
 		},
 		getListaProyectos: function() {return listaProyectos;},
 		addContrato: function(c) {
-			if(listaContratos.length == 0) 
+			if(listaContratos.length == 0)
 			{
 				listaContratos.push(c);
-			} 
+			}
 			else
 			{
-				for(var i = 0; i < listaContratos.length; i++) 
+				for(var i = 0; i < listaContratos.length; i++)
 				{
-					if(listaContratos[i] == undefined) 
+					if(listaContratos[i] == undefined)
 					{
 						listaContratos[i] = c;
-					} 
-					else if(i == listaContratos.length - 1) 
+					}
+					else if(i == listaContratos.length - 1)
 					{
 						listaContratos.push(c);
 					}
@@ -67,7 +67,7 @@ var CAZADOR = (function(a, g, c){
 		getDescuento: function() {return descuento;},
 		setDescuento: function() {},
 		getReputacion: function() {return reputacion;},
-		setReputacion: function() {}, 
+		setReputacion: function() {},
 		displayInformation: function() {
 			console.log('Cazador id: ' + idCazador);
 			console.log('Cazador alias: ' + alias);
@@ -93,7 +93,7 @@ var TALENTO = (function(a, ac, ho, l, c){
 	var listaContratos = new Array();
 	var costo = c;
 	var reputacion = 0;
-	
+
 	return {
 		getID: function() {return idTalento;},
 		getAlias: function() {return alias;},
@@ -101,19 +101,19 @@ var TALENTO = (function(a, ac, ho, l, c){
 		getHabilidades: function() {return habilidades;},
 		setHabilidades: function(h) {habilidades = h;}, //talvez sea mejor usar un push?
 		addHabilidad: function(h) {
-			if(listaHabilidades.length == 0) 
+			if(listaHabilidades.length == 0)
 			{
 				listaHabilidades.push(h);
-			} 
+			}
 			else
 			{
-				for(var i = 0; i < listaHabilidades.length; i++) 
+				for(var i = 0; i < listaHabilidades.length; i++)
 				{
-					if(listaHabilidades[i] == undefined) 
+					if(listaHabilidades[i] == undefined)
 					{
 						listaHabilidades[i] = h;
-					} 
-					else if(i == listaHabilidades.length - 1) 
+					}
+					else if(i == listaHabilidades.length - 1)
 					{
 						listaHabilidades.push(h);
 					}
@@ -127,19 +127,19 @@ var TALENTO = (function(a, ac, ho, l, c){
 		getLugar: function() {return lugar;},
 		setLugar: function(l) {lugar = l;},
 		addContrato: function(c) {
-			if(listaContratos.length == 0) 
+			if(listaContratos.length == 0)
 			{
 				listaContratos.push(c);
-			} 
+			}
 			else
 			{
-				for(var i = 0; i < listaContratos.length; i++) 
+				for(var i = 0; i < listaContratos.length; i++)
 				{
-					if(listaContratos[i] == undefined) 
+					if(listaContratos[i] == undefined)
 					{
 						listaContratos[i] = c;
-					} 
-					else if(i == listaContratos.length - 1) 
+					}
+					else if(i == listaContratos.length - 1)
 					{
 						listaContratos.push(c);
 					}
@@ -150,7 +150,7 @@ var TALENTO = (function(a, ac, ho, l, c){
 		getCosto: function() {return costo;},
 		setCosto: function(c) {costo = c;},
 		getReputacion: function() {return reputacion;},
-		setReputacion: function() {}, 
+		setReputacion: function() {},
 		displayInformation: function() {
 			console.log('Talento id: ' + idTalento);
 			console.log('Talento alias: ' + alias);
@@ -172,7 +172,7 @@ var CITA = (function(iC, iT, h, l){
 	var idTalento = iT;
 	var horario = h;
 	var lugar = l;
-	
+
 	return {
 		getID: function() {return idCita;},
 		getHorario: function() {return horario;},
@@ -203,11 +203,11 @@ var PROYECTO = (function(iC, iT, n, d, c, h){
 
 	return {
 		getID: function() {return idProyecto;},
-		getNombre: function() {return nombre;},		
+		getNombre: function() {return nombre;},
 		setNombre: function(n) {nombre = n;},
 		getDescripcion: function() {return descripcion;},
 		setDescripcion: function(d) {descripcion = d;},
-		getCuota: function() {return cuota;}, 
+		getCuota: function() {return cuota;},
 		setCuota: function(c) {cuota = c;},
 		getHabilidades: function() {return habilidades;},
 		setHabiliddes: function(h) {habilidades = h;},
@@ -255,7 +255,7 @@ var HABILIDAD = (function(n, d){
 	var idHabilidad = HABILIDAD.counter;
 	var nombre = n;
 	var descripcion = d;
-	
+
 	return {
 		getID: function() {return idHabilidad;},
 		getNombre: function() {return nombre;},
@@ -269,3 +269,139 @@ var HABILIDAD = (function(n, d){
 		}
 	}
 });
+
+//------------------------------------------------------	CAZADOR		------------------------------------------------------//
+function crearCazador()
+{
+	//
+}
+
+function editarCazador()
+{
+	//
+}
+
+function eliminarCazador()
+{
+	//
+}
+
+function buscarCazador()
+{
+	//
+}
+
+//------------------------------------------------------	CITA		------------------------------------------------------//
+function crearCitaA()
+{
+	//
+}
+
+function crearCitaC()
+{
+	//
+}
+
+function crearCitaT()
+{
+	//
+}
+
+function editarCita()
+{
+	//
+}
+
+function eliminarCita()
+{
+	//
+}
+
+function buscarCita()
+{
+	//
+}
+
+//------------------------------------------------------	CONTRATO		------------------------------------------------------//
+function crearContrato()
+{
+	//
+}
+
+function editarContrato()
+{
+	//
+}
+
+function eliminarContrato()
+{
+	//
+}
+
+function buscarContrato()
+{
+	//
+}
+
+//------------------------------------------------------	HABILIDAD		------------------------------------------------------//
+function crearHabilidad()
+{
+	//
+}
+
+function editarHabilidad()
+{
+	//
+}
+
+function eliminarHabilidad()
+{
+	//
+}
+
+function buscarHabilidad()
+{
+	//
+}
+
+//------------------------------------------------------	PROYECTO		------------------------------------------------------//
+function crearProyecto()
+{
+	//
+}
+
+function editarProyecto()
+{
+	//
+}
+
+function eliminarProyecto()
+{
+	//
+}
+
+function buscarProyecto()
+{
+	//
+}
+
+//------------------------------------------------------	TALENTO		------------------------------------------------------//
+function crearTalento()
+{
+	//
+}
+
+function editarTalento()
+{
+	//
+}
+
+function eliminarTalento()
+{
+	//
+}
+
+function buscarTalento()
+{
+	//
+}
