@@ -135,7 +135,7 @@ var DATABASE = (function() {
     removeContrato: function(i) { contratos.splice(i, 1);},
     addContrato: function( b ) {
 			contratos.push( b );
-			for(var i=0; i<cazadores.length; i++)
+			/*for(var i=0; i<cazadores.length; i++)
 			{
 				if(b.getCazadorID() == cazadores[i].getID())
 				{
@@ -149,7 +149,7 @@ var DATABASE = (function() {
 				{
 					talento[i].addContrato(b);
 					break;
-				}
+				}*/
 			}
 		},
 
@@ -160,14 +160,14 @@ var DATABASE = (function() {
 		},
     addProyecto: function( b ) {
 			proyectos.push( b );
-			for(var i=0; i<cazadores.length; i++)
+			/*for(var i=0; i<cazadores.length; i++)
 			{
 				if(b.getCazadorID() == cazadores[i].getID())
 				{
 					cazadores[i].addProyecto(b);
 					break;
 				}
-			}
+			}*/
 		},
 
 		getHabilidades: function() { return habilidades; },
