@@ -722,7 +722,7 @@ function newContrato()
 	}
 	document.getElementById("lista_de_proyectos").innerHTML = HTML_expr;
 
-  var HTML_expr = "";
+  HTML_expr = "";
 	for(var i = 0; i < DATABASE.getTalentos().length; i++) {
 			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].getID() + "'>";
 			HTML_expr += DATABASE.getTalentos()[i].getAlias() + "</option>";
