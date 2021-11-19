@@ -892,4 +892,21 @@ function buscarTalento()
     }
   }
   //print talentos on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Talento "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Alias: "+result[j].getAlias()+"</p>"
+		HTML_expr += "<p>Habilidades: </p> <ul>"
+		for(var i = 0; i < result[j].getHabilidades().length; i++)
+		{
+				HTML_expr += "<li>" + result[j].getTalentos()[i].getNombre() + "</li>";
+		}
+		HTML_expr += "</ul>"
+		HTML_expr += "<p>Horario: "+result[j].getHorario()+"</p>"
+		HTML_expr += "<p>Lugar: "+result[j].getLugar()+"</p>"
+		HTML_expr += "<p>Costo: "+result[j].getCosto()+"</p>"
+		HTML_expr += "<p>Reputacion: "+result[j].getReputacion()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
