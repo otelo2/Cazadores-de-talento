@@ -307,6 +307,10 @@ var CITA = (function(iC, iT, h, l){
 
 	return {
 		getID: function() {return idCita;},
+		getTalentoID: function() {return idTalento;},
+		setTalentoID: function(it) {idTalento = it},
+		getCazadorID: function() {return idCazador;},
+		setCazadorID: function(ic) {idCazador = ic},
 		getHorario: function() {return horario;},
 		setHorario: function(h) {horario = h;},
 		getLugar: function() {return lugar;},
@@ -335,6 +339,8 @@ var PROYECTO = (function(iC, n, d, c, h){
 
 	return {
 		getID: function() {return idProyecto;},
+		getCazadorID: function() {return idCazador;},
+		setCazadorID: function(ic) {idCazador = ic},
 		getNombre: function() {return nombre;},
 		setNombre: function(n) {nombre = n;},
 		getDescripcion: function() {return descripcion;},
@@ -370,7 +376,11 @@ var CONTRATO = (function(iC, iT, iP){
 	var cerrado = false;
 
 	return {
-		getID: function() {return idProyecto;},
+		getID: function() {return idContrato;},
+		getProyectoID: function() {return idProyecto;},
+		getTalentoID: function() {return idTalento;},
+		setProyectoID: function(iP) {idProyecto = iP;},
+		setTalentoID: function(iT) {idTalento = iT;},
 		setCalificacionCazador: function() {},
 		setCalificacionTalento: function() {},
 		setCerrado: function() {cerrado = !cerrado;},
@@ -403,6 +413,8 @@ var HABILIDAD = (function(n, d){
 	}
 });
 
+//------------------------------------------------------	FUNCIONES		------------------------------------------------------//
+
 //------------------------------------------------------	CAZADOR		------------------------------------------------------//
 function crearCazador(alias, giro, coordenadas)
 {
@@ -416,7 +428,51 @@ function crearCazador(alias, giro, coordenadas)
 
 function editarCazador()
 {
-	//
+	var o = document.getElementById("cazador").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getCazadores().length; j++)
+	{
+		if(DATABASE.getCazadores()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//editar valores que cambiaron
+	if(DATABASE.getCazadores()[o].getAlias()!=document.getElementById("alias"))
+	{
+		DATABASE.getCazadores()[o].setAlias(document.getElementById("alias"))
+	}
+	if(DATABASE.getCazadores()[o].getGiroProyectos()!=document.getElementById("giro_de_proyectos"))
+	{
+		DATABASE.getCazadores()[o].setGiroProyectos(document.getElementById("giro_de_proyectos"))
+	}
+	if(DATABASE.getCazadores()[o].getCoordenadas()!=document.getElementById("coordenadas"))
+	{
+		DATABASE.getCazadores()[o].setCoordenadas(document.getElementById("coordenadas"))
+	}
+}
+
+function defaultCazador()
+{
+	var o = document.getElementById("cazador").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getCazadores().length; j++)
+	{
+		if(DATABASE.getCazadores()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//poner los datos del cazadores en el formato
+	var HTML_expr = "<label for='alias'>Alias</label>"
+	HTML_expr += "<input type='text' name='alias' id='alias' value='" + getCazadores()[o].getAlias() + "'>"
+	HTML_expr += "<label for='giro_de_proyectos'>Giro de proyectos</label>"
+	HTML_expr += "<input type='text' name='giro_de_proyectos' id='giro_de_proyectos' value='"+getCazadores()[o].getGiroProyectos()+"'>"
+	HTML_expr += "<label for='coordenadas'>Coordenadas</label>"
+	HTML_expr += "<input type='text' name='coordenadas' id='coordenadas' value='"+getCazadores()[o].getCoordenadas()+"'>"
+	document.getElementById("changing").innerHTML = HTML_expr;
 }
 
 function newCazador()
@@ -481,6 +537,11 @@ function crearCitaA(ic, it, h, l)
 	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA(ic, it, h, l));
 	console.log('DONE');
+}
+
+function defaultCitaA()
+{
+
 }
 
 function newCitaC()
@@ -567,6 +628,14 @@ function buscarCita()
     }
   }
   //print citas on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Citas "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Horario: "+result[j].getHorario()+"</p>"
+		HTML_expr += "<p>Lugar: "+result[j].getLugar()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	CONTRATO		------------------------------------------------------//
@@ -597,7 +666,58 @@ function crearContrato(it, ip)
 
 function editarContrato()
 {
-	//
+	var o = document.getElementById("contrato").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getContratos().length; j++)
+	{
+		if(DATABASE.getContratos()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//editar valores que cambiaron
+	if(document.getElementById("lista_de_talentos") != DATABASE.getContratos()[o].getTalentoID())
+	{
+		DATABASE.getContratos()[o].setTalentoID(document.getElementById("lista_de_talentos"))
+	}
+	if(document.getElementById("lista_de_proyectos") != DATABASE.getContratos()[o].getProyectoID())
+	{
+		DATABASE.getContratos()[o].setProyectoID(document.getElementById("lista_de_proyectos"))
+	}
+}
+
+function defaultContrato()
+{
+	var o = document.getElementById("contrato").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getContratos().length; j++)
+	{
+		if(DATABASE.getContratos()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+
+	var HTML_expr = "<label for='lista_de_proyectos'>Para el proyecto:</label>"
+	HTML_expr += "<select name='lista_de_proyectos' id='lista_de_proyectos'>"
+	for(var i = 0; i < DATABASE.getProyectos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getProyectos()[i].getNombre() + "</option>";
+	}
+	HTML_expr += "</select>"
+	HTML_expr += "<label for='lista_de_talentos'>Talento seleccionado:</label>"
+	HTML_expr += "<select name='lista_de_talentos' id='lista_de_talentos'>"
+	for(var i = 0; i < DATABASE.getTalentos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getTalentos()[i].getAlias() + "</option>";
+	}
+	HTML_expr += "</select>"
+
+	document.getElementById("changing").innerHTML = HTML_expr;
+	document.getElementById("lista_de_proyectos").value = DATABASE.getContratos()[o].getProyectoID();
+	document.getElementById("lista_de_talentos").value = DATABASE.getContratos()[o].getTalentoID();
 }
 
 function newContratoList()
@@ -640,6 +760,12 @@ function buscarContrato()
     }
   }
   //print contratos on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Contrato "+result[j].getID()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	HABILIDAD		------------------------------------------------------//
@@ -687,6 +813,14 @@ function buscarHabilidad()
     }
   }
   //print habilidades on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Habilidad "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Nombre: "+result[j].getNombre()+"</p>"
+		HTML_expr += "<p>Descripcion: "+result[j].getDescripcion()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	PROYECTO		------------------------------------------------------//
@@ -780,7 +914,22 @@ function buscarProyecto()
       }
     }
   }
-  //print proyectos on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Proyecto "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Nombre: "+result[j].getNombre()+"</p>"
+		HTML_expr += "<p>Descripcion: "+result[j].getDescripcion()+"</p>"
+		HTML_expr += "<p>Habilidades: </p> <ul>"
+		for(var i = 0; i < result[j].getHabilidades().length; i++)
+		{
+				HTML_expr += "<li>" + result[j].getTalentos()[i].getNombre() + "</li>";
+		}
+		HTML_expr += "</ul>"
+		HTML_expr += "<p>Cuota: "+ result[j].getCuota() +"</p>"
+		HTML_expr += "<p>Activo:: "+result[j].getEstaActivo()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
@@ -866,4 +1015,21 @@ function buscarTalento()
     }
   }
   //print talentos on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Talento "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Alias: "+result[j].getAlias()+"</p>"
+		HTML_expr += "<p>Habilidades: </p> <ul>"
+		for(var i = 0; i < result[j].getHabilidades().length; i++)
+		{
+				HTML_expr += "<li>" + result[j].getTalentos()[i].getNombre() + "</li>";
+		}
+		HTML_expr += "</ul>"
+		HTML_expr += "<p>Horario: "+result[j].getHorario()+"</p>"
+		HTML_expr += "<p>Lugar: "+result[j].getLugar()+"</p>"
+		HTML_expr += "<p>Costo: "+result[j].getCosto()+"</p>"
+		HTML_expr += "<p>Reputacion: "+result[j].getReputacion()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
