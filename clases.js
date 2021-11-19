@@ -398,7 +398,7 @@ function buscarContrato()
 function crearHabilidad()
 {
 	var nombre = document.getElementById("nombre").value;
-	var descripcion = document.getElementById("descripcion").value;
+	var descripcion = document.getElementById("input").value;
 	DATABASE.addHabilidad(HABILIDAD(nombre, descripcion));
 	console.log('DONE');
 	console.log(HABILIDAD.counter);
