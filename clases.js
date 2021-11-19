@@ -73,11 +73,15 @@ app.route('/cita/crear_cita_administrador.html')
     	response.render("cita/crear_cita_administrador", {DATABASE: DATABASE})
     });
 
-app.post('/cita/crear_cita_talento.html', function(request, response) {
+app.route('/cita/crear_cita_talento.html')
+    .get(function(request, response) {
+    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
+    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
+    });
 
-  crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
-  response.sendFile(__dirname + '/cita/crear_cita_talento.html');
-});
 
 app.post('/habilidad/crear_habilidad.html', function(request, response) {
 
