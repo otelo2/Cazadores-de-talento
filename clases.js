@@ -444,10 +444,10 @@ function buscarContrato()
 }
 
 //------------------------------------------------------	HABILIDAD		------------------------------------------------------//
-function crearHabilidad()
+function crearHabilidad(nombre, descripcion)
 {
-	var nombre = document.getElementById("nombre").value;
-	var descripcion = document.getElementById("input").value;
+	/*var nombre = document.getElementById("nombre").value;
+	var descripcion = document.getElementById("input").value;*/
 	DATABASE.addHabilidad(HABILIDAD(nombre, descripcion));
 	console.log('DONE');
 	console.log(HABILIDAD.counter);

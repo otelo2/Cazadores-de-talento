@@ -57,6 +57,12 @@ app.post('/cita/crear_cita_administrador.html', function(request, response) {
   response.sendFile(__dirname + '/cita/crear_cita_administrador.html');
 });
 
+app.post('/habilidad/crear_habilidad.html', function(request, response) {
+
+  clases.crearHabilidad(request.body.nombre, request.body.input)
+  response.sendFile(__dirname + '/habilidad/crear_habilidad.html');
+});
+
 
 //Puerto de nuestro servidor
 app.listen(8080, function() {
