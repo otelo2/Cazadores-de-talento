@@ -152,8 +152,8 @@ var DATABASE = (function() {
 				{
 					talento[i].addContrato(b);
 					break;
-				}*/
-			}
+				}
+			}*/
 		},
 
 		getProyectos: function() { return proyectos; },
@@ -1101,7 +1101,7 @@ function crearTalento(alias, actividadProfesional, horario, lugar, costo, habili
 	{
 		h.push(DATABASE.getHabilidades()[habilidad-1]);
 	}
-	
+
 	/*
   for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
   {
