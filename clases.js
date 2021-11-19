@@ -263,7 +263,7 @@ var PROYECTO = (function(iC, iT, n, d, c, h){
 	}
 });
 
-var CONTRATO = (function(iC, iT, iP, n, d, c, h){
+var CONTRATO = (function(iC, iT, iP){
 	CONTRATO.counter = (++CONTRATO.counter || 1);
 	var idContrato = CONTRATO.counter;
 	var idCazador = iC;
@@ -280,7 +280,8 @@ var CONTRATO = (function(iC, iT, iP, n, d, c, h){
 		setCerrado: function() {cerrado = !cerrado;},
 		displayInformation: function() {
 			console.log('Contrato id: ' + idContrato);
-			console.log('Contrato cerrado: ' + cerrado);			console.log('\t Calificacion Talento: ' + nombre);
+			console.log('Contrato cerrado: ' + cerrado);
+			console.log('\t Calificacion Talento: ' + nombre);
 			console.log('\t Calificacion Cazador: ' + nombre);
 		}
 	}
@@ -398,14 +399,29 @@ function buscarCita()
 }
 
 //------------------------------------------------------	CONTRATO		------------------------------------------------------//
+//(iC, iT, iP)
+function newContrato()
+{
+	var HTML_expr = "";
+	for(var i = 0; i < DATABASE.getProyectos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].idProyecto + "'>";
+			HTML_expr += DATABASE.getProyectos()[i].nombre + "</option>";
+	}
+	document.getElementById("lista_de_proyectos").innerHTML = HTML_expr;
+
+	for(var i = 0; i < DATABASE.getTalentos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].idTalento + "'>";
+			HTML_expr += DATABASE.getTalentos()[i].alias + "</option>";
+	}
+	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
+}
+
 function crearContrato()
 {
-	/*var alias = document.getElementById("alias").value;
-	var giro = document.getElementById("giro_de_proyectos").value;
-	var coordenadas = document.getElementById("coordenadas").value;
-	DATABASE.addCazador(CAZADOR(alias, giro, coordenadas));
+	var it = document.getElementById("lista_de_talentos").value;
+	var ip = document.getElementById("giro_de_proyectos").value;
+	DATABASE.addContrato(CONTRATO('default', it, ip));
 	console.log('DONE');
-	console.log(CAZADOR.counter);*/
 }
 
 function editarContrato()
