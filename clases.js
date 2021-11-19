@@ -511,7 +511,16 @@ function eliminarContrato()
 
 function buscarContrato()
 {
-	//
+  var query = document.getElementById("query");
+  var result = [];
+  for(var j = 0; j < DATABASE.getContratos().length; j++)
+  {
+    if(DATABASE.getContratos()[j].getID() == query)
+    {
+        result.push(DATABASE.getContratos()[j]);
+    }
+  }
+  //print contratos on screen
 }
 
 //------------------------------------------------------	HABILIDAD		------------------------------------------------------//
@@ -555,7 +564,7 @@ function buscarHabilidad()
   {
     if((DATABASE.getHabilidades()[j].getID() == query)||(DATABASE.getHabilidades()[j].getNombre() == query)||(DATABASE.getHabilidades()[j].getDescripcion() == query))
     {
-        result.push(DATABASE.getProyectos()[j]);
+        result.push(DATABASE.getHabilidades()[j]);
     }
   }
   //print habilidades on screen
