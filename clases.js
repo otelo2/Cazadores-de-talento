@@ -335,12 +335,12 @@ function buscarCazador()
 //------------------------------------------------------	CITA		------------------------------------------------------//
 function crearCitaA()
 {
-	var alias = document.getElementById("alias").value;
+	/*var alias = document.getElementById("alias").value;
 	var giro = document.getElementById("giro_de_proyectos").value;
 	var coordenadas = document.getElementById("coordenadas").value;
 	DATABASE.addCazador(CAZADOR(alias, giro, coordenadas));
 	console.log('DONE');
-	console.log(CAZADOR.counter);
+	console.log(CAZADOR.counter);*/
 }
 
 function crearCitaC()
@@ -371,7 +371,12 @@ function buscarCita()
 //------------------------------------------------------	CONTRATO		------------------------------------------------------//
 function crearContrato()
 {
-	//
+	/*var alias = document.getElementById("alias").value;
+	var giro = document.getElementById("giro_de_proyectos").value;
+	var coordenadas = document.getElementById("coordenadas").value;
+	DATABASE.addCazador(CAZADOR(alias, giro, coordenadas));
+	console.log('DONE');
+	console.log(CAZADOR.counter);*/
 }
 
 function editarContrato()
@@ -392,7 +397,11 @@ function buscarContrato()
 //------------------------------------------------------	HABILIDAD		------------------------------------------------------//
 function crearHabilidad()
 {
-	//
+	var nombre = document.getElementById("nombre").value;
+	var descripcion = document.getElementById("descripcion").value;
+	DATABASE.addHabilidad(HABILIDAD(nombre, descripcion));
+	console.log('DONE');
+	console.log(HABILIDAD.counter);
 }
 
 function editarHabilidad()
