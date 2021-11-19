@@ -348,7 +348,7 @@ function eliminarCazador()
     o = cazador.options[i].value;
     for(var j = 0; j < DATABASE.getCazadores().length; j++)
     {
-      if(DATABASE.getCazadores()[j].getID() === o)
+      if(DATABASE.getCazadores()[j].getID() == o)
       {
           DATABASE.removeCazador(j);
           break;
@@ -436,7 +436,7 @@ function eliminarCita()
     o = citas.options[i].value;
     for(var j = 0; j < DATABASE.getCitas().length; j++)
     {
-      if(DATABASE.getCitas()[j].getID() === o)
+      if(DATABASE.getCitas()[j].getID() == o)
       {
           DATABASE.removeCita(j);
           break;
@@ -500,7 +500,7 @@ function eliminarContrato()
     o = contratos.options[i].value;
     for(var j = 0; j < DATABASE.getContratos().length; j++)
     {
-      if(DATABASE.getContratos()[j].getID() === o)
+      if(DATABASE.getContratos()[j].getID() == o)
       {
           DATABASE.removeContrato(j);
           break;
@@ -538,7 +538,7 @@ function eliminarHabilidad()
     o = habilidades.options[i].value;
     for(var j = 0; j < DATABASE.getHabilidades().length; j++)
     {
-      if(DATABASE.getHabilidades()[j].getID() === o)
+      if(DATABASE.getHabilidades()[j].getID() == o)
       {
           DATABASE.removeHabilidad(j);
           break;
@@ -587,7 +587,7 @@ function crearProyecto()
     o = select.options[i].value;
     for(var j = 0; j < DATABASE.getHabilidades().length; j++)
     {
-      if(DATABASE.getHabilidades()[j].getID() === o)
+      if(DATABASE.getHabilidades()[j].getID() == o)
       {
           h.push(DATABASE.getHabilidades()[j]);
           break;
@@ -612,7 +612,7 @@ function eliminarProyecto()
     o = proyectos.options[i].value;
     for(var j = 0; j < DATABASE.getProyectos().length; j++)
     {
-      if(DATABASE.getProyectos()[j].getID() === o)
+      if(DATABASE.getProyectos()[j].getID() == o)
       {
           DATABASE.removeProtecto(j);
           break;
@@ -642,7 +642,7 @@ function crearTalento()
     o = select.options[i].value;
     for(var j = 0; j < DATABASE.getHabilidades().length; j++)
     {
-      if(DATABASE.getHabilidades()[j].getID() === o)
+      if(DATABASE.getHabilidades()[j].getID() == o)
       {
           h.push(DATABASE.getHabilidades()[j]);
           break;
@@ -667,7 +667,7 @@ function eliminarTalento()
     o = talentos.options[i].value;
     for(var j = 0; j < DATABASE.getTalentos().length; j++)
     {
-      if(DATABASE.getTalentos()[j].getID() === o)
+      if(DATABASE.getTalentos()[j].getID() == o)
       {
           DATABASE.removeTalento(j);
           break;
@@ -676,7 +676,33 @@ function eliminarTalento()
   }
 }
 
+
 function buscarTalento()
 {
- //
+  var query = document.getElementById("query");
+  var flag = false
+  for(var j = 0; j < DATABASE.getTalentos().length; j++)
+  {
+    if((DATABASE.getTalentos()[j].getID() == query)||(DATABASE.getTalentos()[j].getAlias() == query)||(DATABASE.getTalentos()[j].getActividadProfesional() == query)||(DATABASE.getTalentos()[j].getHorario() == query)||(DATABASE.getTalentos()[j].getLugar() == query)||(DATABASE.getTalentos()[j].getCosto() == query)||(DATABASE.getTalentos()[j].getReputacion() == query))
+    {
+        flag = true;
+        break;
+    }
+    else
+    {
+      for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+      {
+        if(DATABASE.getHabilidades()[j].getNombre() == query)
+        {
+            flag = true;
+            break;
+        }
+      }
+    }
+    if(flag == true)
+    {
+      //print talento on screen
+    }
+    flag = false
+  }
 }
