@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
-})); 
+}));
 app.use(express.urlencoded());
 
 // set the view engine to ejs
@@ -39,7 +39,7 @@ app.route('/talento/crear_talento.html')
     });
 
 app.post('/proyecto/crear_proyecto.html', function(request, response) {
-    
+
   crearProyecto(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad)
   response.sendFile(__dirname + '/proyecto/crear_proyecto.html');
 });
@@ -81,7 +81,7 @@ app.get('/*', function(request, response) {
 
 //Puerto de nuestro servidor
 app.listen(8080, function() {
-  console.log("Running Express in port 8080");  
+  console.log("Running Express in port 8080");
 });
 
 
@@ -110,21 +110,69 @@ var DATABASE = (function() {
 		getCitas: function() { return citas; },
     //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
     removeCita: function(i) { citas.splice(i, 1);},
-    addCita: function( b ) { citas.push( b ); },
+    addCita: function( b ) {
+			citas.push( b );
+			/*for(var i=0; i<cazadores.length; i++)
+			{
+				if(b.getCazadorID() == cazadores[i].getID())
+				{
+					cazadores[i].addCita(b);
+				}
+			}
+			for(var i=0; i<talentos.length; i++)
+			{
+				if(b.getTalentoID() == talentos[i].getID())
+				{
+					talento[i].addCita(b);
+				}
+			}*/
+		},
 
 		getContratos: function() { return contratos; },
     //getContratosIndex: function( s ) { return contratos.indexOf(s); },
     removeContrato: function(i) { contratos.splice(i, 1);},
-    addContrato: function( b ) { contratos.push( b ); },
+    addContrato: function( b ) {
+			contratos.push( b );
+			for(var i=0; i<cazadores.length; i++)
+			{
+				if(b.getCazadorID() == cazadores[i].getID())
+				{
+					cazadores[i].addContrato(b);
+					break;
+				}
+			}
+			for(var i=0; i<talentos.length; i++)
+			{
+				if(b.getTalentoID() == talentos[i].getID())
+				{
+					talento[i].addContrato(b);
+					break;
+				}
+			}
+		},
 
 		getProyectos: function() { return proyectos; },
     //getProyectosIndex: function( s ) { return proyectos.indexOf(s); },
-    removeProyecto: function(i) { proyectos.splice(i, 1);},
-    addProyecto: function( b ) { proyectos.push( b ); },
+    removeProyecto: function(i) {
+			proyectos.splice(i, 1);
+		},
+    addProyecto: function( b ) {
+			proyectos.push( b );
+			for(var i=0; i<cazadores.length; i++)
+			{
+				if(b.getCazadorID() == cazadores[i].getID())
+				{
+					cazadores[i].addProyecto(b);
+					break;
+				}
+			}
+		},
 
 		getHabilidades: function() { return habilidades; },
     //getHabilidadesIndex: function( s ) { return habilidades.indexOf(s); },
-    removeHabilidad: function(i) { habilidades.splice(i, 1);},
+    removeHabilidad: function(i) {
+			habilidades.splice(i, 1);
+		},
     addHabilidad: function( b ) { habilidades.push( b ); }
  }
 })();
@@ -524,7 +572,22 @@ function buscarCazador()
       }
     }
   }
-  //print talentos on screen
+  //print cazadores on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Cazador "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Alias: "+result[j].getAlias()+"</p>"
+		HTML_expr += "<p>Giro de Proyectos: "+result[j].getGiroProyectos()+"</p>"
+		HTML_expr += "<p>Coordenadas: "+result[j].getCoordenadas()+"</p>"
+		HTML_expr += "<p>Proyectos: </p> <ul>"
+		for(var i = 0; i < result[j].getListaProyectos().length; i++)
+		{
+				HTML_expr += "<li>" + result[j].getListaProyectos()[i].getNombre() + "</li>";
+		}
+		HTML_expr += "</ul> <p>Reputacion: "+result[j].getReputacion()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	CITA		------------------------------------------------------//
@@ -922,7 +985,7 @@ function buscarProyecto()
 		HTML_expr += "<p>Habilidades: </p> <ul>"
 		for(var i = 0; i < result[j].getHabilidades().length; i++)
 		{
-				HTML_expr += "<li>" + result[j].getTalentos()[i].getNombre() + "</li>";
+				HTML_expr += "<li>" + result[j].getHabilidades()[i].getNombre() + "</li>";
 		}
 		HTML_expr += "</ul>"
 		HTML_expr += "<p>Cuota: "+ result[j].getCuota() +"</p>"
@@ -1027,7 +1090,7 @@ function buscarTalento()
 		HTML_expr += "<p>Habilidades: </p> <ul>"
 		for(var i = 0; i < result[j].getHabilidades().length; i++)
 		{
-				HTML_expr += "<li>" + result[j].getTalentos()[i].getNombre() + "</li>";
+				HTML_expr += "<li>" + result[j].getHabilidades()[i].getNombre() + "</li>";
 		}
 		HTML_expr += "</ul>"
 		HTML_expr += "<p>Horario: "+result[j].getHorario()+"</p>"
