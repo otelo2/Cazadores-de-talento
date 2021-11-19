@@ -1,5 +1,5 @@
 module.exports = {
-	crearCazador, crearTalento
+	crearCazador, crearTalento, crearProyecto, crearCitaA, crearCitaC, crearCitaT, crearContrato, crearHabilidad
 }
 
 var DATABASE = (function() {
@@ -420,10 +420,10 @@ function newContrato()
 	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
 }
 
-function crearContrato()
+function crearContrato(it, ip)
 {
-	var it = document.getElementById("lista_de_talentos").value;
-	var ip = document.getElementById("giro_de_proyectos").value;
+	/*var it = document.getElementById("lista_de_talentos").value;
+	var ip = document.getElementById("giro_de_proyectos").value;*/
 	DATABASE.addContrato(CONTRATO('default', it, ip));
 	console.log('DONE');
 }

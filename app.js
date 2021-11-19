@@ -35,8 +35,14 @@ app.post('/talento/crear_talento.html', function(request, response) {
 
 app.post('/proyecto/crear_proyecto.html', function(request, response) {
     
-  clases.addProyecto(PROYECTO(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad));
+  clases.crearProyecto(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad)
   response.sendFile(__dirname + '/proyecto/crear_proyecto.html');
+});
+
+app.post('/contrato/crear_contrato.html', function(request, response) {
+
+  clases.crearContrato(request.body.lista_de_talentos, request.body.giro_de_proyectos)
+  response.sendFile(__dirname + '/contrato/crear_contrato.html');
 });
 
 
