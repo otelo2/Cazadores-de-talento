@@ -57,6 +57,12 @@ app.post('/cita/crear_cita_administrador.html', function(request, response) {
   response.sendFile(__dirname + '/cita/crear_cita_administrador.html');
 });
 
+app.post('/cita/crear_cita_talento.html', function(request, response) {
+
+  clases.crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
+  response.sendFile(__dirname + '/cita/crear_cita_talento.html');
+});
+
 app.post('/habilidad/crear_habilidad.html', function(request, response) {
 
   clases.crearHabilidad(request.body.nombre, request.body.input)

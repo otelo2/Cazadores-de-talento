@@ -378,11 +378,11 @@ function newCitaT()
 	document.getElementById("lista_de_cazadores").innerHTML = HTML_expr;
 }
 
-function crearCitaT()
+function crearCitaT(ic, h, l)
 {
-	var ic = document.getElementById("lista_de_cazadores").value;
+	/*var ic = document.getElementById("lista_de_cazadores").value;
 	var h = document.getElementById("horario").value;
-	var l = document.getElementById("lugar").value;
+	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA(ic, 'default', h, l));
 	console.log('DONE');
 }
