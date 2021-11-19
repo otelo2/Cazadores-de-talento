@@ -1107,9 +1107,75 @@ function crearTalento(alias, actividadProfesional, horario, lugar, costo, habili
 	console.log('DONE');
 }
 
+function defaultTalento()
+{
+	var o = document.getElementById("talento").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getTalentos().length; j++)
+	{
+		if(DATABASE.getTalentos()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//poner los datos del talento en el formato
+	var HTML_expr = "<label for='alias'>Alias</label>"
+	HTML_expr += "<input type='text' name='alias' id='alias' value='"+ DATABASE.getTalentos()[o].getAlias() + "'>"
+  //(maybe) WORKING ON IT
+  /*HTML_expr += "<label for='habilidad'>Habilidades</label>"
+  HTML_expr += "<select name='habilidad' id='habilidad' multiple>"
+
+  HTML_expr += "for (var i = 0; i < element.options.length; i++) {
+    element.options[i].selected = values.indexOf(element.options[i].value) >= 0;
+}"*/
+
+  HTML_expr += "</select> <p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p> <label for='actividad_profesional'>Actividad Profesional</label>"
+  HTML_expr += "<input type='text' name='actividad_profesional' id='actividad_profesional' value='" + DATABASE.getTalentos()[o].getActividadProfesional() + "'>"
+  HTML_expr += "<label for='horario'>Horario</label>"
+  HTML_expr += "<input type='text' name='horario' id='horario' value='" + DATABASE.getTalentos()[o].getHorario()+ "'>"
+  HTML_expr += "<label for='lugar'>Lugar</label>"
+  HTML_expr += "<input type='text' name='lugar' id='lugar' value= '"+ DATABASE.getTalentos()[o].getLugar()+"'>"
+  HTML_expr += "<label for='costo'>Costo</label>"
+  HTML_expr += "<input type='number' name='costo' id='costo' value='"+DATABASE.getTalentos()[o].getCosto()+"'>"
+
+	document.getElementById("changing").innerHTML = HTML_expr;
+}
+
 function editarTalento()
 {
-	//
+  var o = document.getElementById("talento").value;
+	//encontrar al Proyecto
+	for(var j = 0; j < DATABASE.getTalentos().length; j++)
+	{
+		if(DATABASE.getTalentos()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+
+  //editar valores que cambiaron
+	if(DATABASE.getTalentos()[o].getAlias()!=document.getElementById("alias"))
+	{
+		DATABASE.getTalentos()[o].setAlias(document.getElementById("alias"))
+	}
+	if(DATABASE.getTalentos()[o].getActividadProfesional()!=document.getElementById("actividad_profesional"))
+	{
+		DATABASE.getTalentos()[o].setActividadProfesional(document.getElementById("actividad_profesional"))
+	}
+  if(DATABASE.getTalentos()[o].getHorario()!=document.getElementById("horario"))
+	{
+		DATABASE.getTalentos()[o].setHorario(document.getElementById("horario"))
+	}
+  if(DATABASE.getTalentos()[o].getLugar()!=document.getElementById("lugar"))
+	{
+		DATABASE.getTalentos()[o].setLugar(document.getElementById("lugar"))
+	}
+	if(DATABASE.getTalentos()[o].getCosto()!=document.getElementById("costo"))
+	{
+		DATABASE.getTalentos()[o].setCosto(document.getElementById("costo"))
+	}
 }
 
 function eliminarTalento()
