@@ -666,6 +666,12 @@ function buscarContrato()
     }
   }
   //print contratos on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Contrato "+result[j].getID()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	HABILIDAD		------------------------------------------------------//
