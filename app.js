@@ -45,6 +45,12 @@ app.post('/contrato/crear_contrato.html', function(request, response) {
   response.sendFile(__dirname + '/contrato/crear_contrato.html');
 });
 
+app.post('/cita/crear_cita_cazador.html', function(request, response) {
+
+  clases.crearCitaA(request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+  response.sendFile(__dirname + '/cita/crear_cita_cazador.html');
+});
+
 
 //Puerto de nuestro servidor
 app.listen(8080, function() {

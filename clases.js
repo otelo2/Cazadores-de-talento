@@ -338,12 +338,12 @@ function buscarCazador()
 }
 
 //------------------------------------------------------	CITA		------------------------------------------------------//
-function crearCitaA()
+function crearCitaA(ic, it, h, l)
 {
-	var ic = document.getElementById("lista_de_cazadores").value;
+	/*var ic = document.getElementById("lista_de_cazadores").value;
 	var it = document.getElementById("lista_de_talentos").value;
 	var h = document.getElementById("horario").value;
-	var l = document.getElementById("lugar").value;
+	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA(ic, it, h, l));
 	console.log('DONE');
 }
