@@ -447,7 +447,16 @@ function eliminarCita()
 
 function buscarCita()
 {
-	//
+  var query = document.getElementById("query");
+  var result = [];
+  for(var j = 0; j < DATABASE.getCitas().length; j++)
+  {
+    if((DATABASE.getCitas()[j].getID() == query)||(DATABASE.getCitas()[j].getHorario() == query)||(DATABASE.getCitas()[j].getLugar() == query))
+    {
+        result.push(DATABASE.getContratos()[j]);
+    }
+  }
+  //print citas on screen
 }
 
 //------------------------------------------------------	CONTRATO		------------------------------------------------------//
