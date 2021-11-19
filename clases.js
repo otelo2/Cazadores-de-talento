@@ -9,27 +9,33 @@ var DATABASE = (function() {
 
  return {
     getCazadores: function() { return cazadores; },
-    getCazadorIndex: function( s ) { return cazadores.indexOf(s); },
+    //getCazadorIndex: function( s ) { return cazadores.indexOf(s); },
+    removeCazador: function(i) { cazadores.splice(i, 1);},
     addCazador: function( b ) { b.displayInformation(); cazadores.push( b ); },
 
 		getTalentos: function() { return talentos; },
-    getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    removeTalento: function(i) { talentos.splice(i, 1);},
     addTalento: function( b ) { talentos.push( b ); },
 
 		getCitas: function() { return citas; },
-    getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    removeCita: function(i) { citas.splice(i, 1);},
     addCita: function( b ) { citas.push( b ); },
 
 		getContratos: function() { return contratos; },
-    getContratosIndex: function( s ) { return contratos.indexOf(s); },
+    //getContratosIndex: function( s ) { return contratos.indexOf(s); },
+    removeContrato: function(i) { contratos.splice(i, 1);},
     addContrato: function( b ) { contratos.push( b ); },
 
 		getProyectos: function() { return proyectos; },
-    getProyectosIndex: function( s ) { return proyectos.indexOf(s); },
-    addProyecto: function( b ) { proyecto.push( b ); },
+    //getProyectosIndex: function( s ) { return proyectos.indexOf(s); },
+    removeProtecto: function(i) { proyectos.splice(i, 1);},
+    addProyecto: function( b ) { proyectos.push( b ); },
 
 		getHabilidades: function() { return habilidades; },
-    getHabilidadesIndex: function( s ) { return habilidades.indexOf(s); },
+    //getHabilidadesIndex: function( s ) { return habilidades.indexOf(s); },
+    removeHabilidad: function(i) { habilidades.splice(i, 1);},
     addHabilidad: function( b ) { habilidades.push( b ); }
  }
 })();
@@ -481,8 +487,21 @@ function crearProyecto()
 	var nombre = document.getElementById("nombre").value;
 	var descripcion = document.getElementById("descripcion").value;
 	var cuota = document.getElementById("cuota").value;
-	var habilidades = document.getElementById("habilidad").value;
-	DATABASE.addProyecto(PROYECTO(nombre, descripcion, cuota, habilidades));
+	var habilidades = document.getElementById("habilidad");
+  var h = []
+  for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
+  {
+    o = select.options[i].value;
+    for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+    {
+      if(DATABASE.getHabilidades()[j].idHabilidad === o)
+      {
+          h.push(DATABASE.getHabilidades()[j]);
+          break;
+      }
+    }
+  }
+	DATABASE.addProyecto(PROYECTO(nombre, descripcion, cuota, h));
 	console.log('DONE');
 }
 
@@ -510,8 +529,21 @@ function crearTalento()
 	var horario = document.getElementById("horario").value;
 	var lugar = document.getElementById("lugar").value;
 	var costo = document.getElementById("costo").value;
-	var habilidades = document.getElementById("habilidad").value;
-	DATABASE.addTalento(TALENTO(alias, actividadProfesional, horario, lugar, costo));
+	var habilidades = document.getElementById("habilidad");  //PENDIENTE
+  var h = []
+  for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
+  {
+    o = select.options[i].value;
+    for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+    {
+      if(DATABASE.getHabilidades()[j].idHabilidad === o)
+      {
+          h.push(DATABASE.getHabilidades()[j]);
+          break;
+      }
+    }
+  }
+	DATABASE.addTalento(TALENTO(alias, actividadProfesional, horario, lugar, costo, h));
 	console.log('DONE');
 }
 
@@ -522,10 +554,23 @@ function editarTalento()
 
 function eliminarTalento()
 {
-	//
+  var talentos = document.getElementById("lista_de_talentos");
+  var index = -1
+  for ( var i = 0, l = talentos.options.length, o; i < l; i++ )
+  {
+    o = select.options[i].value;
+    for(var j = 0; j < DATABASE.getTalentos().length; j++)
+    {
+      if(DATABASE.getTalentos()[j].idTalento === o)
+      {
+          DATABASE.removeTalento(j);
+          break;
+      }
+    }
+  }
 }
 
 function buscarTalento()
 {
-	//
+ //
 }

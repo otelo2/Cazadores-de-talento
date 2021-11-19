@@ -9,15 +9,13 @@
     <script src="../clases.js"></script>
     <title>Eliminar talento</title>
 </head>
-<body>
+<body onload="newCitaC()">
     <h1>Dar de baja a talentos</h1>
     <div id = "form">
 	<form action="#" method="post">
         	<label for="talento">Talento a eliminar:</label>
-	        <select name="talento" id="talento" multiple>
-	            <option value="talento1">Talento 1</option>
-        	    <option value="talento2">Talento 2</option>
-	            <option value="talento3">Talento 3</option>
+	        <select name="talento" id="lista_de_talentos" multiple>
+	            <!---->
         	</select>
 		<p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
 	        <input type="submit" onclick="eliminarTalento()" value="Eliminar talento">
