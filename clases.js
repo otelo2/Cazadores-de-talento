@@ -30,7 +30,7 @@ var DATABASE = (function() {
 
 		getProyectos: function() { return proyectos; },
     //getProyectosIndex: function( s ) { return proyectos.indexOf(s); },
-    removeProtecto: function(i) { proyectos.splice(i, 1);},
+    removeProyecto: function(i) { proyectos.splice(i, 1);},
     addProyecto: function( b ) { proyectos.push( b ); },
 
 		getHabilidades: function() { return habilidades; },
@@ -359,7 +359,27 @@ function eliminarCazador()
 
 function buscarCazador()
 {
-	//
+  var query = document.getElementById("query");
+  var result = [];
+  for(var j = 0; j < DATABASE.getCazadores().length; j++)
+  {
+    if((DATABASE.getCazadores()[j].getID() == query)||(DATABASE.getCazadores()[j].getAlias() == query)||(DATABASE.getCazadores()[j].getGiroProyectos() == query)||(DATABASE.getCazadores()[j].getCoordenadas() == query)||(DATABASE.getCazadores()[j].getReputacion() == query))
+    {
+        result.push(DATABASE.getTalentos()[j]);
+    }
+    else
+    {
+      for(var i = 0; i < DATABASE.getCazadores()[j].getListaProyectos().length; j++)
+      {
+        if(DATABASE.getCazadores()[j].getListaProyectos()[i] == query)
+        {
+            result.push(DATABASE.getTalentos()[j]);
+            break;
+        }
+      }
+    }
+  }
+  //print talentos on screen
 }
 
 //------------------------------------------------------	CITA		------------------------------------------------------//
@@ -641,7 +661,7 @@ function eliminarProyecto()
     {
       if(DATABASE.getProyectos()[j].getID() == o)
       {
-          DATABASE.removeProtecto(j);
+          DATABASE.removeProyecto(j);
           break;
       }
     }
@@ -660,9 +680,9 @@ function buscarProyecto()
     }
     else
     {
-      for(var j = 0; j < DATABASE.getProyectos()[j].getHabilidades().length; j++)
+      for(var i = 0; j < DATABASE.getProyectos()[j].getHabilidades().length; j++)
       {
-        if(DATABASE.getProyectos()[j].getHabilidades() == query)
+        if(DATABASE.getProyectos()[j].getHabilidades()[i] == query)
         {
             result.push(DATABASE.getProyectos()[j]);
             break;
@@ -736,9 +756,9 @@ function buscarTalento()
     }
     else
     {
-      for(var j = 0; j < DATABASE.getTalentos()[j].getHabilidades().length; j++)
+      for(var i = 0; i < DATABASE.getTalentos()[j].getHabilidades().length; j++)
       {
-        if(DATABASE.getTalentos()[j].getHabilidades() == query)
+        if(DATABASE.getTalentos()[j].getHabilidades()[i] == query)
         {
             result.push(DATABASE.getTalentos()[j]);
             break;
