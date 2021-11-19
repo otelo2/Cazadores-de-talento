@@ -435,9 +435,32 @@ function editarContrato()
 	//
 }
 
+function newContratoList()
+{
+  var HTML_expr = "";
+  for(var i = 0; i < DATABASE.getContratos().length; i++) {
+      HTML_expr += "<option value='" + DATABASE.getContratos()[i].idContrato + "'>";
+      HTML_expr += "Contrato "+ DATABASE.getContratos()[i].idContrato + "</option>";
+  }
+  document.getElementById("contrato").innerHTML = HTML_expr;
+}
+
 function eliminarContrato()
 {
-	//
+  var contratos = document.getElementById("contrato");
+  var index = -1
+  for ( var i = 0, l = contratos.options.length, o; i < l; i++ )
+  {
+    o = contratos.options[i].value;
+    for(var j = 0; j < DATABASE.getContratos().length; j++)
+    {
+      if(DATABASE.getContratos()[j].idContrato === o)
+      {
+          DATABASE.removeContrato(j);
+          break;
+      }
+    }
+  }
 }
 
 function buscarContrato()
