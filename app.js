@@ -7,19 +7,13 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/main.html');
 });
 
-app.get('/main.css', function(request, response) {
-    response.sendFile(__dirname + '/main.css');
+//Return the requested resource
+app.get('/*', function(request, response) {
+    response.sendFile(__dirname + '/' + request.url);
 });
 
-app.get('/Imagenes/Cofre.png', function(request, response) {
-    response.sendFile(__dirname + '/Imagenes/Cofre.png');
-});
 
-//Old copy-paste
-app.get('/books', function(request, response) {
-  response.redirect(301,'/');
-});
-
-app.listen(3000, function() {
-  console.log("Running Express");  
+//Puerto de nuestro servidor
+app.listen(8080, function() {
+  console.log("Running Express in port 8080");  
 });
