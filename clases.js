@@ -43,14 +43,17 @@ app.route('/proyecto/crear_proyecto.html')
     .post(function(request, response) {
 		crearProyecto(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad)
     	response.render("proyecto/crear_proyecto", {DATABASE: DATABASE})
-      //response.sendFile(__dirname + '/talento/crear_talento.html');
     });
 
-app.post('/contrato/crear_contrato.html', function(request, response) {
-
-  crearContrato(request.body.lista_de_talentos, request.body.giro_de_proyectos)
-  response.sendFile(__dirname + '/contrato/crear_contrato.html');
-});
+app.route('/contrato/crear_contrato.html')
+    .get(function(request, response) {
+    	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		console.log("Nombre contrato: "+DATABASE.getProyectos()[0].getNombre());
+		crearContrato(request.body.lista_de_talentos, request.body.lista_de_proyectos)
+    	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
+    });
 
 app.post('/cita/crear_cita_cazador.html', function(request, response) {
 
@@ -954,9 +957,17 @@ function crearProyecto(nombre, descripcion, cuota, habilidad)
 	var cuota = document.getElementById("cuota").value;
 	var habilidades = document.getElementById("habilidad");*/
 	var h = []
-	habilidad.forEach( function(valor, indice, array) {
-		h.push(DATABASE.getHabilidades()[valor-1]);
-	});
+	//Check if habilidad is an array
+	if(Array.isArray(habilidad))
+	{
+		habilidad.forEach( function(valor, indice, array) {
+			h.push(DATABASE.getHabilidades()[valor-1]);
+		});
+	}
+	else
+	{
+		h.push(DATABASE.getHabilidades()[habilidad-1]);
+	}
 	DATABASE.addProyecto(PROYECTO(nombre, descripcion, cuota, h));
 	console.log('DONE');
 }
@@ -1078,10 +1089,19 @@ function crearTalento(alias, actividadProfesional, horario, lugar, costo, habili
 	var lugar = document.getElementById("lugar").value;
 	var costo = document.getElementById("costo").value;
 	var habilidades = habilidad;  //PENDIENTE*/
-  	var h = []
-	habilidad.forEach( function(valor, indice, array) {
-		h.push(DATABASE.getHabilidades()[valor-1]);
-	});
+	var h = []
+	//Check if habilidad is an array
+	if(Array.isArray(habilidad))
+	{
+		habilidad.forEach( function(valor, indice, array) {
+			h.push(DATABASE.getHabilidades()[valor-1]);
+		});
+	}
+	else
+	{
+		h.push(DATABASE.getHabilidades()[habilidad-1]);
+	}
+	
 	/*
   for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
   {
