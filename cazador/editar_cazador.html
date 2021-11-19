@@ -14,20 +14,21 @@
     <div id= "form">
 	<form action="#" method="post">
         	<label for="cazador">Perfil de cazador a editar:</label>
-	        <select name="cazador" id="cazador">
+	        <select name="cazador" id="cazador" onchange="defaultCazador()">
 	            <!----->
 	        </select>
 		<p></p>
 
-	        <label for="alias">Alias</label>
-	        <input type="text" name="alias" id="alias">
+		<div id="changing">
+		        <label for="alias">Alias</label>
+		        <input type="text" name="alias" id="alias">
 
-	        <label for="giro_de_proyectos">Giro de proyectos</label>
-	        <input type="text" name="giro_de_proyectos" id="giro_de_proyectos">
+		        <label for="giro_de_proyectos">Giro de proyectos</label>
+		        <input type="text" name="giro_de_proyectos" id="giro_de_proyectos">
 
-	        <label for="coordenadas">Coordenadas</label>
-        	<input type="text" name="coordenadas" id="coordenadas">
-
+		        <label for="coordenadas">Coordenadas</label>
+	        	<input type="text" name="coordenadas" id="coordenadas">
+		</div>
         	<!-- Creo que esto no va cuando se crea un perfil de cazador --> 
 	        <!--
 		<label for="lista_de_proyectos">Lista de proyectos</label>

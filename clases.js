@@ -317,6 +317,8 @@ var HABILIDAD = (function(n, d){
 	}
 });
 
+//------------------------------------------------------	FUNCIONES		------------------------------------------------------//
+
 //------------------------------------------------------	CAZADOR		------------------------------------------------------//
 function crearCazador(alias, giro, coordenadas)
 {
@@ -330,7 +332,51 @@ function crearCazador(alias, giro, coordenadas)
 
 function editarCazador()
 {
-	//
+	var o = document.getElementById("cazador").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getCazadores().length; j++)
+	{
+		if(DATABASE.getCazadores()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//editar valores que cambiaron
+	if(DATABASE.getCazadores()[o].getAlias()!=document.getElementById("alias"))
+	{
+		DATABASE.getCazadores()[o].setAlias(document.getElementById("alias"))
+	}
+	if(DATABASE.getCazadores()[o].getGiroProyectos()!=document.getElementById("giro_de_proyectos"))
+	{
+		DATABASE.getCazadores()[o].setGiroProyectos(document.getElementById("giro_de_proyectos"))
+	}
+	if(DATABASE.getCazadores()[o].getCoordenadas()!=document.getElementById("coordenadas"))
+	{
+		DATABASE.getCazadores()[o].setCoordenadas(document.getElementById("coordenadas"))
+	}
+}
+
+function defaultCazador()
+{
+	var o = document.getElementById("cazador").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getCazadores().length; j++)
+	{
+		if(DATABASE.getCazadores()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//poner los datos del cazadores en el formato
+	var HTML_expr = "<label for='alias'>Alias</label>"
+	HTML_expr += "<input type='text' name='alias' id='alias' value='" + getCazadores()[o].getAlias() + "'>"
+	HTML_expr += "<label for='giro_de_proyectos'>Giro de proyectos</label>"
+	HTML_expr += "<input type='text' name='giro_de_proyectos' id='giro_de_proyectos' value='"+getCazadores()[o].getGiroProyectos()+"'>"
+	HTML_expr += "<label for='coordenadas'>Coordenadas</label>"
+	HTML_expr += "<input type='text' name='coordenadas' id='coordenadas' value='"+getCazadores()[o].getCoordenadas()+"'>"
+	document.getElementById("changing").innerHTML = HTML_expr;
 }
 
 function newCazador()
@@ -395,6 +441,11 @@ function crearCitaA(ic, it, h, l)
 	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA(ic, it, h, l));
 	console.log('DONE');
+}
+
+function defaultCitaA()
+{
+
 }
 
 function newCitaC()
