@@ -623,7 +623,27 @@ function eliminarProyecto()
 
 function buscarProyecto()
 {
-	//
+  var query = document.getElementById("query");
+  var result = [];
+  for(var j = 0; j < DATABASE.getProyectos().length; j++)
+  {
+    if((DATABASE.getProyectos()[j].getID() == query)||(DATABASE.getProyectos()[j].getNombre() == query)||(DATABASE.getProyectos()[j].getDescripcion() == query)||(DATABASE.getProyectos()[j].getCuota() == query))
+    {
+        result.push(DATABASE.getProyectos()[j]);
+    }
+    else
+    {
+      for(var j = 0; j < DATABASE.getProyectos()[j].getHabilidades().length; j++)
+      {
+        if(DATABASE.getProyectos()[j].getHabilidades() == query)
+        {
+            result.push(DATABASE.getProyectos()[j]);
+            break;
+        }
+      }
+    }
+  }
+  //print proyectos on screen
 }
 
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
@@ -680,29 +700,24 @@ function eliminarTalento()
 function buscarTalento()
 {
   var query = document.getElementById("query");
-  var flag = false
+  var result = [];
   for(var j = 0; j < DATABASE.getTalentos().length; j++)
   {
     if((DATABASE.getTalentos()[j].getID() == query)||(DATABASE.getTalentos()[j].getAlias() == query)||(DATABASE.getTalentos()[j].getActividadProfesional() == query)||(DATABASE.getTalentos()[j].getHorario() == query)||(DATABASE.getTalentos()[j].getLugar() == query)||(DATABASE.getTalentos()[j].getCosto() == query)||(DATABASE.getTalentos()[j].getReputacion() == query))
     {
-        flag = true;
-        break;
+        result.push(DATABASE.getTalentos()[j]);
     }
     else
     {
-      for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+      for(var j = 0; j < DATABASE.getTalentos()[j].getHabilidades().length; j++)
       {
-        if(DATABASE.getHabilidades()[j].getNombre() == query)
+        if(DATABASE.getTalentos()[j].getHabilidades() == query)
         {
-            flag = true;
+            result.push(DATABASE.getTalentos()[j]);
             break;
         }
       }
     }
-    if(flag == true)
-    {
-      //print talento on screen
-    }
-    flag = false
   }
+  //print talentos on screen
 }
