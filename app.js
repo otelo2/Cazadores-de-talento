@@ -47,7 +47,7 @@ app.post('/contrato/crear_contrato.html', function(request, response) {
 
 app.post('/cita/crear_cita_cazador.html', function(request, response) {
 
-  clases.crearCitaA(request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+  clases.crearCitaC(request.body.lista_de_talentos, request.body.horario, request.body.lugar)
   response.sendFile(__dirname + '/cita/crear_cita_cazador.html');
 });
 

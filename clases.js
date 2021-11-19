@@ -359,11 +359,11 @@ function newCitaC()
 	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
 }
 
-function crearCitaC()
+function crearCitaC(it, h, l)
 {
-	var it = document.getElementById("lista_de_talentos").value;
+	/*var it = document.getElementById("lista_de_talentos").value;
 	var h = document.getElementById("horario").value;
-	var l = document.getElementById("lugar").value;
+	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA('default', it, h, l));
 	console.log('DONE');
 }
