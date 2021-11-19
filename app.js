@@ -33,6 +33,12 @@ app.post('/talento/crear_talento.html', function(request, response) {
   response.sendFile(__dirname + '/talento/crear_talento.html');
 });
 
+app.post('/proyecto/crear_proyecto.html', function(request, response) {
+    
+  clases.addProyecto(PROYECTO(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad));
+  response.sendFile(__dirname + '/proyecto/crear_proyecto.html');
+});
+
 
 //Puerto de nuestro servidor
 app.listen(8080, function() {

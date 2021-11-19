@@ -480,12 +480,12 @@ function newHabilidades()
 }
 
 //n, d, c, h
-function crearProyecto()
+function crearProyecto(nombre, descripcion, cuota, habilidades)
 {
-	var nombre = document.getElementById("nombre").value;
+	/*var nombre = document.getElementById("nombre").value;
 	var descripcion = document.getElementById("descripcion").value;
 	var cuota = document.getElementById("cuota").value;
-	var habilidades = document.getElementById("habilidad").value;
+	var habilidades = document.getElementById("habilidad").value;*/
 	DATABASE.addProyecto(PROYECTO(nombre, descripcion, cuota, habilidades));
 	console.log('DONE');
 }
