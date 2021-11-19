@@ -9,27 +9,27 @@ var DATABASE = (function() {
 
  return {
     getCazadores: function() { return cazadores; },
-    //getCazadorIndex: function( s ) { return cazadores.indexOf(s); },
+    getCazadorIndex: function( s ) { return cazadores.indexOf(s); },
     addCazador: function( b ) { b.displayInformation(); cazadores.push( b ); },
 
 		getTalentos: function() { return talentos; },
-    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    getSubjectIndex: function( s ) { return subjects.indexOf(s); },
     addTalento: function( b ) { talentos.push( b ); },
 
 		getCitas: function() { return citas; },
-    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    getSubjectIndex: function( s ) { return subjects.indexOf(s); },
     addCita: function( b ) { citas.push( b ); },
 
 		getContratos: function() { return contratos; },
-    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    getContratosIndex: function( s ) { return contratos.indexOf(s); },
     addContrato: function( b ) { contratos.push( b ); },
 
 		getProyectos: function() { return proyectos; },
-    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    getProyectosIndex: function( s ) { return proyectos.indexOf(s); },
     addProyecto: function( b ) { proyecto.push( b ); },
 
 		getHabilidades: function() { return habilidades; },
-    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    getHabilidadesIndex: function( s ) { return habilidades.indexOf(s); },
     addHabilidad: function( b ) { habilidades.push( b ); }
  }
 })();
@@ -246,7 +246,7 @@ var PROYECTO = (function(iC, iT, n, d, c, h){
 		getCuota: function() {return cuota;},
 		setCuota: function(c) {cuota = c;},
 		getHabilidades: function() {return habilidades;},
-		setHabiliddes: function(h) {habilidades = h;},
+		setHabilidades: function(h) {habilidades = h;},
 		setTieneTalento: function() {tieneTalento = !tieneTalento;},
 		getTieneTalento: function() {return tieneTalento;},
 		setEstaActivo: function() {estaActivo = !estaActivo;},
@@ -335,7 +335,12 @@ function buscarCazador()
 //------------------------------------------------------	CITA		------------------------------------------------------//
 function crearCitaA()
 {
-	//
+	var alias = document.getElementById("alias").value;
+	var giro = document.getElementById("giro_de_proyectos").value;
+	var coordenadas = document.getElementById("coordenadas").value;
+	DATABASE.addCazador(CAZADOR(alias, giro, coordenadas));
+	console.log('DONE');
+	console.log(CAZADOR.counter);
 }
 
 function crearCitaC()
