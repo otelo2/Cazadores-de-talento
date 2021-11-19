@@ -16,16 +16,16 @@
     <form action="#" method="post">
         <div id="form">
             <label for="habilidad">Habilidad a editar:</label>
-            <select name="habilidad" id="habilidad">
+            <select name="habilidad" id="habilidad" onchange="defaultHabilidades()">
                 <!---->
             </select>
+	    <div id = "changing">
+	            <label for="nombre">Nombre</label>
+        	    <input type="input" name="nombre" id="nombre">
 
-            <label for="nombre">Nombre</label>
-            <input type="input" name="nombre" id="nombre">
-
-            <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" id="descripción" cols="65" rows="10"></textarea>
-
+	            <label for="descripcion">Descripción</label>
+	            <textarea name="descripcion" id="descripcion" cols="65" rows="10"></textarea>
+	    </div>
             <input type="submit" onclick="editarHabilidad()" value="Actualizar habilidad">
         </div>
     </form>

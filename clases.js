@@ -514,11 +514,11 @@ function defaultCazador()
 	}
 	//poner los datos del cazadores en el formato
 	var HTML_expr = "<label for='alias'>Alias</label>"
-	HTML_expr += "<input type='text' name='alias' id='alias' value='" + getCazadores()[o].getAlias() + "'>"
+	HTML_expr += "<input type='text' name='alias' id='alias' value='" + DATABASE.getCazadores()[o].getAlias() + "'>"
 	HTML_expr += "<label for='giro_de_proyectos'>Giro de proyectos</label>"
-	HTML_expr += "<input type='text' name='giro_de_proyectos' id='giro_de_proyectos' value='"+getCazadores()[o].getGiroProyectos()+"'>"
+	HTML_expr += "<input type='text' name='giro_de_proyectos' id='giro_de_proyectos' value='"+DATABASE.getCazadores()[o].getGiroProyectos()+"'>"
 	HTML_expr += "<label for='coordenadas'>Coordenadas</label>"
-	HTML_expr += "<input type='text' name='coordenadas' id='coordenadas' value='"+getCazadores()[o].getCoordenadas()+"'>"
+	HTML_expr += "<input type='text' name='coordenadas' id='coordenadas' value='"+DATABASE.getCazadores()[o].getCoordenadas()+"'>"
 	document.getElementById("changing").innerHTML = HTML_expr;
 }
 
@@ -752,7 +752,6 @@ function editarContrato()
 function defaultContrato()
 {
 	var o = document.getElementById("contrato").value;
-	//encontrar al Cazador
 	for(var j = 0; j < DATABASE.getContratos().length; j++)
 	{
 		if(DATABASE.getContratos()[j].getID() == o)
@@ -840,9 +839,47 @@ function crearHabilidad(nombre, descripcion)
 	console.log(HABILIDAD.counter);
 }
 
+function defaultHabilidades()
+{
+	var o = document.getElementById("habilidad").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+	{
+		if(DATABASE.getHabilidades()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//poner los datos de la habilidad en el formato
+	var HTML_expr = "<label for='nombre'>Nombre</label>"
+	HTML_expr += "<input type='input' name='nombre' id='nombre' value='"+ DATABASE.getHabilidades()[o].getNombre() + "'>"
+	HTML_expr += "<label for='descripcion'>Descripción</label>"
+	HTML_expr += "<textarea name='descripcion' id='descripcion' cols='65' rows='10' value='"+ DATABASE.getHabilidades()[o].getDescripcion +"'></textarea>"
+	document.getElementById("changing").innerHTML = HTML_expr;
+}
+
 function editarHabilidad()
 {
-	//
+  var o = document.getElementById("habilidad").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+	{
+		if(DATABASE.getHabilidades()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//editar valores que cambiaron
+	if(DATABASE.getHabilidades()[o].getNombre()!=document.getElementById("nombre"))
+	{
+		DATABASE.getHabilidades()[o].setHabilidades(document.getElementById("nombre"))
+	}
+	if(DATABASE.getHabilidades()[o].getDescripcion()!=document.getElementById("descripcion"))
+	{
+		DATABASE.getHabilidades()[o].setDescripcion(document.getElementById("descripcion"))
+	}
 }
 
 function eliminarHabilidad()
