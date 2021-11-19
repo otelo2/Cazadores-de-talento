@@ -32,6 +32,9 @@
 		<label for="habilidad">Habilidades</label>
 	        <select name="habilidad" id="habilidad" multiple>
         	    <!---->
+				<% for(var i = 0; i < DATABASE.getHabilidades().length; i++) { %>
+					<option value='<%= DATABASE.getHabilidades()[i].getID() %>'> <%= DATABASE.getHabilidades()[i].getNombre() %> </option>
+				<% } %>
 	        </select>
 		<p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
 	</div>

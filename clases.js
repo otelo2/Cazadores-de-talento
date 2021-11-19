@@ -1,6 +1,92 @@
-module.exports = {
-	crearCazador, crearTalento, crearProyecto, crearCitaA, crearCitaC, crearCitaT, crearContrato, crearHabilidad
-}
+// ------------- app.js ------------- //
+//Archivo de nuestras clases
+var express = require('express');
+var app = express();
+
+app.use(express.static('public'));
+
+var bodyParser = require('body-parser')
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+app.use(express.urlencoded());
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+app.set('views', "./");
+
+app.get('/', function(request, response) {
+  response.sendFile(__dirname + '/main.html');
+});
+
+app.post('/cazador/crear_cazador.html', function(request, response) {
+    
+    crearCazador(request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
+    response.sendFile(__dirname + '/cazador/crear_cazador.html');
+});
+
+app.route('/talento/crear_talento.html')
+    .get(function(request, response) {
+      console.log("habilidades: " + DATABASE.getHabilidades().length)
+      response.render("talento/crear_talento", {DATABASE: DATABASE})
+      //response.sendFile(__dirname + '/talento/crear_talento.html');
+      //clases.newHabilidades();
+    })
+    .post(function(request, response) {
+      crearTalento(request.body.alias, request.body.actividad_profesional, request.body.horario, request.body.lugar, request.body.costo, request.body.habilidad)
+      response.render("talento/crear_talento", {DATABASE: DATABASE})
+      //response.sendFile(__dirname + '/talento/crear_talento.html');
+    });
+
+app.post('/proyecto/crear_proyecto.html', function(request, response) {
+    
+  crearProyecto(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad)
+  response.sendFile(__dirname + '/proyecto/crear_proyecto.html');
+});
+
+app.post('/contrato/crear_contrato.html', function(request, response) {
+
+  crearContrato(request.body.lista_de_talentos, request.body.giro_de_proyectos)
+  response.sendFile(__dirname + '/contrato/crear_contrato.html');
+});
+
+app.post('/cita/crear_cita_cazador.html', function(request, response) {
+
+  crearCitaC(request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+  response.sendFile(__dirname + '/cita/crear_cita_cazador.html');
+});
+
+app.post('/cita/crear_cita_administrador.html', function(request, response) {
+
+  crearCitaA(request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+  response.sendFile(__dirname + '/cita/crear_cita_administrador.html');
+});
+
+app.post('/cita/crear_cita_talento.html', function(request, response) {
+
+  crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
+  response.sendFile(__dirname + '/cita/crear_cita_talento.html');
+});
+
+app.post('/habilidad/crear_habilidad.html', function(request, response) {
+
+  crearHabilidad(request.body.nombre, request.body.input)
+  response.sendFile(__dirname + '/habilidad/crear_habilidad.html');
+});
+
+//Si no tiene alguna funcion especial predefinida arriba
+app.get('/*', function(request, response) {
+  response.sendFile(__dirname + '/' + request.url);
+});
+
+//Puerto de nuestro servidor
+app.listen(8080, function() {
+  console.log("Running Express in port 8080");  
+});
+
+
+// ------------ clases.js ------------ //
 
 var DATABASE = (function() {
  var cazadores = [];
@@ -780,7 +866,7 @@ function crearProyecto(nombre, descripcion, cuota, habilidades)
 	/*var nombre = document.getElementById("nombre").value;
 	var descripcion = document.getElementById("descripcion").value;
 	var cuota = document.getElementById("cuota").value;
-	var habilidades = document.getElementById("habilidad");
+	var habilidades = document.getElementById("habilidad");*/
   var h = []
   for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
   {
@@ -863,13 +949,13 @@ function buscarProyecto()
 
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
 //a, ac, ho, l, c, ha
-function crearTalento(alias, actividadProfesional, horario, lugar, costo, habilidades)
+function crearTalento(alias, actividadProfesional, horario, lugar, costo)
 {
 	/*var alias = document.getElementById("alias").value;
 	var actividadProfesional = document.getElementById("actividad_profesional").value;
 	var horario = document.getElementById("horario").value;
 	var lugar = document.getElementById("lugar").value;
-	var costo = document.getElementById("costo").value;
+	var costo = document.getElementById("costo").value;*/
 	var habilidades = document.getElementById("habilidad");  //PENDIENTE
   var h = []
   for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
