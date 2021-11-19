@@ -986,7 +986,7 @@ function buscarProyecto()
 		HTML_expr += "<p>Habilidades: </p> <ul>"
 		for(var i = 0; i < result[j].getHabilidades().length; i++)
 		{
-				HTML_expr += "<li>" + result[j].getTalentos()[i].getNombre() + "</li>";
+				HTML_expr += "<li>" + result[j].getHabilidades()[i].getNombre() + "</li>";
 		}
 		HTML_expr += "</ul>"
 		HTML_expr += "<p>Cuota: "+ result[j].getCuota() +"</p>"
@@ -1086,7 +1086,7 @@ function buscarTalento()
 		HTML_expr += "<p>Habilidades: </p> <ul>"
 		for(var i = 0; i < result[j].getHabilidades().length; i++)
 		{
-				HTML_expr += "<li>" + result[j].getTalentos()[i].getNombre() + "</li>";
+				HTML_expr += "<li>" + result[j].getHabilidades()[i].getNombre() + "</li>";
 		}
 		HTML_expr += "</ul>"
 		HTML_expr += "<p>Horario: "+result[j].getHorario()+"</p>"
