@@ -61,11 +61,14 @@ app.post('/cita/crear_cita_cazador.html', function(request, response) {
   response.sendFile(__dirname + '/cita/crear_cita_cazador.html');
 });
 
-app.post('/cita/crear_cita_administrador.html', function(request, response) {
-
-  crearCitaA(request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
-  response.sendFile(__dirname + '/cita/crear_cita_administrador.html');
-});
+app.route('/cita/crear_cita_administrador.html')
+    .get(function(request, response) {
+    	response.render("cita/crear_cita_administrador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearCitaA(request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+    	response.render("cita/crear_cita_administrador", {DATABASE: DATABASE})
+    });
 
 app.post('/cita/crear_cita_talento.html', function(request, response) {
 
