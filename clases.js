@@ -462,7 +462,20 @@ function editarHabilidad()
 
 function eliminarHabilidad()
 {
-	//
+  var habilidades = document.getElementById("habilidad");
+  var index = -1
+  for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
+  {
+    o = habilidades.options[i].value;
+    for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+    {
+      if(DATABASE.getHabilidades()[j].idHabilidad === o)
+      {
+          DATABASE.removeHabilidad(j);
+          break;
+      }
+    }
+  }
 }
 
 function buscarHabilidad()
