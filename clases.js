@@ -221,6 +221,10 @@ var CITA = (function(iC, iT, h, l){
 
 	return {
 		getID: function() {return idCita;},
+		getTalentoID: function() {return idTalento;},
+		setTalentoID: function(it) {idTalento = it},
+		getCazadorID: function() {return idCazador;},
+		setCazadorID: function(ic) {idCazador = ic},
 		getHorario: function() {return horario;},
 		setHorario: function(h) {horario = h;},
 		getLugar: function() {return lugar;},
@@ -249,6 +253,8 @@ var PROYECTO = (function(iC, n, d, c, h){
 
 	return {
 		getID: function() {return idProyecto;},
+		getCazadorID: function() {return idCazador;},
+		setCazadorID: function(ic) {idCazador = ic},
 		getNombre: function() {return nombre;},
 		setNombre: function(n) {nombre = n;},
 		getDescripcion: function() {return descripcion;},
