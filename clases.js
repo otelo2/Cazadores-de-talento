@@ -481,6 +481,17 @@ function newHabilidades()
 	document.getElementById("habilidad").innerHTML = HTML_expr;
 }
 
+function newProyecto()
+{
+	var HTML_expr = "";
+	//<option value="talentos1">Talento 1</option>
+	for(var i = 0; i < DATABASE.getProyectos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].idProyecto + "'>";
+			HTML_expr += DATABASE.getProyectos()[i].name + "</option>";
+	}
+	document.getElementById("proyecto").innerHTML = HTML_expr;
+}
+
 //n, d, c, h
 function crearProyecto()
 {
@@ -512,7 +523,20 @@ function editarProyecto()
 
 function eliminarProyecto()
 {
-	//
+  var proyectos = document.getElementById("proyecto");
+  var index = -1
+  for ( var i = 0, l = proyectos.options.length, o; i < l; i++ )
+  {
+    o = proyectos.options[i].value;
+    for(var j = 0; j < DATABASE.getProyectos().length; j++)
+    {
+      if(DATABASE.getProyectos()[j].idProyecto === o)
+      {
+          DATABASE.removeProtecto(j);
+          break;
+      }
+    }
+  }
 }
 
 function buscarProyecto()
@@ -558,7 +582,7 @@ function eliminarTalento()
   var index = -1
   for ( var i = 0, l = talentos.options.length, o; i < l; i++ )
   {
-    o = select.options[i].value;
+    o = talentos.options[i].value;
     for(var j = 0; j < DATABASE.getTalentos().length; j++)
     {
       if(DATABASE.getTalentos()[j].idTalento === o)
