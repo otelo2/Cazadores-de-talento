@@ -28,8 +28,6 @@ app.post('/cazador/crear_cazador.html', function(request, response) {
 app.route('/talento/crear_talento.html')
     .get(function(request, response) {
       response.render("talento/crear_talento", {DATABASE: DATABASE})
-      //response.sendFile(__dirname + '/talento/crear_talento.html');
-      //clases.newHabilidades();
     })
     .post(function(request, response) {
 		console.log(request.body.habilidad);
@@ -38,11 +36,15 @@ app.route('/talento/crear_talento.html')
       //response.sendFile(__dirname + '/talento/crear_talento.html');
     });
 
-app.post('/proyecto/crear_proyecto.html', function(request, response) {
-
-  crearProyecto(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad)
-  response.sendFile(__dirname + '/proyecto/crear_proyecto.html');
-});
+app.route('/proyecto/crear_proyecto.html')
+    .get(function(request, response) {
+    	response.render("proyecto/crear_proyecto", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearProyecto(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad)
+    	response.render("proyecto/crear_proyecto", {DATABASE: DATABASE})
+      //response.sendFile(__dirname + '/talento/crear_talento.html');
+    });
 
 app.post('/contrato/crear_contrato.html', function(request, response) {
 
@@ -945,25 +947,16 @@ function newProyecto()
 }
 
 //n, d, c, h
-function crearProyecto(nombre, descripcion, cuota, habilidades)
+function crearProyecto(nombre, descripcion, cuota, habilidad)
 {
 	/*var nombre = document.getElementById("nombre").value;
 	var descripcion = document.getElementById("descripcion").value;
 	var cuota = document.getElementById("cuota").value;
 	var habilidades = document.getElementById("habilidad");*/
-  var h = []
-  for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
-  {
-    o = select.options[i].value;
-    for(var j = 0; j < DATABASE.getHabilidades().length; j++)
-    {
-      if(DATABASE.getHabilidades()[j].getID() == o)
-      {
-          h.push(DATABASE.getHabilidades()[j]);
-          break;
-      }
-    }
-  }
+	var h = []
+	habilidad.forEach( function(valor, indice, array) {
+		h.push(DATABASE.getHabilidades()[valor-1]);
+	});
 	DATABASE.addProyecto(PROYECTO(nombre, descripcion, cuota, h));
 	console.log('DONE');
 }
@@ -1087,7 +1080,6 @@ function crearTalento(alias, actividadProfesional, horario, lugar, costo, habili
 	var habilidades = habilidad;  //PENDIENTE*/
   	var h = []
 	habilidad.forEach( function(valor, indice, array) {
-		console.log("Agregando habilidad: "+ DATABASE.getHabilidades()[valor-1]);
 		h.push(DATABASE.getHabilidades()[valor-1]);
 	});
 	/*
