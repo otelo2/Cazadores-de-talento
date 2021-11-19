@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <script src="../clases.js"></script>
+    <link rel="shortcut icon" href="../Imagenes/Cofre.png">
+    <title>Crear citas</title>
+</head>
+
+<!-- <body onload="newCitaT();newCitaC()"> -->
+<body>
+    <h1>Crear cita</h1>
+    <form action="" method="post">
+        <div id="form">
+
+<label for="lista_de_talentos">Talento seleccionado para citar:</label>
+            <select name="lista_de_talentos" id="lista_de_talentos">
+                <!---->
+                <% for(var i = 0; i < DATABASE.getTalentos().length; i++) { %>
+					<option value='<%= DATABASE.getTalentos()[i].getID() %>'> <%= DATABASE.getTalentos()[i].getAlias() %> </option>
+				<% } %>
+            </select>
+
+            <label for="lista_de_cazadores">Cazador seleccionado para citar:</label>
+            <select name="lista_de_cazadores" id="lista_de_cazadores">
+                 <!---->
+                 <% for(var i = 0; i < DATABASE.getCazadores().length; i++) { %>
+					<option value='<%= DATABASE.getCazadores()[i].getID() %>'> <%= DATABASE.getCazadores()[i].getAlias() %> </option>
+				<% } %>
+            </select>
+
+            <label for="horario">Horario</label>
+            <input type="datetime-local" name="horario" id="horario">
+
+            <label for="lugar">Lugar</label>
+            <input type="text" name="lugar" id="lugar">
+
+            <!-- <input type="submit" onclick="crearCitaA()" value="Crear cita"> -->  
+            <input type="submit" value="Crear cita">
+        </div>
+
+    </form>
+</body>
+
+</html>
