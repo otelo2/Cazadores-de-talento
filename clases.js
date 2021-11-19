@@ -329,9 +329,32 @@ function editarCazador()
 	//
 }
 
+function newCazador()
+{
+	var HTML_expr = "";
+	for(var i = 0; i < DATABASE.getCazadores().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getCazadores()[i].getID() + "'>";
+			HTML_expr += DATABASE.getCazadores()[i].getAlias() + "</option>";
+	}
+	document.getElementById("cazador").innerHTML = HTML_expr;
+}
+
 function eliminarCazador()
 {
-	//
+  var cazador = document.getElementById("cazador");
+  var index = -1
+  for ( var i = 0, l = cazador.options.length, o; i < l; i++ )
+  {
+    o = cazador.options[i].value;
+    for(var j = 0; j < DATABASE.getCazadores().length; j++)
+    {
+      if(DATABASE.getCazadores()[j].getID() === o)
+      {
+          DATABASE.removeCazador(j);
+          break;
+      }
+    }
+  }
 }
 
 function buscarCazador()
@@ -355,8 +378,8 @@ function newCitaC()
 	var HTML_expr = "";
 	//<option value="talentos1">Talento 1</option>
 	for(var i = 0; i < DATABASE.getTalentos().length; i++) {
-			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].idTalento + "'>";
-			HTML_expr += DATABASE.getTalentos()[i].alias + "</option>";
+			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getTalentos()[i].getAlias() + "</option>";
 	}
 	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
 }
@@ -374,8 +397,8 @@ function newCitaT()
 {
 	var HTML_expr = "";
 	for(var i = 0; i < DATABASE.getCazadores().length; i++) {
-			HTML_expr += "<option value='" + DATABASE.getCazadores()[i].idCazador + "'>";
-			HTML_expr += DATABASE.getCazadores()[i].alias + "</option>";
+			HTML_expr += "<option value='" + DATABASE.getCazadores()[i].getID() + "'>";
+			HTML_expr += DATABASE.getCazadores()[i].getAlias() + "</option>";
 	}
 	document.getElementById("lista_de_cazadores").innerHTML = HTML_expr;
 }
@@ -398,8 +421,8 @@ function newCitas()
 {
 	var HTML_expr = "";
 	for(var i = 0; i < DATABASE.getCitas().length; i++) {
-			HTML_expr += "<option value='" + DATABASE.getCitas()[i].idCita + "'>";
-			HTML_expr += "Cita" + DATABASE.getCitas()[i].idCita + "</option>";
+			HTML_expr += "<option value='" + DATABASE.getCitas()[i].getID() + "'>";
+			HTML_expr += "Cita" + DATABASE.getCitas()[i].getID() + "</option>";
 	}
 	document.getElementById("cita").innerHTML = HTML_expr;
 }
@@ -413,7 +436,7 @@ function eliminarCita()
     o = citas.options[i].value;
     for(var j = 0; j < DATABASE.getCitas().length; j++)
     {
-      if(DATABASE.getCitas()[j].idCita === o)
+      if(DATABASE.getCitas()[j].getID() === o)
       {
           DATABASE.removeCita(j);
           break;
@@ -433,14 +456,14 @@ function newContrato()
 {
 	var HTML_expr = "";
 	for(var i = 0; i < DATABASE.getProyectos().length; i++) {
-			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].idProyecto + "'>";
-			HTML_expr += DATABASE.getProyectos()[i].nombre + "</option>";
+			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getProyectos()[i].getNombre() + "</option>";
 	}
 	document.getElementById("lista_de_proyectos").innerHTML = HTML_expr;
 
 	for(var i = 0; i < DATABASE.getTalentos().length; i++) {
-			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].idTalento + "'>";
-			HTML_expr += DATABASE.getTalentos()[i].alias + "</option>";
+			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getTalentos()[i].getAlias() + "</option>";
 	}
 	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
 }
@@ -462,8 +485,8 @@ function newContratoList()
 {
   var HTML_expr = "";
   for(var i = 0; i < DATABASE.getContratos().length; i++) {
-      HTML_expr += "<option value='" + DATABASE.getContratos()[i].idContrato + "'>";
-      HTML_expr += "Contrato "+ DATABASE.getContratos()[i].idContrato + "</option>";
+      HTML_expr += "<option value='" + DATABASE.getContratos()[i].getID() + "'>";
+      HTML_expr += "Contrato "+ DATABASE.getContratos()[i].getID() + "</option>";
   }
   document.getElementById("contrato").innerHTML = HTML_expr;
 }
@@ -477,7 +500,7 @@ function eliminarContrato()
     o = contratos.options[i].value;
     for(var j = 0; j < DATABASE.getContratos().length; j++)
     {
-      if(DATABASE.getContratos()[j].idContrato === o)
+      if(DATABASE.getContratos()[j].getID() === o)
       {
           DATABASE.removeContrato(j);
           break;
@@ -515,7 +538,7 @@ function eliminarHabilidad()
     o = habilidades.options[i].value;
     for(var j = 0; j < DATABASE.getHabilidades().length; j++)
     {
-      if(DATABASE.getHabilidades()[j].idHabilidad === o)
+      if(DATABASE.getHabilidades()[j].getID() === o)
       {
           DATABASE.removeHabilidad(j);
           break;
@@ -534,8 +557,8 @@ function newHabilidades()
 {
 	var HTML_expr = "";
 	for(var i = 0; i < DATABASE.getHabilidades().length; i++) {
-			HTML_expr += "<option value='" + DATABASE.getHabilidades()[i].idHabilidad + "'>";
-			HTML_expr += DATABASE.getHabilidades()[i].nombre + "</option>";
+			HTML_expr += "<option value='" + DATABASE.getHabilidades()[i].getID() + "'>";
+			HTML_expr += DATABASE.getHabilidades()[i].getNombre() + "</option>";
 	}
 	document.getElementById("habilidad").innerHTML = HTML_expr;
 }
@@ -545,8 +568,8 @@ function newProyecto()
 	var HTML_expr = "";
 	//<option value="talentos1">Talento 1</option>
 	for(var i = 0; i < DATABASE.getProyectos().length; i++) {
-			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].idProyecto + "'>";
-			HTML_expr += DATABASE.getProyectos()[i].name + "</option>";
+			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getProyectos()[i].getNombre() + "</option>";
 	}
 	document.getElementById("proyecto").innerHTML = HTML_expr;
 }
@@ -564,7 +587,7 @@ function crearProyecto()
     o = select.options[i].value;
     for(var j = 0; j < DATABASE.getHabilidades().length; j++)
     {
-      if(DATABASE.getHabilidades()[j].idHabilidad === o)
+      if(DATABASE.getHabilidades()[j].getID() === o)
       {
           h.push(DATABASE.getHabilidades()[j]);
           break;
@@ -589,7 +612,7 @@ function eliminarProyecto()
     o = proyectos.options[i].value;
     for(var j = 0; j < DATABASE.getProyectos().length; j++)
     {
-      if(DATABASE.getProyectos()[j].idProyecto === o)
+      if(DATABASE.getProyectos()[j].getID() === o)
       {
           DATABASE.removeProtecto(j);
           break;
@@ -619,7 +642,7 @@ function crearTalento()
     o = select.options[i].value;
     for(var j = 0; j < DATABASE.getHabilidades().length; j++)
     {
-      if(DATABASE.getHabilidades()[j].idHabilidad === o)
+      if(DATABASE.getHabilidades()[j].getID() === o)
       {
           h.push(DATABASE.getHabilidades()[j]);
           break;
@@ -644,7 +667,7 @@ function eliminarTalento()
     o = talentos.options[i].value;
     for(var j = 0; j < DATABASE.getTalentos().length; j++)
     {
-      if(DATABASE.getTalentos()[j].idTalento === o)
+      if(DATABASE.getTalentos()[j].getID() === o)
       {
           DATABASE.removeTalento(j);
           break;

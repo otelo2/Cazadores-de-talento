@@ -9,15 +9,13 @@
     <link rel="shortcut icon" href="../Imagenes/Cofre.png">
     <title>Eliminar cazador</title>
 </head>
-<body>
+<body onload="newCazador()">
     <h1>Dar de baja a cazadores</h1>
     <div id="form">
 	<form action="#" method="post">
         	<label for="cazador">Cazador a eliminar:</label>
 	        <select name="cazador" id="cazador" multiple>
-	            <option value="cazador1">Cazador 1</option>
-	            <option value="cazador2">Cazador 2</option>
-	            <option value="cazador3">Cazador 3</option>
+	            <!----->
 	        </select>
 		<p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
 	        <input type="submit" onclick="eliminarCazador()" value="Eliminar cazador">
