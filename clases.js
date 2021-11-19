@@ -857,7 +857,7 @@ function defaultHabilidades()
 	var HTML_expr = "<label for='nombre'>Nombre</label>"
 	HTML_expr += "<input type='input' name='nombre' id='nombre' value='"+ DATABASE.getHabilidades()[o].getNombre() + "'>"
 	HTML_expr += "<label for='descripcion'>Descripción</label>"
-	HTML_expr += "<textarea name='descripcion' id='descripcion' cols='65' rows='10' value='"+ DATABASE.getHabilidades()[o].getDescripcion +"'></textarea>"
+	HTML_expr += "<textarea name='descripcion' id='descripcion' cols='65' rows='10' value='"+ DATABASE.getHabilidades()[o].getDescripcion() +"'></textarea>"
 	document.getElementById("changing").innerHTML = HTML_expr;
 }
 
@@ -876,7 +876,7 @@ function editarHabilidad()
 	//editar valores que cambiaron
 	if(DATABASE.getHabilidades()[o].getNombre()!=document.getElementById("nombre"))
 	{
-		DATABASE.getHabilidades()[o].setHabilidades(document.getElementById("nombre"))
+		DATABASE.getHabilidades()[o].setNombre(document.getElementById("nombre"))
 	}
 	if(DATABASE.getHabilidades()[o].getDescripcion()!=document.getElementById("descripcion"))
 	{
@@ -961,9 +961,53 @@ function crearProyecto(nombre, descripcion, cuota, habilidad)
 	console.log('DONE');
 }
 
+function defaultProyecto()
+{
+	var o = document.getElementById("proyecto").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getProyectos().length; j++)
+	{
+		if(DATABASE.getProyectos()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//poner los datos del proyecto en el formato
+	var HTML_expr = "<label for='nombre'>Nombre</label>"
+	HTML_expr += "<input type='input' name='nombre' id='nombre' value='"+ DATABASE.getProyectos()[o].getNombre() + "'>"
+	HTML_expr += "<label for='descripcion'>Descripción</label>"
+	HTML_expr += "<textarea name='descripcion' id='descripcion' cols='30' rows='10' value='"+ DATABASE.getProyectos()[o].getDescripcion() +"'></textarea>"
+  HTML_expr += "<label for='cuota'>Cuota</label>"
+	HTML_expr += "<input type='number' name='cuota' id='cuota' value='"+DATABASE.getProyectos()[o].getCuota()+"'>"
+	document.getElementById("changing").innerHTML = HTML_expr;
+}
+
 function editarProyecto()
 {
-	//
+  var o = document.getElementById("proyecto").value;
+	//encontrar al Proyecto
+	for(var j = 0; j < DATABASE.getProyectos().length; j++)
+	{
+		if(DATABASE.getProyectos()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//editar valores que cambiaron
+	if(DATABASE.getProyectos()[o].getNombre()!=document.getElementById("nombre"))
+	{
+		DATABASE.getProyectos()[o].setNombre(document.getElementById("nombre"))
+	}
+	if(DATABASE.getProyectos()[o].getDescripcion()!=document.getElementById("descripcion"))
+	{
+		DATABASE.getProyectos()[o].setDescripcion(document.getElementById("descripcion"))
+	}
+  if(DATABASE.getProyectos()[o].getCuota()!=document.getElementById("cuota"))
+	{
+		DATABASE.getProyectos()[o].setCuota(document.getElementById("cuota"))
+	}
 }
 
 function eliminarProyecto()

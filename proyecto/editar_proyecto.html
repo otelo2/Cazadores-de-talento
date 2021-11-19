@@ -14,19 +14,21 @@
     <div id = "form">
 	<form action="#" method="post">
 	        <label for="proyecto">Proyecto a editar:</label>
-	        <select name="proyecto" id="proyecto">
+	        <select name="proyecto" id="proyecto" onchange="defaultProyecto()">
 	            <!---->
 	        </select>
 		<p></p>
+		
+		<div id="changing">
+		        <label for="nombre">Nombre</label>
+		        <input type="text" name="nombre" id="nombre">
 
-	        <label for="nombre">Nombre</label>
-	        <input type="text" name="nombre" id="nombre">
+		        <label for="descripción">Descripción</label>
+		        <textarea name="descripción" id="descripción" cols="30" rows="10"></textarea>
 
-	        <label for="descripción">Descripción</label>
-	        <textarea name="descripción" id="descripción" cols="30" rows="10"></textarea>
-
-	        <label for="cuota">Cuota</label>
-	        <input type="number" name="cuota" id="cuota">
+		        <label for="cuota">Cuota</label>
+		        <input type="number" name="cuota" id="cuota">
+		</div>
 
 	        <!--
 		<label for="tiene_talento">Tiene talento?</label>
