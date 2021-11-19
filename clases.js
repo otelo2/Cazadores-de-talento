@@ -1,3 +1,39 @@
+var DATABASE = (function() {
+ var cazadores = [];
+ var talentos = [];
+ var citas = [];
+ var contratos = [];
+ var proyectos = [];
+ var habilidades = [];
+ //var subjects = ['Physics', 'Mathematics', 'Chemistry', 'Psychology', 'Geography'];
+
+ return {
+    getCazadores: function() { return cazadores; },
+    //getCazadorIndex: function( s ) { return cazadores.indexOf(s); },
+    addCazador: function( b ) { b.displayInformation(); cazadores.push( b ); },
+
+		getTalentos: function() { return talentos; },
+    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    addTalento: function( b ) { talentos.push( b ); },
+
+		getCitas: function() { return citas; },
+    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    addCita: function( b ) { citas.push( b ); },
+
+		getContratos: function() { return contratos; },
+    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    addContrato: function( b ) { contratos.push( b ); },
+
+		getProyectos: function() { return proyectos; },
+    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    addProyecto: function( b ) { proyecto.push( b ); },
+
+		getHabilidades: function() { return habilidades; },
+    //getSubjectIndex: function( s ) { return subjects.indexOf(s); },
+    addHabilidad: function( b ) { habilidades.push( b ); }
+ }
+})();
+
 //------------------------------------------------------	CLASES		------------------------------------------------------//
 
 var CAZADOR = (function(a, g, c){
@@ -71,7 +107,7 @@ var CAZADOR = (function(a, g, c){
 		displayInformation: function() {
 			console.log('Cazador id: ' + idCazador);
 			console.log('Cazador alias: ' + alias);
-			console.log('Cazador giro de proyectos: ' + giroProtectos);
+			console.log('Cazador giro de proyectos: ' + giroProyectos);
 			console.log('Cazador coordenadas: ' + coordenadas);
 			console.log('Cazador proyectos: ' + listaProyectos.length);
 			console.log('Cazador contratos: ' + listaContratos.length);
@@ -273,7 +309,12 @@ var HABILIDAD = (function(n, d){
 //------------------------------------------------------	CAZADOR		------------------------------------------------------//
 function crearCazador()
 {
-	//
+	var alias = document.getElementById("alias").value;
+	var giro = document.getElementById("giro_de_proyectos").value;
+	var coordenadas = document.getElementById("coordenadas").value;
+	DATABASE.addCazador(CAZADOR(alias, giro, coordenadas));
+	console.log('DONE');
+	console.log(CAZADOR.counter);
 }
 
 function editarCazador()
