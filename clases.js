@@ -118,11 +118,11 @@ var CAZADOR = (function(a, g, c){
 	}
 });
 
-var TALENTO = (function(a, ac, ho, l, c){
+var TALENTO = (function(a, ac, ho, l, c, ha){
 	TALENTO.counter = (++TALENTO.counter || 1);
 	var idTalento = TALENTO.counter;
 	var alias = a;
-	var listaHabilidades = new Array();
+	var listaHabilidades = ha;
 	var actividadProfesional = ac;
 	var horario = ho;
 	var lugar = l;
@@ -502,9 +502,17 @@ function buscarProyecto()
 }
 
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
+//a, ac, ho, l, c, ha
 function crearTalento()
 {
-
+	var alias = document.getElementById("alias").value;
+	var actividadProfesional = document.getElementById("actividad_profesional").value;
+	var horario = document.getElementById("horario").value;
+	var lugar = document.getElementById("lugar").value;
+	var costo = document.getElementById("costo").value;
+	var habilidades = document.getElementById("habilidad").value;
+	DATABASE.addTalento(TALENTO(alias, actividadProfesional, horario, lugar, costo));
+	console.log('DONE');
 }
 
 function editarTalento()
