@@ -542,6 +542,14 @@ function buscarCita()
     }
   }
   //print citas on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Citas "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Horario: "+result[j].getHorario()+"</p>"
+		HTML_expr += "<p>Lugar: "+result[j].getLugar()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	CONTRATO		------------------------------------------------------//
