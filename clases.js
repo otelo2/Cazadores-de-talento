@@ -284,7 +284,11 @@ var CONTRATO = (function(iC, iT, iP){
 	var cerrado = false;
 
 	return {
-		getID: function() {return idProyecto;},
+		getID: function() {return idContrato;},
+		getProyectoID: function() {return idProyecto;},
+		getTalentoID: function() {return idTalento;},
+		setProyectoID: function(iP) {idProyecto = iP;},
+		setTalentoID: function(iT) {idTalento = iT;},
 		setCalificacionCazador: function() {},
 		setCalificacionTalento: function() {},
 		setCerrado: function() {cerrado = !cerrado;},
@@ -562,7 +566,58 @@ function crearContrato(it, ip)
 
 function editarContrato()
 {
-	//
+	var o = document.getElementById("contrato").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getContratos().length; j++)
+	{
+		if(DATABASE.getContratos()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//editar valores que cambiaron
+	if(document.getElementById("lista_de_talentos") != DATABASE.getContratos()[o].getTalentoID())
+	{
+		DATABASE.getContratos()[o].setTalentoID(document.getElementById("lista_de_talentos"))
+	}
+	if(document.getElementById("lista_de_proyectos") != DATABASE.getContratos()[o].getProyectoID())
+	{
+		DATABASE.getContratos()[o].setProyectoID(document.getElementById("lista_de_proyectos"))
+	}
+}
+
+function defaultContrato()
+{
+	var o = document.getElementById("contrato").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getContratos().length; j++)
+	{
+		if(DATABASE.getContratos()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+
+	var HTML_expr = "<label for='lista_de_proyectos'>Para el proyecto:</label>"
+	HTML_expr += "<select name='lista_de_proyectos' id='lista_de_proyectos'>"
+	for(var i = 0; i < DATABASE.getProyectos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getProyectos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getProyectos()[i].getNombre() + "</option>";
+	}
+	HTML_expr += "</select>"
+	HTML_expr += "<label for='lista_de_talentos'>Talento seleccionado:</label>"
+	HTML_expr += "<select name='lista_de_talentos' id='lista_de_talentos'>"
+	for(var i = 0; i < DATABASE.getTalentos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getTalentos()[i].getAlias() + "</option>";
+	}
+	HTML_expr += "</select>"
+
+	document.getElementById("changing").innerHTML = HTML_expr;
+	document.getElementById("lista_de_proyectos").value = DATABASE.getContratos()[o].getProyectoID();
+	document.getElementById("lista_de_talentos").value = DATABASE.getContratos()[o].getTalentoID();
 }
 
 function newContratoList()
