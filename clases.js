@@ -21,19 +21,18 @@ app.get('/', function(request, response) {
 });
 
 app.post('/cazador/crear_cazador.html', function(request, response) {
-    
-    crearCazador(request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
+	crearCazador(request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
     response.sendFile(__dirname + '/cazador/crear_cazador.html');
 });
 
 app.route('/talento/crear_talento.html')
     .get(function(request, response) {
-      console.log("habilidades: " + DATABASE.getHabilidades().length)
       response.render("talento/crear_talento", {DATABASE: DATABASE})
       //response.sendFile(__dirname + '/talento/crear_talento.html');
       //clases.newHabilidades();
     })
     .post(function(request, response) {
+		console.log(request.body.habilidad);
       crearTalento(request.body.alias, request.body.actividad_profesional, request.body.horario, request.body.lugar, request.body.costo, request.body.habilidad)
       response.render("talento/crear_talento", {DATABASE: DATABASE})
       //response.sendFile(__dirname + '/talento/crear_talento.html');
@@ -934,15 +933,20 @@ function buscarProyecto()
 
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
 //a, ac, ho, l, c, ha
-function crearTalento(alias, actividadProfesional, horario, lugar, costo)
+function crearTalento(alias, actividadProfesional, horario, lugar, costo, habilidad)
 {
 	/*var alias = document.getElementById("alias").value;
 	var actividadProfesional = document.getElementById("actividad_profesional").value;
 	var horario = document.getElementById("horario").value;
 	var lugar = document.getElementById("lugar").value;
-	var costo = document.getElementById("costo").value;*/
-	var habilidades = document.getElementById("habilidad");  //PENDIENTE
-  var h = []
+	var costo = document.getElementById("costo").value;
+	var habilidades = habilidad;  //PENDIENTE*/
+  	var h = []
+	habilidad.forEach( function(valor, indice, array) {
+		console.log("Agregando habilidad: "+ DATABASE.getHabilidades()[valor-1]);
+		h.push(DATABASE.getHabilidades()[valor-1]);
+	});
+	/*
   for ( var i = 0, l = habilidades.options.length, o; i < l; i++ )
   {
     o = select.options[i].value;
@@ -954,7 +958,7 @@ function crearTalento(alias, actividadProfesional, horario, lugar, costo)
           break;
       }
     }
-  }
+  }*/
 	DATABASE.addTalento(TALENTO(alias, actividadProfesional, horario, lugar, costo, h));
 	console.log('DONE');
 }
