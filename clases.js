@@ -1,3 +1,7 @@
+module.exports = {
+	crearCazador
+}
+
 var DATABASE = (function() {
  var cazadores = [];
  var talentos = [];
@@ -308,11 +312,11 @@ var HABILIDAD = (function(n, d){
 });
 
 //------------------------------------------------------	CAZADOR		------------------------------------------------------//
-function crearCazador()
+function crearCazador(alias, giro, coordenadas)
 {
-	var alias = document.getElementById("alias").value;
-	var giro = document.getElementById("giro_de_proyectos").value;
-	var coordenadas = document.getElementById("coordenadas").value;
+	//var alias = document.getElementById("alias").value;
+	//var giro = document.getElementById("giro_de_proyectos").value;
+	//var coordenadas = document.getElementById("coordenadas").value;
 	DATABASE.addCazador(CAZADOR(alias, giro, coordenadas));
 	console.log('DONE');
 	console.log(CAZADOR.counter);
