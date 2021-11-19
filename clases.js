@@ -713,6 +713,14 @@ function buscarHabilidad()
     }
   }
   //print habilidades on screen
+	var HTML_expr = ""
+	for(var j = 0; j < result.length; j++)
+	{
+		HTML_expr += "<div> <p>Habilidad "+result[j].getID()+"</p>"
+		HTML_expr += "<p>Nombre: "+result[j].getNombre()+"</p>"
+		HTML_expr += "<p>Descripcion: "+result[j].getDescripcion()+"</p> </div>"
+	}
+	document.getElementById("result").innerHTML = HTML_expr;
 }
 
 //------------------------------------------------------	PROYECTO		------------------------------------------------------//
