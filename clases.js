@@ -743,6 +743,15 @@ function eliminarTalento()
   }
 }
 
+function newTalento()
+{
+	var HTML_expr = "";
+	for(var i = 0; i < DATABASE.getTalentos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getTalentos()[i].getAlias() + "</option>";
+	}
+	document.getElementById("talento").innerHTML = HTML_expr;
+}
 
 function buscarTalento()
 {
