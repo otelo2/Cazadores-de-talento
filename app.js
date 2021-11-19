@@ -27,6 +27,13 @@ app.post('/cazador/crear_cazador.html', function(request, response) {
     response.sendFile(__dirname + '/cazador/crear_cazador.html');
 });
 
+app.post('/talento/crear_talento.html', function(request, response) {
+    
+  clases.crearTalento(request.body.alias, request.body.actividad_profesional, request.body.horario, request.body.lugar, request.body.costo, request.body.habilidad)
+  response.sendFile(__dirname + '/talento/crear_talento.html');
+});
+
+
 //Puerto de nuestro servidor
 app.listen(8080, function() {
   console.log("Running Express in port 8080");  

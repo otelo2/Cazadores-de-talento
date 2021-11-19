@@ -1,5 +1,5 @@
 module.exports = {
-	crearCazador
+	crearCazador, crearTalento
 }
 
 var DATABASE = (function() {
@@ -507,14 +507,14 @@ function buscarProyecto()
 
 //------------------------------------------------------	TALENTO		------------------------------------------------------//
 //a, ac, ho, l, c, ha
-function crearTalento()
+function crearTalento(alias, actividadProfesional, horario, lugar, costo, habilidades)
 {
-	var alias = document.getElementById("alias").value;
+	/*var alias = document.getElementById("alias").value;
 	var actividadProfesional = document.getElementById("actividad_profesional").value;
 	var horario = document.getElementById("horario").value;
 	var lugar = document.getElementById("lugar").value;
 	var costo = document.getElementById("costo").value;
-	var habilidades = document.getElementById("habilidad").value;
+	var habilidades = document.getElementById("habilidad").value;*/
 	DATABASE.addTalento(TALENTO(alias, actividadProfesional, horario, lugar, costo));
 	console.log('DONE');
 }
