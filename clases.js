@@ -177,6 +177,15 @@ app.route('/cita/eliminar_cita.html')
     	response.render("cita/eliminar_cita", {DATABASE: DATABASE})
 });
 
+app.route('/habilidad/eliminar_habilidad.html')
+    .get(function(request, response) {
+    	response.render("habilidad/eliminar_habilidad", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		eliminarHabilidad(request.body.habilidad)
+    	response.render("habilidad/eliminar_habilidad", {DATABASE: DATABASE})
+});
+
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
   response.sendFile(__dirname + '/' + request.url);
@@ -1133,7 +1142,35 @@ function editarHabilidad(id, nombre, descripcion)
 	}
 }*/
 
-function eliminarHabilidad()
+function eliminarHabilidad(id)
+{
+	if(Array.isArray(id))
+	{
+		id.forEach( function(valor, indice, array) {
+			for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+			{
+				if(DATABASE.getHabilidades()[j].getID() == valor)
+				{
+					DATABASE.removeHabilidad(j);
+					break;
+				}
+			}
+		});
+	}
+	else
+	{
+		for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+		{
+		if(DATABASE.getHabilidades()[j].getID() == id)
+		{
+			DATABASE.removeHabilidad(j);
+			break;
+		}
+		}
+	}
+}
+
+/*function eliminarHabilidad()
 {
   var habilidades = document.getElementById("habilidad");
   var index = -1
@@ -1149,7 +1186,7 @@ function eliminarHabilidad()
       }
     }
   }
-}
+}*/
 
 function buscarHabilidad()
 {

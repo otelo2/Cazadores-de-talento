@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <script src="../clases.js"></script>
+    <link rel="shortcut icon" href="../Imagenes/Cofre.png">
+    <title>Eliminar habilidades</title>
+</head>
+
+<!-- <body onload="newHabilidades()"> -->
+<body>
+    <h1>Dar habilidades de baja</h1>
+    <form action="" method="post">
+        <div id="form">
+            <label for="habilidad">Habilidad a eliminar:</label>
+            <select name="habilidad" id="habilidad" multiple>
+                <!---->
+                <% for(var i = 0; i < DATABASE.getHabilidades().length; i++) { %>
+					<option value='<%= DATABASE.getHabilidades()[i].getID() %>'> <%= DATABASE.getHabilidades()[i].getNombre() %> </option>
+				<% } %>
+            </select>
+	    <p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
+        <!-- <input type="submit" onclick="eliminarHabilidad()" value="Eliminar habilidad"> -->
+        <input type="submit" value="Eliminar habilidad">
+        </div>
+    </form>
+</body>
+
+</html>
