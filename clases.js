@@ -5,7 +5,8 @@ var app = express();
 
 app.use(express.static('public'));
 
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+const { PassThrough } = require('stream');
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -33,6 +34,18 @@ app.route('/cazador/editar_cazador.html')
     .post(function(request, response) {
 		editarCazador(request.body.cazador, request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
     	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
+});
+
+app.route('/cazador/buscar_cazador.html')
+    .get(function(request, response) {
+    	response.render("cazador/buscar_cazador")
+    })
+    .post(function(request, response) {
+		var query = request.body.query;
+		var result = buscarCazador(query)
+		console.log("Query: "+query);
+		console.log(result);
+    	response.render("cazador/resultado_busqueda", {DATABASE: DATABASE, query: query ,result: result})
 });
 
 app.route('/cazador/eliminar_cazador.html')
@@ -706,15 +719,16 @@ function eliminarCazador(id)
     }
   }*/
 
-function buscarCazador()
+function buscarCazador(query)
 {
-  var query = document.getElementById("query");
+  //var query = document.getElementById("query");
   var result = [];
   for(var j = 0; j < DATABASE.getCazadores().length; j++)
   {
     if((DATABASE.getCazadores()[j].getID() == query)||(DATABASE.getCazadores()[j].getAlias() == query)||(DATABASE.getCazadores()[j].getGiroProyectos() == query)||(DATABASE.getCazadores()[j].getCoordenadas() == query)||(DATABASE.getCazadores()[j].getReputacion() == query))
     {
-        result.push(DATABASE.getTalentos()[j]);
+        //result.push(DATABASE.getTalentos()[j]);
+        result.push(DATABASE.getCazadores()[j]);
     }
     else
     {
@@ -728,8 +742,9 @@ function buscarCazador()
       }
     }
   }
+  return result;
   //print cazadores on screen
-	var HTML_expr = ""
+	/*var HTML_expr = ""
 	for(var j = 0; j < result.length; j++)
 	{
 		HTML_expr += "<div> <p>Cazador "+result[j].getID()+"</p>"
@@ -743,7 +758,7 @@ function buscarCazador()
 		}
 		HTML_expr += "</ul> <p>Reputacion: "+result[j].getReputacion()+"</p> </div>"
 	}
-	document.getElementById("result").innerHTML = HTML_expr;
+	document.getElementById("result").innerHTML = HTML_expr;*/
 }
 
 //------------------------------------------------------	CITA		------------------------------------------------------//

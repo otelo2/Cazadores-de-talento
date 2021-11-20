@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <script src="../clases.js"></script>
+    <link rel="shortcut icon" href="../Imagenes/Cofre.png">
+    <title>Buscar cazador</title>
+</head>
+<body>
+    <h1>Realizar consultas de cazadores</h1>
+    <div id = "form">
+	<form action="" method="">
+        	<label for="busqueda">Busca cazadores:</label>
+	        <input type="text" name="" id="query" value="<%= query %>">
+            <a href="/cazador/buscar_cazador.html"><input type="submit" value="Nueva búsqueda"></a>
+	    </form>
+        <!-- <input type="submit" onclick="buscarCazador()" value="Buscar cazador"> -->
+	    
+    </div>
+    <div id="result">
+        <% for(var j = 0; j < result.length; j++)
+        { %>
+            <p>Cazador: <%= result[j].getID() %></p>
+            <p>Alias: <%= result[j].getAlias() %></p>
+            <p>Giro de Proyectos: <%= result[j].getGiroProyectos() %></p>
+            <p>Coordenadas: <%= result[j].getCoordenadas() %></p>
+            <p>Proyectos: </p>
+            <% for(var i = 0; i < result[j].getListaProyectos().length; i++)
+            { %>
+                <p><%= result[j].getProyectos()[i].getNombre()%></p>
+            <% } %>
+            <p>Reputación: <%= result[j].getReputacion() %></p>
+        <% } %>
+    
+    </div>
+</body>
+</html>
