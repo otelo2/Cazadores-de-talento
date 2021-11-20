@@ -79,6 +79,18 @@ app.route('/talento/editar_talento.html')
     	response.render("talento/editar_talento", {DATABASE: DATABASE})
 });
 
+app.route('/talento/buscar_talento.html')
+    .get(function(request, response) {
+    	response.sendFile(__dirname + '/talento/buscar_talento.html');
+    })
+    .post(function(request, response) {
+		var query = request.body.query;
+		var result = buscarTalento(query)
+		console.log("Query: "+query);
+		console.log(result);
+    	response.render("talento/resultado_busqueda", {DATABASE: DATABASE, query: query ,result: result})
+});
+
 app.route('/talento/eliminar_talento.html')
     .get(function(request, response) {
     	response.render("talento/eliminar_talento", {DATABASE: DATABASE})
@@ -1599,9 +1611,9 @@ function newTalento()
 	document.getElementById("talento").innerHTML = HTML_expr;
 }
 
-function buscarTalento()
+function buscarTalento(query)
 {
-  var query = document.getElementById("query");
+  //var query = document.getElementById("query");
   var result = [];
   for(var j = 0; j < DATABASE.getTalentos().length; j++)
   {
@@ -1621,8 +1633,9 @@ function buscarTalento()
       }
     }
   }
+  return result;
   //print talentos on screen
-	var HTML_expr = ""
+	/*var HTML_expr = ""
 	for(var j = 0; j < result.length; j++)
 	{
 		HTML_expr += "<div> <p>Talento "+result[j].getID()+"</p>"
@@ -1638,5 +1651,5 @@ function buscarTalento()
 		HTML_expr += "<p>Costo: "+result[j].getCosto()+"</p>"
 		HTML_expr += "<p>Reputacion: "+result[j].getReputacion()+"</p> </div>"
 	}
-	document.getElementById("result").innerHTML = HTML_expr;
+	document.getElementById("result").innerHTML = HTML_expr;*/
 }
