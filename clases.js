@@ -629,8 +629,8 @@ var CONTRATO = (function(iC, iT, iP){
 		displayInformation: function() {
 			console.log('Contrato id: ' + idContrato);
 			console.log('Contrato cerrado: ' + cerrado);
-			console.log('\t Calificacion Talento: ' + nombre);
-			console.log('\t Calificacion Cazador: ' + nombre);
+			console.log('\t Calificacion Talento: ' + calificacionTalento);
+			console.log('\t Calificacion Cazador: ' + calificacionCazador);
 		}
 	}
 });
@@ -1034,8 +1034,8 @@ function crearContrato(it, ip)
 
 function editarContrato(id, proyecto, talento)
 {
-	DATABASE.getContratos()[id-1].setProyecto(proyecto);
-	DATABASE.getContratos()[id-1].setTalento(talento);
+	DATABASE.getContratos()[id-1].setProyectoID(proyecto);
+	DATABASE.getContratos()[id-1].setTalentoID(talento);
 }
 
 /*function editarContrato()
