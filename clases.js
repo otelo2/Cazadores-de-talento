@@ -472,8 +472,8 @@ var TALENTO = (function(a, ac, ho, l, c, ha){
 		getID: function() {return idTalento;},
 		getAlias: function() {return alias;},
 		setAlias: function(a) {alias = a;},
-		getHabilidades: function() {return habilidades;},
-		setHabilidades: function(h) {habilidades = h;}, //talvez sea mejor usar un push?
+		getHabilidades: function() {return listaHabilidades;},
+		setHabilidades: function(h) {listaHabilidades = h;}, //talvez sea mejor usar un push?
 		addHabilidad: function(h) {
 			if(listaHabilidades.length == 0)
 			{
@@ -1675,14 +1675,14 @@ function buscarTalento(query)
     }
     else
     {
-      for(var i = 0; i < DATABASE.getTalentos()[j].getHabilidades().length; j++)
+      /*for(var i = 0; i < DATABASE.getTalentos()[j].getHabilidades().length; j++)
       {
         if(DATABASE.getTalentos()[j].getHabilidades()[i] == query)
         {
             result.push(DATABASE.getTalentos()[j]);
             break;
         }
-      }
+      }*/
     }
   }
   return result;

@@ -15,7 +15,7 @@
     <div id = "form">
     	<form action="" method="">
         	<label for="busqueda">Busca talentos:</label>
-	        <input type="text" name="" id="query">
+	        <input type="text" name="" id="query" value="<%= query %>">
             <a href="/talento/buscar_talento.html"><input type="submit" value="Nueva búsqueda"></a>
 	    </form>
 	    
@@ -26,14 +26,18 @@
             <p>Talento: <%= result[j].getID() %></p>
             <p>Alias: <%= result[j].getAlias() %></p>
             <p>Habilidades: </p>  
-            <!-- for(var i = 0; i < result[j].getHabilidades().length; i++)
-            { 
-                <li> result[j].getHabilidades()[i].getNombre() </li>
-             }  -->
+             <% if (typeof result[j].getHabilidades()[0] == "undefined") { %>
+                <p>No tiene habilidades</p>
+            <% } else { %>
+                <% for(var i = 0; i < result[j].getHabilidades().length; i++)
+                { %>
+                    <p><%= result[j].getHabilidades()[i].getNombre()%></p>
+                <% } %>
             <p>Horario: <%= result[j].getHorario() %></p>
             <p>Lugar: <%= result[j].getLugar() %></p>
             <p>Costo: <%= result[j].getCosto() %></p>
             <p>Reputación: <%= result[j].getReputacion() %></p>
+            <% } %>
         <% } %>
     </div>
 </body>
