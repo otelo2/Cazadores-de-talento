@@ -97,6 +97,15 @@ app.route('/cazador/editar_cazador.html')
     	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
     });
 
+	app.route('/talento/editar_talento.html')
+    .get(function(request, response) {
+    	response.render("talento/editar_talento", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarTalento(request.body.talento, request.body.alias, request.body.actividad_profesional, request.body.horario, request.body.lugar, request.body.costo)
+    	response.render("talento/editar_talento", {DATABASE: DATABASE})
+    });
+
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
   response.sendFile(__dirname + '/' + request.url);
@@ -1225,7 +1234,16 @@ function defaultTalento()
 	document.getElementById("changing").innerHTML = HTML_expr;
 }
 
-function editarTalento()
+function editarTalento(id, alias, actividad_profesional, horario, lugar, costo)
+{
+	DATABASE.getTalentos()[id-1].setAlias(alias);
+	DATABASE.getTalentos()[id-1].setActividadProfesional(actividad_profesional);
+	DATABASE.getTalentos()[id-1].setHorario(horario);
+	DATABASE.getTalentos()[id-1].setLugar(lugar);
+	DATABASE.getTalentos()[id-1].setCosto(costo);
+}
+
+/*function editarTalento()
 {
   var o = document.getElementById("talento").value;
 	//encontrar al Proyecto
@@ -1259,7 +1277,7 @@ function editarTalento()
 	{
 		DATABASE.getTalentos()[o].setCosto(document.getElementById("costo"))
 	}
-}
+} */
 
 function eliminarTalento()
 {

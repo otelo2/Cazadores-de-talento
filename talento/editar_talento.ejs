@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <script src="../clases.js"></script>
+    <link rel="shortcut icon" href="../Imagenes/Cofre.png">
+    <title>Editar talentos</title>
+</head>
+<!-- <body onload="newTalento()"> -->
+<body>
+    <h1>Editar perfil de talentos</h1>
+    <div id="form">
+	<form action="" method="post">
+	        <label for="talento">Perfil de talento a editar:</label>
+        	<select name="talento" id="talento" onchange="defaultTalento()">
+			<!---->
+			<% for(var i = 0; i < DATABASE.getTalentos().length; i++) { %>
+				<option value='<%= DATABASE.getTalentos()[i].getID() %>'> <%= DATABASE.getTalentos()[i].getAlias() %> </option>
+			<% } %>
+		</select>
+		<p></p>
+		<div id="changing">
+		        <label for="alias">Alias</label>
+	        	<input type="text" name="alias" id="alias">
+		        <!--<label for="habilidad">Habilidades</label>
+	        	<select name="habilidad" id="habilidad" multiple>-->
+		            <!---->
+		        <!--</select>
+			<p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>-->
+		        <label for="actividad_profesional">Actividad Profesional</label>
+	       		<input type="text" name="actividad_profesional" id="actividad_profesional">
+		        <label for="horario">Horario</label>
+		        <input type="text" name="horario" id="horario">
+		        <label for="lugar">Lugar</label>
+	       	 	<input type="text" name="lugar" id="lugar">
+			<label for="costo">Costo</label>
+	        	<input type="number" name="costo" id="costo">
+		</div>
+	        <!-- Creo que esto no va cuando se crea un perfil de talento --> 
+	        <!-- 
+		<label for="lista_de_contratos">Lista de contratos</label>
+		        <select name="lista_de_contratos" id="lista_de_contratos">
+		            <option value="contrato1">Contrato 1</option>
+		            <option value="contrato2">Contrato 2</option>
+		            <option value="contrato3">Contrato 3</option>
+		        </select>-->	
+		<!-- Creo que esto no va cuando se crea un perfil de talento --> 
+        	<!--
+		<label for="reputacion">Reputacion</label>
+	        <input type="number" name="reputacion" id="reputacion" min="1" max="5">-->
+		<!-- <input type="submit" onclick="editarTalento()" value="Actualizar talento"> -->
+		<input type="submit" value="Actualizar talento">
+	</form>
+    </div>
+</body>
+</html>
