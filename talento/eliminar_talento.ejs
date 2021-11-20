@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../Imagenes/Cofre.png">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <script src="../clases.js"></script>
+    <title>Eliminar talento</title>
+</head>
+<!-- <body onload="newCitaC()"> -->
+<body onload="newCitaC()">
+    <h1>Dar de baja a talentos</h1>
+    <div id = "form">
+	<form action="" method="post">
+        	<label for="talento">Talento a eliminar:</label>
+	        <select name="talento" id="lista_de_talentos" multiple>
+	            <!---->
+                <% for(var i = 0; i < DATABASE.getTalentos().length; i++) { %>
+					<option value='<%= DATABASE.getTalentos()[i].getID() %>'> <%= DATABASE.getTalentos()[i].getAlias() %> </option>
+				<% } %>
+        	</select>
+		<p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
+	    <!-- <input type="submit" onclick="eliminarTalento()" value="Eliminar talento"> -->
+        <input type="submit" value="Eliminar talento">
+	</form>
+    </div>
+</body>
+</html>

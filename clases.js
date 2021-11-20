@@ -141,6 +141,15 @@ app.route('/cazador/eliminar_cazador.html')
     	response.render("cazador/eliminar_cazador", {DATABASE: DATABASE})
 });
 
+app.route('/talento/eliminar_talento.html')
+    .get(function(request, response) {
+    	response.render("talento/eliminar_talento", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		eliminarTalento(request.body.talento)
+    	response.render("talento/eliminar_talento", {DATABASE: DATABASE})
+});
+
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
   response.sendFile(__dirname + '/' + request.url);
@@ -1360,7 +1369,35 @@ function editarTalento(id, alias, actividad_profesional, horario, lugar, costo)
 	}
 } */
 
-function eliminarTalento()
+function eliminarTalento(id)
+{
+	if(Array.isArray(id))
+	{
+		id.forEach( function(valor, indice, array) {
+			for(var j = 0; j < DATABASE.getTalentos().length; j++)
+			{
+				if(DATABASE.getTalentos()[j].getID() == valor)
+				{
+					DATABASE.removeTalento(j);
+					break;
+				}
+			}
+		});
+	}
+	else
+	{
+		for(var j = 0; j < DATABASE.getTalentos().length; j++)
+		{
+		if(DATABASE.getTalentos()[j].getID() == id)
+		{
+			DATABASE.removeTalento(j);
+			break;
+		}
+		}
+	}
+}
+
+/*function eliminarTalento()
 {
   var talentos = document.getElementById("lista_de_talentos");
   var index = -1
@@ -1376,7 +1413,7 @@ function eliminarTalento()
       }
     }
   }
-}
+}*/
 
 function newTalento()
 {
