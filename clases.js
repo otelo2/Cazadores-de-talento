@@ -168,6 +168,15 @@ app.route('/contrato/eliminar_contrato.html')
     	response.render("contrato/eliminar_contrato", {DATABASE: DATABASE})
 });
 
+app.route('/cita/eliminar_cita.html')
+    .get(function(request, response) {
+    	response.render("cita/eliminar_cita", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		eliminarCita(request.body.cita)
+    	response.render("cita/eliminar_cita", {DATABASE: DATABASE})
+});
+
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
   response.sendFile(__dirname + '/' + request.url);
@@ -833,7 +842,35 @@ function newCitas()
 	document.getElementById("cita").innerHTML = HTML_expr;
 }
 
-function eliminarCita()
+function eliminarCita(id)
+{
+	if(Array.isArray(id))
+	{
+		id.forEach( function(valor, indice, array) {
+			for(var j = 0; j < DATABASE.getCitas().length; j++)
+			{
+				if(DATABASE.getCitas()[j].getID() == valor)
+				{
+					DATABASE.removeCita(j);
+					break;
+				}
+			}
+		});
+	}
+	else
+	{
+		for(var j = 0; j < DATABASE.getCitas().length; j++)
+		{
+		if(DATABASE.getCitas()[j].getID() == id)
+		{
+			DATABASE.removeCita(j);
+			break;
+		}
+		}
+	}
+}
+
+/*function eliminarCita()
 {
   var citas = document.getElementById("cita");
   var index = -1
@@ -849,7 +886,7 @@ function eliminarCita()
       }
     }
   }
-}
+}*/
 
 function buscarCita()
 {
