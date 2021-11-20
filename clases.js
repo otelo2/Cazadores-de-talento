@@ -161,6 +161,18 @@ app.route('/contrato/editar_contrato.html')
     	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
 });
 
+app.route('/contrato/buscar_contrato.html')
+    .get(function(request, response) {
+    	response.sendFile(__dirname + '/contrato/buscar_contrato.html');
+    })
+    .post(function(request, response) {
+		var query = request.body.query;
+		var result = buscarProyecto(query)
+		console.log("Query: "+query);
+		console.log(result);
+    	response.render("contrato/resultado_busqueda", {DATABASE: DATABASE, query: query ,result: result})
+});
+
 app.route('/contrato/eliminar_contrato.html')
     .get(function(request, response) {
     	response.render("contrato/eliminar_contrato", {DATABASE: DATABASE})
@@ -1112,9 +1124,9 @@ function eliminarContrato(id)
   }
 }*/
 
-function buscarContrato()
+function buscarContrato(query)
 {
-  var query = document.getElementById("query");
+ //var query = document.getElementById("query");
   var result = [];
   for(var j = 0; j < DATABASE.getContratos().length; j++)
   {
@@ -1123,6 +1135,7 @@ function buscarContrato()
         result.push(DATABASE.getContratos()[j]);
     }
   }
+  return result;
   //print contratos on screen
 	var HTML_expr = ""
 	for(var j = 0; j < result.length; j++)

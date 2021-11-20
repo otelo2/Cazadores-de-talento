@@ -14,11 +14,17 @@
 <body>
     <h1>Realizar consultas de contratos</h1>
     <div id="search">
-        <form action="" method="post">
+        <form action="" method="">
             <label for="busqueda">Busca contratos:</label>
-            <input type="text" name="" id="query">
-            <input type="submit" value="Buscar contrato">
+            <input type="text" name="query" id="query">
+            <a href="/proyecto/buscar_proyecto.html"><input type="submit" value="Nueva búsqueda"></a>
         </form>
+    </div>
+    <div id="result">
+        <% for(var j = 0; j < result.length; j++)
+        { %>
+            <p>Contrato: <%= result[j].getID() %></p>
+        <% } %>
     </div>
 </body>
 
