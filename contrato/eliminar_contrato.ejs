@@ -20,7 +20,7 @@
             <select name="contrato" id="contrato" multiple>
                 <!---->
                 <% for(var i = 0; i < DATABASE.getContratos().length; i++) { %>
-					<option value='<%= DATABASE.getContratos()[i].getID() %>'> <%= DATABASE.getContratos()[i].getNombre() %> </option>
+					<option value='<%= DATABASE.getContratos()[i].getID() %>'> <%= DATABASE.getContratos()[i].getID() %> </option>
 				<% } %>
             </select>
 	    <p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
