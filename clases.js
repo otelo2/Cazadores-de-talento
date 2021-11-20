@@ -150,6 +150,15 @@ app.route('/talento/eliminar_talento.html')
     	response.render("talento/eliminar_talento", {DATABASE: DATABASE})
 });
 
+app.route('/proyecto/eliminar_proyecto.html')
+    .get(function(request, response) {
+    	response.render("proyecto/eliminar_proyecto", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		eliminarProyecto(request.body.proyecto)
+    	response.render("proyecto/eliminar_proyecto", {DATABASE: DATABASE})
+});
+
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
   response.sendFile(__dirname + '/' + request.url);
@@ -1191,7 +1200,36 @@ function editarProyecto(id, nombre, descripcion, cuota)
 	}
 }*/
 
-function eliminarProyecto()
+function eliminarProyecto(id)
+{
+	if(Array.isArray(id))
+	{
+		id.forEach( function(valor, indice, array) {
+			for(var j = 0; j < DATABASE.getProyectos().length; j++)
+			{
+				if(DATABASE.getProyectos()[j].getID() == valor)
+				{
+					DATABASE.removeProyecto(j);
+					break;
+				}
+			}
+		});
+	}
+	else
+	{
+		for(var j = 0; j < DATABASE.getProyectos().length; j++)
+		{
+		if(DATABASE.getProyectos()[j].getID() == id)
+		{
+			DATABASE.removeProyecto(j);
+			break;
+		}
+		}
+	}
+}
+
+
+/*function eliminarProyecto()
 {
   var proyectos = document.getElementById("proyecto");
   var index = -1
@@ -1207,7 +1245,7 @@ function eliminarProyecto()
       }
     }
   }
-}
+}*/
 
 function buscarProyecto()
 {
