@@ -95,16 +95,25 @@ app.route('/cazador/editar_cazador.html')
     .post(function(request, response) {
 		editarCazador(request.body.cazador, request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
     	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
-    });
+});
 
-	app.route('/talento/editar_talento.html')
+app.route('/talento/editar_talento.html')
     .get(function(request, response) {
     	response.render("talento/editar_talento", {DATABASE: DATABASE})
     })
     .post(function(request, response) {
 		editarTalento(request.body.talento, request.body.alias, request.body.actividad_profesional, request.body.horario, request.body.lugar, request.body.costo)
     	response.render("talento/editar_talento", {DATABASE: DATABASE})
-    });
+});
+
+app.route('/proyecto/editar_proyecto.html')
+    .get(function(request, response) {
+    	response.render("proyecto/editar_proyecto", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarProyecto(request.body.proyecto, request.body.nombre, request.body.descripcion, request.body.cuota)
+    	response.render("proyecto/editar_proyecto", {DATABASE: DATABASE})
+});
 
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
@@ -1074,7 +1083,14 @@ function defaultProyecto()
 	document.getElementById("changing").innerHTML = HTML_expr;
 }
 
-function editarProyecto()
+function editarProyecto(id, nombre, descripcion, cuota)
+{
+	DATABASE.getProyectos()[id-1].setNombre(nombre);
+	DATABASE.getProyectos()[id-1].setDescripcion(descripcion);
+	DATABASE.getProyectos()[id-1].setCuota(cuota);
+}
+
+/*function editarProyecto()
 {
   var o = document.getElementById("proyecto").value;
 	//encontrar al Proyecto
@@ -1099,7 +1115,7 @@ function editarProyecto()
 	{
 		DATABASE.getProyectos()[o].setCuota(document.getElementById("cuota"))
 	}
-}
+}*/
 
 function eliminarProyecto()
 {
