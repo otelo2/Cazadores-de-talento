@@ -202,6 +202,18 @@ app.route('/cita/crear_cita_cazador.html')
     	response.render("cita/crear_cita_cazador", {DATABASE: DATABASE})
     });
 
+app.route('/cita/buscar_cita.html')
+    .get(function(request, response) {
+    	response.sendFile(__dirname + '/cita/buscar_cita.html');
+    })
+    .post(function(request, response) {
+		var query = request.body.query;
+		var result = buscarCita(query)
+		console.log("Query: "+query);
+		console.log(result);
+    	response.render("cita/resultado_busqueda", {DATABASE: DATABASE, query: query ,result: result})
+});
+
 app.route('/cita/crear_cita_talento.html')
     .get(function(request, response) {
     	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
@@ -958,9 +970,9 @@ function eliminarCita(id)
   }
 }*/
 
-function buscarCita()
+function buscarCita(query)
 {
-  var query = document.getElementById("query");
+  //var query = document.getElementById("query");
   var result = [];
   for(var j = 0; j < DATABASE.getCitas().length; j++)
   {
@@ -969,6 +981,7 @@ function buscarCita()
         result.push(DATABASE.getContratos()[j]);
     }
   }
+  return result;
   //print citas on screen
 	var HTML_expr = ""
 	for(var j = 0; j < result.length; j++)

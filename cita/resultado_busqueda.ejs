@@ -14,11 +14,19 @@
 <body>
     <h1>Realizar consultas de citas</h1>
     <div id="form">
-        <form action="" method="post">
+        <form action="" method="">
             <label for="busqueda">Busca citas:</label>
             <input type="text" name="" id="query">
-            <input type="submit" value="Buscar cita">
+            <a href="/cita/buscar_cita.html"><input type="submit" value="Nueva búsqueda"></a>
         </form>
+    </div>
+    <div id="result">
+        <% for(var j = 0; j < result.length; j++)
+        { %>
+            <p>Citas: <%= result[j].getID() %></p>
+            <p>Horario: <%= result[j].getHorario() %></p>
+            <p>Lugar: <%= result[j].getLugar() %></p>
+        <% } %>
     </div>
 </body>
 
