@@ -127,3 +127,15 @@ h1 {
 	font-size: 20px;
 	font-family: Garamond, "Courier New", "Times New Roman"
 }
+
+#result ul{
+	text-align: center;
+	font-size: 20px;
+	font-family: Garamond, "Courier New", "Times New Roman"
+}
+
+#result li{
+	text-align: center;
+	font-size: 20px;
+	font-family: Garamond, "Courier New", "Times New Roman"
+}
