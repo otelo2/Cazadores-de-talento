@@ -16,24 +16,23 @@
     <form action="#" method="post">
         <div id="form">
             <label for="cita">Cita a editar:</label>
-            <select name="cita" id="contrato">
+            <select name="cita" id="cita" onchange="defaultCitaC()">
                 <!---->
             </select>
+	    <div id= "changing">
+ 	           <label for="lista_de_talentos">Talento seleccionado para citar:</label>
+        	    <select name="lista_de_talentos" id="lista_de_talentos">
+        	        <!--option value="talentos1"Talento 1/option-->
+        	    </select>
 
-            <label for="lista_de_talentos">Talento seleccionado para citar:</label>
-            <select name="lista_de_talentos" id="lista_de_talentos">
-                <option value="talentos1">Talento 1</option>
-                <option value="talentos2">Talento 2</option>
-                <option value="talentos3">Talento 3</option>
-            </select>
+	            <label for="horario">Horario</label>
+        	    <input type="datetime-local" name="horario" id="horario">
 
-            <label for="horario">Horario</label>
-            <input type="datetime-local" name="horario" id="horario">
+	            <label for="lugar">Lugar</label>
+        	    <input type="text" name="lugar" id="lugar">
+	    </div>
 
-            <label for="lugar">Lugar</label>
-            <input type="text" name="lugar" id="lugar">
-
-            <input type="submit" onclick="editarCita()" value="Actualizar cita">
+            <input type="submit" onclick="editarCitaC()" value="Actualizar cita">
         </div>
     </form>
 </body>

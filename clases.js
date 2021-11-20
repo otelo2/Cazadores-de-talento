@@ -616,9 +616,59 @@ function crearCitaA(ic, it, h, l)
 	console.log('DONE');
 }
 
-function defaultCitaA()
+function editarCitaC()
 {
+	var o = document.getElementById("cita").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getCitas().length; j++)
+	{
+		if(DATABASE.getCitas()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//editar valores que cambiaron
+	if(DATABASE.getCitas()[o].getTalentoID()!=document.getElementById("lista_de_talentos"))
+	{
+		DATABASE.getCitas()[o].setTalentoID(document.getElementById("lista_de_talentos"))
+	}
+	if(DATABASE.getCitas()[o].getHorario()!=document.getElementById("horario"))
+	{
+		DATABASE.getCitas()[o].setHorario(document.getElementById("horario"))
+	}
+	if(DATABASE.getCitas()[o].getLugar()!=document.getElementById("lugar"))
+	{
+		DATABASE.getCitas()[o].setLugar(document.getElementById("lugar"))
+	}
+}
 
+function defaultCitaC()
+{
+	var o = document.getElementById("cita").value;
+	//encontrar al Cazador
+	for(var j = 0; j < DATABASE.getCitas().length; j++)
+	{
+		if(DATABASE.getCitas()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
+	//poner los datos del cazadores en el formato
+  var HTML_expr = "<label for='lista_de_talentos'>Talento seleccionado para citar:</label>"
+  HTML_expr = "<select name='lista_de_talentos' id='lista_de_talentos'>"
+  for(var i = 0; i < DATABASE.getTalentos().length; i++) {
+			HTML_expr += "<option value='" + DATABASE.getTalentos()[i].getID() + "'>";
+			HTML_expr += DATABASE.getTalentos()[i].getAlias() + "</option>";
+	}
+  HTML_expr = "</select>"
+	HTML_expr = "<label for='horario'>Horario</label>"
+  HTML_expr = "<input type='datetime-local' name='horario' id='horario' value='"+DATABASE.getCitas()[o].getHorario()+"'>"
+	HTML_expr = "<label for='lugar'>Lugar</label>"
+  HTML_expr = "<input type='text' name='lugar' id='lugar' value='"+DATABASE.getCitas()[o].getLugar()+"'>"
+
+  document.getElementById("changing").innerHTML = HTML_expr;
 }
 
 function newCitaC()
@@ -658,11 +708,6 @@ function crearCitaT(ic, h, l)
 	var l = document.getElementById("lugar").value;*/
 	DATABASE.addCazador(CITA(ic, 'default', h, l));
 	console.log('DONE');
-}
-
-function editarCita()
-{
-	//
 }
 
 function newCitas()
