@@ -93,7 +93,7 @@ app.route('/cazador/editar_cazador.html')
     	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
     })
     .post(function(request, response) {
-		crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
+		editarCazador(request.body.cazador, request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
     	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
     });
 
@@ -495,7 +495,7 @@ function crearCazador(alias, giro, coordenadas)
 	console.log('DONE');
 	console.log(CAZADOR.counter);
 }
-
+/*
 function editarCazador()
 {
 	var o = document.getElementById("cazador").value;
@@ -521,6 +521,13 @@ function editarCazador()
 	{
 		DATABASE.getCazadores()[o].setCoordenadas(document.getElementById("coordenadas"))
 	}
+}
+*/
+function editarCazador(id, alias, giro, coordenadas)
+{
+	DATABASE.getCazadores()[id-1].setAlias(alias);
+	DATABASE.getCazadores()[id-1].setGiroProyectos(giro);
+	DATABASE.getCazadores()[id-1].setCoordenadas(coordenadas);
 }
 
 function defaultCazador()
