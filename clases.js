@@ -340,7 +340,7 @@ var DATABASE = (function() {
 			{
 				if(b.getTalentoID() == talentos[i].getID())
 				{
-					talento[i].addContrato(b);
+					talentos[i].addContrato(b);
 					break;
 				}
 			}

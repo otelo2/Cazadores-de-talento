@@ -32,7 +32,7 @@ label {
 
 input {
     width: 500px;
-    margin-bottom: 25px;
+    margin-top: 25px;
 }
 
 input[type=submit] {
@@ -41,6 +41,7 @@ input[type=submit] {
     background-color: #de2e03;
     cursor: pointer;
     padding: 7px;
+    margin-top: 25px;
 }
 
 select {
