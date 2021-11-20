@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../clases.js"></script>
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <link rel="shortcut icon" href="../Imagenes/Cofre.png">
+    <title>Editar contratos</title>
+</head>
+
+<!-- <body onload = "newContratoList()"> -->
+<body>
+    <h1>Editar contrato</h1>
+    <form action="" method="post">
+        <div id="form">
+            <label for="contrato">Contrato a editar:</label>
+            <select name="contrato" id="contrato" onchange="defaultContrato()">
+                <!----->
+                <% for(var i = 0; i < DATABASE.getContratos().length; i++) { %>
+					<option value='<%= DATABASE.getContratos()[i].getID() %>'> <%= DATABASE.getContratos()[i].getID() %> </option>
+				<% } %>
+            </select>
+
+            <div id="changing">
+		<label for="lista_de_proyectos">Para el proyecto:</label>
+		<select name="lista_de_proyectos" id="lista_de_proyectos">
+	               <!---->
+                <% for(var i = 0; i < DATABASE.getProyectos().length; i++) { %>
+					<option value='<%= DATABASE.getProyectos()[i].getID() %>'> <%= DATABASE.getProyectos()[i].getNombre() %> </option>
+				<% } %>
+		</select>
+
+	 	<label for="lista_de_talentos">Talento seleccionado:</label>
+		<select name="lista_de_talentos" id="lista_de_talentos">
+               		<!---->
+                    <% for(var i = 0; i < DATABASE.getTalentos().length; i++) { %>
+                        <option value='<%= DATABASE.getTalentos()[i].getID() %>'> <%= DATABASE.getTalentos()[i].getAlias() %> </option>
+                    <% } %>
+        	</select>
+	    </div>
+
+            <!-- Creo que esto no va cuando se crea un contrato -->
+            <!-- 
+	    <div>
+                <label for="tiene_talento">Cerrar contrato?</label>
+                <div class="selectDisplay">
+                    <label for="Sí">Sí</label>
+                    <input type="radio" name="tiene_talento" id="tiene_talento" value="Sí">
+                </div>
+                <div class="selectDisplay">
+                    <label for="No">No</label>
+                    <input type="radio" name="tiene_talento" id="tiene_talento" value="No">
+                </div>
+            </div>
+	    -->
+
+            <!-- Creo que esto no va cuando se crea un contrato -->
+	    <!--
+            <div>
+                <label for="calificacion_cazador">Calificación para el cazador</label>
+                <div class="selectDisplay">
+                    <label for="1">1</label>
+                    <input type="radio" name="calificacion_cazador" id="calificacion_cazador" value="1">
+
+                    <label for="2">2</label>
+                    <input type="radio" name="calificacion_cazador" id="calificacion_cazador" value="2">
+
+                    <label for="3">3</label>
+                    <input type="radio" name="calificacion_cazador" id="calificacion_cazador" value="3">
+
+                    <label for="4">4</label>
+                    <input type="radio" name="calificacion_cazador" id="calificacion_cazador" value="4">
+
+                    <label for="5">5</label>
+                    <input type="radio" name="calificacion_cazador" id="calificacion_cazador" value="5">
+                </div>
+            </div>
+	    -->
+
+            <!-- Creo que esto no va cuando se crea un contrato -->
+            <!-- 
+	    <div>
+                <label for="calificacion_talento">Calificación para el talento</label>
+                <div class="selectDisplay">
+                    <label for="1">1</label>
+                    <input type="radio" name="calificacion_talento" id="calificacion_talento" value="1">
+
+                    <label for="2">2</label>
+                    <input type="radio" name="calificacion_talento" id="calificacion_talento" value="2">
+
+                    <label for="3">3</label>
+                    <input type="radio" name="calificacion_talento" id="calificacion_talento" value="3">
+
+                    <label for="4">4</label>
+                    <input type="radio" name="calificacion_talento" id="calificacion_talento" value="4">
+
+                    <label for="5">5</label>
+                    <input type="radio" name="calificacion_talento" id="calificacion_talento" value="5">
+                </div>
+            </div>
+	   -->
+
+            <input type="submit" onclick="editarContrato()" value="Actualizar contrato">
+        </div>
+    </form>
+</body>
+
+</html>

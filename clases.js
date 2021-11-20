@@ -50,7 +50,6 @@ app.route('/contrato/crear_contrato.html')
     	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
     })
     .post(function(request, response) {
-		console.log("Nombre contrato: "+DATABASE.getProyectos()[0].getNombre());
 		crearContrato(request.body.lista_de_talentos, request.body.lista_de_proyectos)
     	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
     });
@@ -113,6 +112,15 @@ app.route('/proyecto/editar_proyecto.html')
     .post(function(request, response) {
 		editarProyecto(request.body.proyecto, request.body.nombre, request.body.descripcion, request.body.cuota)
     	response.render("proyecto/editar_proyecto", {DATABASE: DATABASE})
+});
+
+app.route('/contrato/editar_contrato.html')
+    .get(function(request, response) {
+    	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarContrato(request.body.contrato, request.body.lista_de_proyectos, request.body.lista_de_talentos)
+    	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
 });
 
 //Si no tiene alguna funcion especial predefinida arriba
@@ -820,7 +828,13 @@ function crearContrato(it, ip)
 	console.log('DONE');
 }
 
-function editarContrato()
+function editarContrato(id, proyecto, talento)
+{
+	DATABASE.getContratos()[id-1].setProyecto(proyecto);
+	DATABASE.getContratos()[id-1].setTalento(talento);
+}
+
+/*function editarContrato()
 {
 	var o = document.getElementById("contrato").value;
 	//encontrar al Cazador
@@ -841,7 +855,7 @@ function editarContrato()
 	{
 		DATABASE.getContratos()[o].setProyectoID(document.getElementById("lista_de_proyectos"))
 	}
-}
+}*/
 
 function defaultContrato()
 {
