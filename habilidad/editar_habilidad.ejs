@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <link rel="shortcut icon" href="../Imagenes/Cofre.png">
+    <script src="../clases.js"></script>
+    <title>Editar habilidades</title>
+</head>
+
+<!-- <body onload = "newHabilidades()"> -->
+<body>
+    <h1>Editar habilidades</h1>
+    <form action="#" method="post">
+        <div id="form">
+            <label for="habilidad">Habilidad a editar:</label>
+            <select name="habilidad" id="habilidad" onchange="defaultHabilidades()">
+                <!---->
+                <% for(var i = 0; i < DATABASE.getHabilidades().length; i++) { %>
+					<option value='<%= DATABASE.getHabilidades()[i].getID() %>'> <%= DATABASE.getHabilidades()[i].getNombre() %> </option>
+				<% } %>
+            </select>
+	    <div id = "changing">
+	            <label for="nombre">Nombre</label>
+        	    <input type="input" name="nombre" id="nombre">
+
+	            <label for="descripcion">Descripción</label>
+	            <textarea name="descripcion" id="descripcion" cols="65" rows="10"></textarea>
+	    </div>
+        </div>
+            <!-- <input type="submit" onclick="editarHabilidad()" value="Actualizar habilidad"> -->
+            <input type="submit" value="Actualizar habilidad">
+        </div>
+    </form>
+</body>
+
+</html>

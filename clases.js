@@ -123,6 +123,15 @@ app.route('/contrato/editar_contrato.html')
     	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
 });
 
+app.route('/habilidad/editar_habilidad.html')
+    .get(function(request, response) {
+    	response.render("habilidad/editar_habilidad", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarHabilidad(request.body.habilidad, request.body.nombre, request.body.descripcion)
+    	response.render("habilidad/editar_habilidad", {DATABASE: DATABASE})
+});
+
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
   response.sendFile(__dirname + '/' + request.url);
@@ -967,7 +976,13 @@ function defaultHabilidades()
 	document.getElementById("changing").innerHTML = HTML_expr;
 }
 
-function editarHabilidad()
+function editarHabilidad(id, nombre, descripcion)
+{
+	DATABASE.getHabilidades()[id-1].setNombre(nombre);
+	DATABASE.getHabilidades()[id-1].setDescripcion(descripcion);
+}
+
+/*function editarHabilidad()
 {
   var o = document.getElementById("habilidad").value;
 	//encontrar al Cazador
@@ -988,7 +1003,7 @@ function editarHabilidad()
 	{
 		DATABASE.getHabilidades()[o].setDescripcion(document.getElementById("descripcion"))
 	}
-}
+}*/
 
 function eliminarHabilidad()
 {
