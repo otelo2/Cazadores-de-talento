@@ -14,11 +14,19 @@
 <body>
     <h1>Realizar consultas de habilidades</h1>
     <div id="form">
-        <form action="" method="post">
+        <form action="" method="">
             <label for="busqueda">Busca habilidades:</label>
             <input type="text" name="" id="query">
-            <input type="submit" value="Buscar habilidad">
+            <a href="/cita/buscar_cita.html"><input type="submit" value="Nueva búsqueda"></a>
         </form>
+    </div>
+    <div id="result">
+        <% for(var j = 0; j < result.length; j++)
+        { %>
+            <p>Habilidad: <%= result[j].getID() %></p>
+            <p>Nombre: <%= result[j].getNombre() %></p>
+            <p>Descripción: <%= result[j].getDescripcion() %></p>
+        <% } %>
     </div>
 </body>
 

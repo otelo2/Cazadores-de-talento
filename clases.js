@@ -202,6 +202,15 @@ app.route('/cita/crear_cita_cazador.html')
     	response.render("cita/crear_cita_cazador", {DATABASE: DATABASE})
     });
 
+app.route('/cita/crear_cita_talento.html')
+    .get(function(request, response) {
+    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
+    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
+    });
+
 app.route('/cita/buscar_cita.html')
     .get(function(request, response) {
     	response.sendFile(__dirname + '/cita/buscar_cita.html');
@@ -213,15 +222,6 @@ app.route('/cita/buscar_cita.html')
 		console.log(result);
     	response.render("cita/resultado_busqueda", {DATABASE: DATABASE, query: query ,result: result})
 });
-
-app.route('/cita/crear_cita_talento.html')
-    .get(function(request, response) {
-    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
-    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
-    });
 
 app.route('/cita/eliminar_cita.html')
     .get(function(request, response) {
@@ -246,6 +246,18 @@ app.route('/habilidad/editar_habilidad.html')
     .post(function(request, response) {
 		editarHabilidad(request.body.habilidad, request.body.nombre, request.body.descripcion)
     	response.render("habilidad/editar_habilidad", {DATABASE: DATABASE})
+});
+
+app.route('/habilidad/buscar_habilidad.html')
+    .get(function(request, response) {
+    	response.sendFile(__dirname + '/habilidad/buscar_habilidad.html');
+    })
+    .post(function(request, response) {
+		var query = request.body.query;
+		var result = buscarHabilidad(query)
+		console.log("Query: "+query);
+		console.log(result);
+    	response.render("habilidad/resultado_busqueda", {DATABASE: DATABASE, query: query ,result: result})
 });
 
 app.route('/habilidad/eliminar_habilidad.html')
@@ -1263,9 +1275,9 @@ function eliminarHabilidad(id)
   }
 }*/
 
-function buscarHabilidad()
+function buscarHabilidad(query)
 {
-  var query = document.getElementById("query");
+  //var query = document.getElementById("query");
   var result = [];
   for(var j = 0; j < DATABASE.getHabilidades().length; j++)
   {
@@ -1274,6 +1286,7 @@ function buscarHabilidad()
         result.push(DATABASE.getHabilidades()[j]);
     }
   }
+  return result;
   //print habilidades on screen
 	var HTML_expr = ""
 	for(var j = 0; j < result.length; j++)
