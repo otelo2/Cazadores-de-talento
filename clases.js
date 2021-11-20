@@ -159,6 +159,15 @@ app.route('/proyecto/eliminar_proyecto.html')
     	response.render("proyecto/eliminar_proyecto", {DATABASE: DATABASE})
 });
 
+app.route('/contrato/eliminar_contrato.html')
+    .get(function(request, response) {
+    	response.render("contrato/eliminar_contrato", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		eliminarContrato(request.body.contrato)
+    	response.render("contrato/eliminar_contrato", {DATABASE: DATABASE})
+});
+
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
   response.sendFile(__dirname + '/' + request.url);
@@ -962,7 +971,35 @@ function newContratoList()
   document.getElementById("contrato").innerHTML = HTML_expr;
 }
 
-function eliminarContrato()
+function eliminarContrato(id)
+{
+	if(Array.isArray(id))
+	{
+		id.forEach( function(valor, indice, array) {
+			for(var j = 0; j < DATABASE.getContratos().length; j++)
+			{
+				if(DATABASE.getContratos()[j].getID() == valor)
+				{
+					DATABASE.removeContrato(j);
+					break;
+				}
+			}
+		});
+	}
+	else
+	{
+		for(var j = 0; j < DATABASE.getContratos().length; j++)
+		{
+		if(DATABASE.getContratos()[j].getID() == id)
+		{
+			DATABASE.removeContrato(j);
+			break;
+		}
+		}
+	}
+}
+
+/*function eliminarContrato()
 {
   var contratos = document.getElementById("contrato");
   var index = -1
@@ -978,7 +1015,7 @@ function eliminarContrato()
       }
     }
   }
-}
+}*/
 
 function buscarContrato()
 {
