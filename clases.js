@@ -84,10 +84,18 @@ app.route('/cita/crear_cita_talento.html')
 
 
 app.post('/habilidad/crear_habilidad.html', function(request, response) {
-
   crearHabilidad(request.body.nombre, request.body.input)
   response.sendFile(__dirname + '/habilidad/crear_habilidad.html');
 });
+
+app.route('/cazador/editar_cazador.html')
+    .get(function(request, response) {
+    	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
+    	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
+    });
 
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
