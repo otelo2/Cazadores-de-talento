@@ -235,7 +235,7 @@ app.route('/cita/eliminar_cita.html')
 //-------------- HABILIDAD RUTAS --------------//
 
 app.post('/habilidad/crear_habilidad.html', function(request, response) {
-  crearHabilidad(request.body.nombre, request.body.input)
+  crearHabilidad(request.body.nombre, request.body.descripcion)
   response.sendFile(__dirname + '/habilidad/crear_habilidad.html');
 });
 
