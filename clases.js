@@ -20,10 +20,31 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/main.html');
 });
 
+//-------------- CAZADOR RUTAS --------------//
 app.post('/cazador/crear_cazador.html', function(request, response) {
 	crearCazador(request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
     response.sendFile(__dirname + '/cazador/crear_cazador.html');
 });
+
+app.route('/cazador/editar_cazador.html')
+    .get(function(request, response) {
+    	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarCazador(request.body.cazador, request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
+    	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
+});
+
+app.route('/cazador/eliminar_cazador.html')
+    .get(function(request, response) {
+    	response.render("cazador/eliminar_cazador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		eliminarCazador(request.body.cazador)
+    	response.render("cazador/eliminar_cazador", {DATABASE: DATABASE})
+});
+
+//-------------- TALENTO RUTAS --------------//
 
 app.route('/talento/crear_talento.html')
     .get(function(request, response) {
@@ -36,66 +57,6 @@ app.route('/talento/crear_talento.html')
       //response.sendFile(__dirname + '/talento/crear_talento.html');
     });
 
-app.route('/proyecto/crear_proyecto.html')
-    .get(function(request, response) {
-    	response.render("proyecto/crear_proyecto", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		crearProyecto(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad)
-    	response.render("proyecto/crear_proyecto", {DATABASE: DATABASE})
-    });
-
-app.route('/contrato/crear_contrato.html')
-    .get(function(request, response) {
-    	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		crearContrato(request.body.lista_de_talentos, request.body.lista_de_proyectos)
-    	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
-    });
-
-app.route('/cita/crear_cita_cazador.html')
-    .get(function(request, response) {
-    	response.render("cita/crear_cita_cazador", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		crearCitaC(request.body.lista_de_talentos, request.body.horario, request.body.lugar)
-    	response.render("cita/crear_cita_cazador", {DATABASE: DATABASE})
-    });
-
-app.route('/cita/crear_cita_administrador.html')
-    .get(function(request, response) {
-    	response.render("cita/crear_cita_administrador", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		crearCitaA(request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
-    	response.render("cita/crear_cita_administrador", {DATABASE: DATABASE})
-    });
-
-app.route('/cita/crear_cita_talento.html')
-    .get(function(request, response) {
-    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
-    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
-    });
-
-
-app.post('/habilidad/crear_habilidad.html', function(request, response) {
-  crearHabilidad(request.body.nombre, request.body.input)
-  response.sendFile(__dirname + '/habilidad/crear_habilidad.html');
-});
-
-app.route('/cazador/editar_cazador.html')
-    .get(function(request, response) {
-    	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		editarCazador(request.body.cazador, request.body.alias, request.body.giro_de_proyectos, request.body.coordenadas)
-    	response.render("cazador/editar_cazador", {DATABASE: DATABASE})
-});
-
 app.route('/talento/editar_talento.html')
     .get(function(request, response) {
     	response.render("talento/editar_talento", {DATABASE: DATABASE})
@@ -103,42 +64,6 @@ app.route('/talento/editar_talento.html')
     .post(function(request, response) {
 		editarTalento(request.body.talento, request.body.alias, request.body.actividad_profesional, request.body.horario, request.body.lugar, request.body.costo)
     	response.render("talento/editar_talento", {DATABASE: DATABASE})
-});
-
-app.route('/proyecto/editar_proyecto.html')
-    .get(function(request, response) {
-    	response.render("proyecto/editar_proyecto", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		editarProyecto(request.body.proyecto, request.body.nombre, request.body.descripcion, request.body.cuota)
-    	response.render("proyecto/editar_proyecto", {DATABASE: DATABASE})
-});
-
-app.route('/contrato/editar_contrato.html')
-    .get(function(request, response) {
-    	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		editarContrato(request.body.contrato, request.body.lista_de_proyectos, request.body.lista_de_talentos)
-    	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
-});
-
-app.route('/habilidad/editar_habilidad.html')
-    .get(function(request, response) {
-    	response.render("habilidad/editar_habilidad", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		editarHabilidad(request.body.habilidad, request.body.nombre, request.body.descripcion)
-    	response.render("habilidad/editar_habilidad", {DATABASE: DATABASE})
-});
-
-app.route('/cazador/eliminar_cazador.html')
-    .get(function(request, response) {
-    	response.render("cazador/eliminar_cazador", {DATABASE: DATABASE})
-    })
-    .post(function(request, response) {
-		eliminarCazador(request.body.cazador)
-    	response.render("cazador/eliminar_cazador", {DATABASE: DATABASE})
 });
 
 app.route('/talento/eliminar_talento.html')
@@ -150,6 +75,26 @@ app.route('/talento/eliminar_talento.html')
     	response.render("talento/eliminar_talento", {DATABASE: DATABASE})
 });
 
+//-------------- PROYECTO RUTAS --------------//
+
+app.route('/proyecto/crear_proyecto.html')
+    .get(function(request, response) {
+    	response.render("proyecto/crear_proyecto", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearProyecto(request.body.nombre, request.body.descripcion, request.body.cuota, request.body.habilidad)
+    	response.render("proyecto/crear_proyecto", {DATABASE: DATABASE})
+    });
+
+app.route('/proyecto/editar_proyecto.html')
+    .get(function(request, response) {
+    	response.render("proyecto/editar_proyecto", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarProyecto(request.body.proyecto, request.body.nombre, request.body.descripcion, request.body.cuota)
+    	response.render("proyecto/editar_proyecto", {DATABASE: DATABASE})
+});
+
 app.route('/proyecto/eliminar_proyecto.html')
     .get(function(request, response) {
     	response.render("proyecto/eliminar_proyecto", {DATABASE: DATABASE})
@@ -157,6 +102,26 @@ app.route('/proyecto/eliminar_proyecto.html')
     .post(function(request, response) {
 		eliminarProyecto(request.body.proyecto)
     	response.render("proyecto/eliminar_proyecto", {DATABASE: DATABASE})
+});
+
+//-------------- CONTRATO RUTAS --------------//
+
+app.route('/contrato/crear_contrato.html')
+    .get(function(request, response) {
+    	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearContrato(request.body.lista_de_talentos, request.body.lista_de_proyectos)
+    	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
+    });
+
+app.route('/contrato/editar_contrato.html')
+    .get(function(request, response) {
+    	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarContrato(request.body.contrato, request.body.lista_de_proyectos, request.body.lista_de_talentos)
+    	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
 });
 
 app.route('/contrato/eliminar_contrato.html')
@@ -168,6 +133,35 @@ app.route('/contrato/eliminar_contrato.html')
     	response.render("contrato/eliminar_contrato", {DATABASE: DATABASE})
 });
 
+//-------------- CONTRATO RUTAS --------------//
+
+app.route('/cita/crear_cita_administrador.html')
+    .get(function(request, response) {
+    	response.render("cita/crear_cita_administrador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearCitaA(request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+    	response.render("cita/crear_cita_administrador", {DATABASE: DATABASE})
+    });
+
+app.route('/cita/crear_cita_cazador.html')
+    .get(function(request, response) {
+    	response.render("cita/crear_cita_cazador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearCitaC(request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+    	response.render("cita/crear_cita_cazador", {DATABASE: DATABASE})
+    });
+
+app.route('/cita/crear_cita_talento.html')
+    .get(function(request, response) {
+    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		crearCitaT(request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
+    	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
+    });
+
 app.route('/cita/eliminar_cita.html')
     .get(function(request, response) {
     	response.render("cita/eliminar_cita", {DATABASE: DATABASE})
@@ -175,6 +169,22 @@ app.route('/cita/eliminar_cita.html')
     .post(function(request, response) {
 		eliminarCita(request.body.cita)
     	response.render("cita/eliminar_cita", {DATABASE: DATABASE})
+});
+
+//-------------- HABILIDAD RUTAS --------------//
+
+app.post('/habilidad/crear_habilidad.html', function(request, response) {
+  crearHabilidad(request.body.nombre, request.body.input)
+  response.sendFile(__dirname + '/habilidad/crear_habilidad.html');
+});
+
+app.route('/habilidad/editar_habilidad.html')
+    .get(function(request, response) {
+    	response.render("habilidad/editar_habilidad", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarHabilidad(request.body.habilidad, request.body.nombre, request.body.descripcion)
+    	response.render("habilidad/editar_habilidad", {DATABASE: DATABASE})
 });
 
 app.route('/habilidad/eliminar_habilidad.html')
