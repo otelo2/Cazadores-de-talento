@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <script src="../clases.js"></script>
+    <link rel="shortcut icon" href="../Imagenes/Cofre.png">
+    <title>Eliminar cazador</title>
+</head>
+<!-- <body onload="newCazador()"> -->
+<body onload="newCazador()">
+    <h1>Dar de baja a cazadores</h1>
+    <div id="form">
+	<form action="" method="post">
+        	<label for="cazador">Cazador a eliminar:</label>
+	        <select name="cazador" id="cazador" multiple>
+	            <!----->
+                <% for(var i = 0; i < DATABASE.getCazadores().length; i++) { %>
+					<option value='<%= DATABASE.getCazadores()[i].getID() %>'> <%= DATABASE.getCazadores()[i].getAlias() %> </option>
+				<% } %>
+	        </select>
+		<p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
+	    <!-- <input type="submit" onclick="eliminarCazador()" value="Eliminar cazador"> -->
+        <input type="submit" value="Eliminar cazador">
+	</form>
+    </div>
+</body>
+</html>

@@ -132,6 +132,15 @@ app.route('/habilidad/editar_habilidad.html')
     	response.render("habilidad/editar_habilidad", {DATABASE: DATABASE})
 });
 
+app.route('/cazador/eliminar_cazador.html')
+    .get(function(request, response) {
+    	response.render("cazador/eliminar_cazador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		eliminarCazador(request.body.cazador)
+    	response.render("cazador/eliminar_cazador", {DATABASE: DATABASE})
+});
+
 //Si no tiene alguna funcion especial predefinida arriba
 app.get('/*', function(request, response) {
   response.sendFile(__dirname + '/' + request.url);
@@ -597,9 +606,37 @@ function newCazador()
 	document.getElementById("cazador").innerHTML = HTML_expr;
 }
 
-function eliminarCazador()
+function eliminarCazador(id)
+{;
+	if(Array.isArray(id))
+	{
+		id.forEach( function(valor, indice, array) {
+			for(var j = 0; j < DATABASE.getCazadores().length; j++)
+			{
+				if(DATABASE.getCazadores()[j].getID() == valor)
+				{
+					DATABASE.removeCazador(j);
+					break;
+				}
+			}
+		});
+	}
+	else
+	{
+		for(var j = 0; j < DATABASE.getCazadores().length; j++)
+		{
+		if(DATABASE.getCazadores()[j].getID() == id)
+		{
+			DATABASE.removeCazador(j);
+			break;
+		}
+		}
+	}
+}
+
+/*function eliminarCazador()
 {
-  var cazador = document.getElementById("cazador");
+	var cazador = document.getElementById("cazador");
   var index = -1
   for ( var i = 0, l = cazador.options.length, o; i < l; i++ )
   {
@@ -612,8 +649,7 @@ function eliminarCazador()
           break;
       }
     }
-  }
-}
+  }*/
 
 function buscarCazador()
 {
