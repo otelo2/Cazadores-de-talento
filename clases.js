@@ -120,6 +120,18 @@ app.route('/proyecto/editar_proyecto.html')
     	response.render("proyecto/editar_proyecto", {DATABASE: DATABASE})
 });
 
+app.route('/proyecto/buscar_proyecto.html')
+    .get(function(request, response) {
+    	response.sendFile(__dirname + '/proyecto/buscar_proyecto.html');
+    })
+    .post(function(request, response) {
+		var query = request.body.query;
+		var result = buscarProyecto(query)
+		console.log("Query: "+query);
+		console.log(result);
+    	response.render("proyecto/resultado_busqueda", {DATABASE: DATABASE, query: query ,result: result})
+});
+
 app.route('/proyecto/eliminar_proyecto.html')
     .get(function(request, response) {
     	response.render("proyecto/eliminar_proyecto", {DATABASE: DATABASE})
@@ -1395,9 +1407,9 @@ function eliminarProyecto(id)
   }
 }*/
 
-function buscarProyecto()
+function buscarProyecto(query)
 {
-  var query = document.getElementById("query");
+  //var query = document.getElementById("query");
   var result = [];
   for(var j = 0; j < DATABASE.getProyectos().length; j++)
   {
@@ -1417,6 +1429,7 @@ function buscarProyecto()
       }
     }
   }
+  return result;
 	var HTML_expr = ""
 	for(var j = 0; j < result.length; j++)
 	{
