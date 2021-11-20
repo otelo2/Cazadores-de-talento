@@ -20,7 +20,7 @@
             <select name="cita" id="cita" multiple>
                 <!---->
                 <% for(var i = 0; i < DATABASE.getCitas().length; i++) { %>
-					<option value='<%= DATABASE.getCitas()[i].getID() %>'> <%= DATABASE.getCitas()[i].getNombre() %> </option>
+					<option value='<%= DATABASE.getCitas()[i].getID() %>'> <%= DATABASE.getCitas()[i].getID() %> </option>
 				<% } %>
             </select>
 	    <p>Para seleccionar varias opciones, presione CTRL (Windows) o COMMAND (Mac).</p>
