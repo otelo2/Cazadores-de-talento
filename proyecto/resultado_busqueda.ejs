@@ -15,20 +15,25 @@
     <div id = "form">
 	    <form action="" method="">
 	        <label for="busqueda">Busca proyectos:</label>
-        	<input type="text" name="query" id="query">
+        	<input type="text" name="query" id="query" value="<%= query %>">
             <a href="/proyecto/buscar_proyecto.html"><input type="submit" value="Nueva búsqueda"></a>
 	    </form>
     </div>
     <div id="result">
         <% for(var j = 0; j < result.length; j++)
         { %>
+            <hr>
             <p>Proyecto: <%= result[j].getID() %></p>
             <p>Nombre: <%= result[j].getNombre() %></p>
             <p>Descripción: <%= result[j].getDescripcion() %></p>
             <p>Habilidades: </p>  
-            <% for(var i = 0; i < result[j].getHabilidades().length; i++)
-            { %>
-                <p><%= result[j].getHabilidades()[i].getNombre() %></p>
+            <% if (typeof result[j].getHabilidades()[0] == "undefined") { %>
+                <p>No tiene habilidades</p>
+            <% } else { %>
+                <% for(var i = 0; i < result[j].getHabilidades().length; i++)
+                { %>
+                    <p><%= result[j].getHabilidades()[i].getNombre()%></p>
+                <% } %>
             <% } %>
             <p>Cuota: <%= result[j].getCuota() %></p>
             <p>Activo: <%= result[j].getEstaActivo() %></p>

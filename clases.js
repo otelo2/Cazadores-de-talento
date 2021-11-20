@@ -167,7 +167,7 @@ app.route('/contrato/buscar_contrato.html')
     })
     .post(function(request, response) {
 		var query = request.body.query;
-		var result = buscarProyecto(query)
+		var result = buscarContrato(query)
 		console.log("Query: "+query);
 		console.log(result);
     	response.render("contrato/resultado_busqueda", {DATABASE: DATABASE, query: query ,result: result})
