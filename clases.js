@@ -211,6 +211,33 @@ app.route('/cita/crear_cita_talento.html')
     	response.render("cita/crear_cita_talento", {DATABASE: DATABASE})
     });
 
+app.route('/cita/editar_cita_administrador.html')
+    .get(function(request, response) {
+    	response.render("cita/editar_cita_administrador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarCitaA(request.body.cita, request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+    	response.render("cita/editar_cita_administrador", {DATABASE: DATABASE})
+    });
+
+	app.route('/cita/editar_cita_cazador.html')
+    .get(function(request, response) {
+    	response.render("cita/editar_cita_cazador", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarCitaC(request.body.cita, request.body.lista_de_talentos, request.body.horario, request.body.lugar)
+    	response.render("cita/editar_cita_cazador", {DATABASE: DATABASE})
+    });
+
+app.route('/cita/editar_cita_talento.html')
+    .get(function(request, response) {
+    	response.render("cita/editar_cita_talento", {DATABASE: DATABASE})
+    })
+    .post(function(request, response) {
+		editarCitaT(request.body.cita, request.body.lista_de_cazadores, request.body.horario, request.body.lugar)
+    	response.render("cita/editar_cita_talento", {DATABASE: DATABASE})
+    });
+
 app.route('/cita/buscar_cita.html')
     .get(function(request, response) {
     	response.sendFile(__dirname + '/cita/buscar_cita.html');
@@ -840,19 +867,53 @@ function crearCitaA(ic, it, h, l)
 	console.log('DONE');
 }
 
-function editarCitaC(id, ic, it, h, l)
+function editarCitaA(id, ic, it, h, l)
 {
 	for(var j = 0; j < DATABASE.getCitas().length; j++)
 	{
-		if(DATABASE.getCitas()[j].getID() == o)
+		if(DATABASE.getCitas()[j].getID() == id)
 		{
-				o = j;
+				id = j;
 				break;
 		}
 	}
+	DATABASE.getCitas()[id].setCazadorID(ic);
+	DATABASE.getCitas()[id].setTalentoID(it);
+	DATABASE.getCitas()[id].setHorario(h);
+	DATABASE.getCitas()[id].setLugar(l);
 }
 
-function editarCitaC()
+function editarCitaC(id, it, h, l)
+{
+	for(var j = 0; j < DATABASE.getCitas().length; j++)
+	{
+		if(DATABASE.getCitas()[j].getID() == id)
+		{
+				id = j;
+				break;
+		}
+	}
+	DATABASE.getCitas()[id].setTalentoID(it);
+	DATABASE.getCitas()[id].setHorario(h);
+	DATABASE.getCitas()[id].setLugar(l);
+}
+
+function editarCitaT(id, ic, h, l)
+{
+	for(var j = 0; j < DATABASE.getCitas().length; j++)
+	{
+		if(DATABASE.getCitas()[j].getID() == id)
+		{
+				id = j;
+				break;
+		}
+	}
+	DATABASE.getCitas()[id].setCazadorID(ic);
+	DATABASE.getCitas()[id].setHorario(h);
+	DATABASE.getCitas()[id].setLugar(l);
+}
+
+/*function editarCitaC()
 {
 	var o = document.getElementById("cita").value;
 	//encontrar al Cazador
@@ -877,7 +938,7 @@ function editarCitaC()
 	{
 		DATABASE.getCitas()[o].setLugar(document.getElementById("lugar"))
 	}
-}
+}*/
 
 function defaultCitaC()
 {
