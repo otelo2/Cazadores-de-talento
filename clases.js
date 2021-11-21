@@ -182,7 +182,7 @@ app.route('/contrato/eliminar_contrato.html')
     	response.render("contrato/eliminar_contrato", {DATABASE: DATABASE})
 });
 
-//-------------- CONTRATO RUTAS --------------//
+//-------------- CITA RUTAS --------------//
 
 app.route('/cita/crear_cita_administrador.html')
     .get(function(request, response) {
@@ -697,9 +697,17 @@ function editarCazador()
 */
 function editarCazador(id, alias, giro, coordenadas)
 {
-	DATABASE.getCazadores()[id-1].setAlias(alias);
-	DATABASE.getCazadores()[id-1].setGiroProyectos(giro);
-	DATABASE.getCazadores()[id-1].setCoordenadas(coordenadas);
+	for(var j = 0; j < DATABASE.getCazadores().length; j++)
+	{
+		if(DATABASE.getCazadores()[j].getID() == id)
+		{
+				id = j;
+				break;
+		}
+	}
+	DATABASE.getCazadores()[id].setAlias(alias);
+	DATABASE.getCazadores()[id].setGiroProyectos(giro);
+	DATABASE.getCazadores()[id].setCoordenadas(coordenadas);
 }
 
 function defaultCazador()
@@ -828,8 +836,20 @@ function crearCitaA(ic, it, h, l)
 	var it = document.getElementById("lista_de_talentos").value;
 	var h = document.getElementById("horario").value;
 	var l = document.getElementById("lugar").value;*/
-	DATABASE.addCazador(CITA(ic, it, h, l));
+	DATABASE.addCita(CITA(ic, it, h, l));
 	console.log('DONE');
+}
+
+function editarCitaC(id, ic, it, h, l)
+{
+	for(var j = 0; j < DATABASE.getCitas().length; j++)
+	{
+		if(DATABASE.getCitas()[j].getID() == o)
+		{
+				o = j;
+				break;
+		}
+	}
 }
 
 function editarCitaC()
@@ -903,7 +923,7 @@ function crearCitaC(it, h, l)
 	/*var it = document.getElementById("lista_de_talentos").value;
 	var h = document.getElementById("horario").value;
 	var l = document.getElementById("lugar").value;*/
-	DATABASE.addCazador(CITA('default', it, h, l));
+	DATABASE.addCita(CITA('default', it, h, l));
 	console.log('DONE');
 }
 
@@ -922,7 +942,7 @@ function crearCitaT(ic, h, l)
 	/*var ic = document.getElementById("lista_de_cazadores").value;
 	var h = document.getElementById("horario").value;
 	var l = document.getElementById("lugar").value;*/
-	DATABASE.addCazador(CITA(ic, 'default', h, l));
+	DATABASE.addCita(CITA(ic, 'default', h, l));
 	console.log('DONE');
 }
 
@@ -990,7 +1010,7 @@ function buscarCita(query)
   {
     if((DATABASE.getCitas()[j].getID() == query)||(DATABASE.getCitas()[j].getHorario() == query)||(DATABASE.getCitas()[j].getLugar() == query))
     {
-        result.push(DATABASE.getContratos()[j]);
+        result.push(DATABASE.getCitas()[j]);
     }
   }
   return result;
@@ -1034,8 +1054,16 @@ function crearContrato(it, ip)
 
 function editarContrato(id, proyecto, talento)
 {
-	DATABASE.getContratos()[id-1].setProyectoID(proyecto);
-	DATABASE.getContratos()[id-1].setTalentoID(talento);
+	for(var j = 0; j < DATABASE.getContratos().length; j++)
+	{
+		if(DATABASE.getContratos()[j].getID() == id)
+		{
+				id = j;
+				break;
+		}
+	}
+	DATABASE.getContratos()[id].setProyectoID(proyecto);
+	DATABASE.getContratos()[id].setTalentoID(talento);
 }
 
 /*function editarContrato()
@@ -1202,8 +1230,16 @@ function defaultHabilidades()
 
 function editarHabilidad(id, nombre, descripcion)
 {
-	DATABASE.getHabilidades()[id-1].setNombre(nombre);
-	DATABASE.getHabilidades()[id-1].setDescripcion(descripcion);
+	for(var j = 0; j < DATABASE.getHabilidades().length; j++)
+	{
+		if(DATABASE.getHabilidades()[j].getID() == id)
+		{
+				id = j;
+				break;
+		}
+	}
+	DATABASE.getHabilidades()[id].setNombre(nombre);
+	DATABASE.getHabilidades()[id].setDescripcion(descripcion);
 }
 
 /*function editarHabilidad()
@@ -1367,9 +1403,17 @@ function defaultProyecto()
 
 function editarProyecto(id, nombre, descripcion, cuota)
 {
-	DATABASE.getProyectos()[id-1].setNombre(nombre);
-	DATABASE.getProyectos()[id-1].setDescripcion(descripcion);
-	DATABASE.getProyectos()[id-1].setCuota(cuota);
+	for(var j = 0; j < DATABASE.getProyectos().length; j++)
+	{
+		if(DATABASE.getProyectos()[j].getID() == id)
+		{
+				id = j;
+				break;
+		}
+	}
+	DATABASE.getProyectos()[id].setNombre(nombre);
+	DATABASE.getProyectos()[id].setDescripcion(descripcion);
+	DATABASE.getProyectos()[id].setCuota(cuota);
 }
 
 /*function editarProyecto()
@@ -1564,11 +1608,19 @@ function defaultTalento()
 
 function editarTalento(id, alias, actividad_profesional, horario, lugar, costo)
 {
-	DATABASE.getTalentos()[id-1].setAlias(alias);
-	DATABASE.getTalentos()[id-1].setActividadProfesional(actividad_profesional);
-	DATABASE.getTalentos()[id-1].setHorario(horario);
-	DATABASE.getTalentos()[id-1].setLugar(lugar);
-	DATABASE.getTalentos()[id-1].setCosto(costo);
+	for(var j = 0; j < DATABASE.getTalentos().length; j++)
+	{
+		if(DATABASE.getTalentos()[j].getID() == id)
+		{
+				id = j;
+				break;
+		}
+	}
+	DATABASE.getTalentos()[id].setAlias(alias);
+	DATABASE.getTalentos()[id].setActividadProfesional(actividad_profesional);
+	DATABASE.getTalentos()[id].setHorario(horario);
+	DATABASE.getTalentos()[id].setLugar(lugar);
+	DATABASE.getTalentos()[id].setCosto(costo);
 }
 
 /*function editarTalento()

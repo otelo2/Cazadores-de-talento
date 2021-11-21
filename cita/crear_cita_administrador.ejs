@@ -29,7 +29,7 @@
             <select name="lista_de_cazadores" id="lista_de_cazadores">
                  <!---->
                  <% for(var i = 0; i < DATABASE.getCazadores().length; i++) { %>
-					<option value='<%= DATABASE.getCazadores()[i].getID() %>'> <%= DATABASE.getCazadores()[i].getID() %> </option>
+					<option value='<%= DATABASE.getCazadores()[i].getID() %>'> <%= DATABASE.getCazadores()[i].getAlias() %> </option>
 				<% } %>
             </select>
 
