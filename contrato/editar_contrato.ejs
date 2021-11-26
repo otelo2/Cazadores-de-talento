@@ -42,6 +42,16 @@
         	</select>
 	    </div>
 
+        <div>
+            <label for="lista_de_cazadores">Cazador seleccionado:</label>
+            <select name="lista_de_cazadores" id="lista_de_cazadores">
+                <!---->
+                <% for(var i = 0; i < DATABASE.getCazadores().length; i++) { %>
+                    <option value='<%= DATABASE.getCazadores()[i].getID() %>'> <%= DATABASE.getCazadores()[i].getAlias() %> </option>
+                <% } %>
+            </select>
+        </div>
+
             <!-- Creo que esto no va cuando se crea un contrato -->
             <!-- 
 	    <div>

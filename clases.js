@@ -148,7 +148,7 @@ app.route('/contrato/crear_contrato.html')
     	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
     })
     .post(function(request, response) {
-		crearContrato(request.body.lista_de_talentos, request.body.lista_de_proyectos)
+		crearContrato(request.body.lista_de_cazadores, request.body.lista_de_talentos, request.body.lista_de_proyectos)
     	response.render("contrato/crear_contrato", {DATABASE: DATABASE})
     });
 
@@ -157,7 +157,7 @@ app.route('/contrato/editar_contrato.html')
     	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
     })
     .post(function(request, response) {
-		editarContrato(request.body.contrato, request.body.lista_de_proyectos, request.body.lista_de_talentos)
+		editarContrato(request.body.contrato, request.body.lista_de_proyectos, request.body.lista_de_talentos, request.body.lista_de_cazadores)
     	response.render("contrato/editar_contrato", {DATABASE: DATABASE})
 });
 
@@ -648,8 +648,10 @@ var CONTRATO = (function(iC, iT, iP){
 		getID: function() {return idContrato;},
 		getProyectoID: function() {return idProyecto;},
 		getTalentoID: function() {return idTalento;},
+		getCazadorID: function() {return idCazador;},
 		setProyectoID: function(iP) {idProyecto = iP;},
 		setTalentoID: function(iT) {idTalento = iT;},
+		setCazadorID: function(iC) {idCazador = iC;},
 		setCalificacionCazador: function() {},
 		setCalificacionTalento: function() {},
 		setCerrado: function() {cerrado = !cerrado;},
@@ -1105,15 +1107,15 @@ function newContrato()
 	document.getElementById("lista_de_talentos").innerHTML = HTML_expr;
 }
 
-function crearContrato(it, ip)
+function crearContrato(ic, it, ip)
 {
 	/*var it = document.getElementById("lista_de_talentos").value;
 	var ip = document.getElementById("giro_de_proyectos").value;*/
-	DATABASE.addContrato(CONTRATO('default', it, ip));
+	DATABASE.addContrato(CONTRATO(ic, it, ip));
 	console.log('DONE');
 }
 
-function editarContrato(id, proyecto, talento)
+function editarContrato(id, proyecto, talento, cazador)
 {
 	for(var j = 0; j < DATABASE.getContratos().length; j++)
 	{
@@ -1125,6 +1127,7 @@ function editarContrato(id, proyecto, talento)
 	}
 	DATABASE.getContratos()[id].setProyectoID(proyecto);
 	DATABASE.getContratos()[id].setTalentoID(talento);
+	DATABASE.getContratos()[id].setCazadorID(cazador);
 }
 
 /*function editarContrato()
